@@ -136,8 +136,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // Dispose of any resources that can be recreated.
     }
 
-    
-    // Original code
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return scripture.count
     }
