@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -75,11 +76,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let ndPages = 407
     let tlPages = 347
     let isPages = 158
+    let deviceType = UIDevice.current.modelName
     var selScripturePages = 0
     var rowWidth = 0
     var numPagesDay = 0.0
     var finalNumPages = 0
     var singularTime = ""
+    var fontSize = 24
     
     // add this right above your viewDidLoad function for right to left transition
     let transitionManager = TransitionManager()
@@ -98,6 +101,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         itemLabel.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.itemLabelTapFunction(_:)))
         itemLabel.addGestureRecognizer(tap)
+        //let deviceType = UIDevice.current.modelName
+        print("PRINTING DEVICE:"+deviceType)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -141,7 +146,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return scripture.count
     }
     
-    
     //Original code
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return scripture[component].count
@@ -153,7 +157,26 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return scripture[component][row]
     }
     
-
+    // Smaller fonts in picker for iPhone 5
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+            // Assign font size based on iPhone model
+            if deviceType.range(of:"iPhone 5") != nil {
+                fontSize = 20
+            } else {
+                fontSize = 24
+            }
+            //let pickerLabel = UILabel()
+            var pickerLabel = view as! UILabel!
+            if view == nil {  //if no label there yet
+                pickerLabel = UILabel()
+            }
+            let titleData = scripture[component][row]
+            let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: CGFloat(fontSize)),NSForegroundColorAttributeName:UIColor.black])
+            pickerLabel!.attributedText = myTitle
+            pickerLabel!.textAlignment = .center
+            return pickerLabel!
+    }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         //Original code
@@ -257,14 +280,27 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // for best use with multitasking , dont use a constant here.
     // this is for demonstration purposes only.
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        switch(component) {
-        case 0:
-            rowWidth = 225
-        case 1:
-            rowWidth = 85
-        case 2:
-            rowWidth = 55
-        default: break
+        if deviceType.range(of:"iPhone 5") != nil {
+            //don't make column width bigger for iPhone 5
+            switch(component) {
+                case 0:
+                    rowWidth = 200
+                case 1:
+                    rowWidth = 70
+                case 2:
+                    rowWidth = 30
+                default: break
+            }
+        } else {
+            switch(component) {
+                case 0:
+                    rowWidth = 225
+                case 1:
+                    rowWidth = 85
+                case 2:
+                    rowWidth = 55
+                default: break
+            }
         }
         return CGFloat(rowWidth)
     }

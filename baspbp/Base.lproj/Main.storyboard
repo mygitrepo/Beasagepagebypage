@@ -16,11 +16,10 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleAspectFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="circle_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="hJn-Bl-PqZ">
-                                <frame key="frameInset" minX="255" minY="422" width="90" height="90"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="hJn-Bl-PqZ">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="6DA-9r-wEs"/>
                                     <constraint firstAttribute="height" constant="71" id="TsD-RX-sSf"/>
@@ -34,8 +33,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="app_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="wXB-1e-I92">
-                                <frame key="frameInset" minY="58" width="600" height="96"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="wXB-1e-I92">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="96" id="aIK-Cm-TE0"/>
                                     <constraint firstAttribute="height" constant="96" id="ohg-Qw-fck"/>
@@ -46,8 +44,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Be a Sage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEq-T5-5X3">
-                                <frame key="frameInset" minX="25" minY="64" width="167" height="47"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be a Sage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEq-T5-5X3">
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="224" id="5XQ-ON-nz0"/>
                                     <constraint firstAttribute="height" constant="44" id="Dx7-YX-iQI"/>
@@ -66,8 +63,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Page by Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cui-hc-b6w">
-                                <frame key="frameInset" minX="25" minY="102" width="164" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page by Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cui-hc-b6w">
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="47" id="LPw-HW-5vv"/>
                                     <constraint firstAttribute="height" constant="47" id="ZHb-Aj-1xr"/>
@@ -87,8 +83,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="PagesLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zL-Fe-RJ4">
-                                <frame key="frameInset" minX="233" minY="443" width="134" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PagesLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zL-Fe-RJ4">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="AIy-vV-93N"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="GLW-0J-iY6"/>
@@ -106,8 +101,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your have to read" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsj-Zp-Xrh">
-                                <frame key="frameInset" minX="215" minY="387" width="171" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your have to read" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsj-Zp-Xrh">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="RHU-o5-0cO"/>
                                     <constraint firstAttribute="height" constant="30" id="tH9-M3-jf8"/>
@@ -121,8 +115,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Uh-dG-3D9">
-                                <frame key="frameInset" minX="250" minY="556" width="100" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Uh-dG-3D9">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="SSK-WZ-866"/>
                                     <constraint firstAttribute="width" constant="100" id="TLa-Ex-g7L"/>
@@ -142,8 +135,7 @@
                                     <segue destination="lnB-Eb-t7t" kind="show" id="KAy-JY-4wM"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="To complete reading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqL-AG-Jed">
-                                <frame key="frameInset" minX="180" minY="352" width="240" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To complete reading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqL-AG-Jed">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="5wZ-TQ-seU"/>
                                     <constraint firstAttribute="height" constant="33" id="ZdU-EA-lcc"/>
@@ -167,8 +159,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IvI-tY-dcV">
-                                <frame key="frameInset" minX="135" minY="425" width="19" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IvI-tY-dcV">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="Dl2-ne-hyJ"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="I8Y-h3-94r"/>
@@ -192,8 +183,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <pickerView contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u2R-PM-5x6">
-                                <frame key="frameInset" minY="144" width="600" height="217"/>
+                            <pickerView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="u2R-PM-5x6">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="217" id="3lA-sm-iMP"/>
                                     <constraint firstAttribute="height" constant="157" id="97q-Ld-S8L"/>
@@ -209,26 +199,22 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="BWb-b3-JdM"/>
                                 </connections>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ScriptureLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsi-SG-hzP">
-                                <frame key="frameInset" minX="227" minY="389" width="147" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ScriptureLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsi-SG-hzP">
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="21"/>
                                 <color key="textColor" red="0.028922442459999999" green="0.00087094357270000005" blue="0.76955097849999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="timeUnitLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4N-cz-VgG">
-                                <frame key="frameInset" minX="299" minY="425" width="148" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timeUnitLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4N-cz-VgG">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="durationLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqc-nL-IVM">
-                                <frame key="frameInset" minX="159" minY="424" width="135" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="durationLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqc-nL-IVM">
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="pages per day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YG0-AZ-uGq">
-                                <frame key="frameInset" minX="230" minY="517" width="140" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pages per day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YG0-AZ-uGq">
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -270,6 +256,8 @@
                             <constraint firstItem="Lqc-nL-IVM" firstAttribute="top" secondItem="gsi-SG-hzP" secondAttribute="bottom" constant="9" id="ur1-c2-Tg7"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="PagesLabel" destination="6zL-Fe-RJ4" id="OZ4-eD-T1E"/>
                         <outlet property="durationLabel" destination="Lqc-nL-IVM" id="AW3-Kw-h5u"/>
@@ -295,8 +283,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUP-4m-H7U">
-                                <frame key="frameInset" minX="230" minY="254" width="140" height="39"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUP-4m-H7U">
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Add Reminder">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -305,8 +292,7 @@
                                     <action selector="addEvent:" destination="kqE-Xd-G6H" eventType="touchUpInside" id="Ss8-ng-mRJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0x-F0-yQU">
-                                <frame key="frameInset" minX="218" minY="313" width="163" height="39"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0x-F0-yQU">
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Delete Reminder">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -326,21 +312,18 @@
                                     <segue destination="PtW-PA-GBk" kind="unwind" unwindAction="unwindToViewController:" id="Mdy-QO-HpC"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="new-180" translatesAutoresizingMaskIntoConstraints="NO" id="OOo-wY-KYm">
-                                <frame key="frameInset" minX="235" minY="40" width="130" height="130"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-180" translatesAutoresizingMaskIntoConstraints="NO" id="OOo-wY-KYm">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="KYK-0A-qJN"/>
                                     <constraint firstAttribute="width" constant="130" id="nHi-2n-72t"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Set reminder for your book selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWC-pw-5e7">
-                                <frame key="frameInset" minX="137" minY="210" width="325" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set reminder for your book selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWC-pw-5e7">
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Prev" translatesAutoresizingMaskIntoConstraints="NO" id="8N4-20-UGV">
-                                <frame key="frameInset" minX="20" minY="281" width="25" height="38"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Prev" translatesAutoresizingMaskIntoConstraints="NO" id="8N4-20-UGV">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="T1R-av-hbl"/>
                                     <constraint firstAttribute="width" constant="25" id="s1y-xA-lLk"/>
@@ -379,8 +362,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvg-wj-onz" userLabel="Next Button">
-                                <frame key="frameInset" minX="555" minY="281" width="25" height="38"/>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvg-wj-onz" userLabel="Next Button">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="VXe-jn-Rkv"/>
                                     <constraint firstAttribute="width" constant="25" id="tqA-l4-YOn"/>
@@ -391,8 +373,7 @@
                                     <action selector="nextPage" destination="Cya-49-6f4" eventType="touchUpInside" id="nwx-LT-nea"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="redraw" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-FS-uZL" userLabel="Close Button">
-                                <frame key="frameInset" minX="555" minY="28" width="25" height="26"/>
+                            <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-FS-uZL" userLabel="Close Button">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="IC5-m9-p9I"/>
                                     <constraint firstAttribute="height" constant="26" id="xb2-Zu-GAA"/>
@@ -403,11 +384,8 @@
                                     <segue destination="S1f-Rq-Hbv" kind="unwind" unwindAction="unwindToViewController:" id="m4v-iK-QyV"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="i2u-eH-Vee">
-                                <frame key="frameInset" minX="281" minY="558" width="39" height="37"/>
-                            </pageControl>
-                            <button hidden="YES" opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rd9-3m-b6Q" userLabel="Prev Button">
-                                <frame key="frameInset" minX="20" minY="281" width="25" height="38"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="i2u-eH-Vee"/>
+                            <button hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rd9-3m-b6Q" userLabel="Prev Button">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="Nmj-p1-WVA"/>
                                     <constraint firstAttribute="width" constant="25" id="cN0-ts-o85"/>
@@ -418,8 +396,7 @@
                                     <action selector="prevPage" destination="Cya-49-6f4" eventType="touchUpInside" id="RcK-9c-vkq"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="new-180" translatesAutoresizingMaskIntoConstraints="NO" id="P4s-ut-Qyb">
-                                <frame key="frameInset" minX="250" minY="40" width="100" height="100"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-180" translatesAutoresizingMaskIntoConstraints="NO" id="P4s-ut-Qyb">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="eiW-T5-aBU"/>
                                     <constraint firstAttribute="height" constant="100" id="h0p-p7-N0N"/>
@@ -460,11 +437,10 @@
                         <viewControllerLayoutGuide type="bottom" id="Kvr-dh-z9g"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9wN-Ij-LRD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wv-wB-GbN">
-                                <frame key="frameInset" minX="209" minY="489" width="181" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wv-wB-GbN">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="181" id="QNr-Ji-KaB"/>
                                 </constraints>
@@ -476,8 +452,7 @@
                                     <segue destination="hVj-L7-ROF" kind="unwind" unwindAction="unwindToViewController:" id="brY-F6-IsZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Be a Sage Page by Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rd-Y4-41X">
-                                <frame key="frameInset" minX="144" minY="180" width="312" height="65"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be a Sage Page by Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rd-Y4-41X">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="DuE-UV-gAU"/>
                                     <constraint firstAttribute="width" constant="312" id="T3c-Nf-pl2"/>
@@ -486,15 +461,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="new-180" translatesAutoresizingMaskIntoConstraints="NO" id="Pdl-V4-lOf">
-                                <frame key="frameInset" minX="235" minY="40" width="130" height="130"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-180" translatesAutoresizingMaskIntoConstraints="NO" id="Pdl-V4-lOf">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="GnF-NQ-glK"/>
                                     <constraint firstAttribute="height" constant="130" id="wug-2G-gSN"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3h-Xy-bGi">
-                                <frame key="frameInset" minX="190" minY="243" width="219" height="114"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3h-Xy-bGi">
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <state key="normal" title="Take the Demo">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -535,8 +508,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVB-nP-cn0">
-                                <frame key="frameInset" minX="208" minY="190" width="184" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVB-nP-cn0">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="Bqa-zi-PZ6"/>
                                 </constraints>
@@ -554,12 +526,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pM6-l0-cgC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-180" translatesAutoresizingMaskIntoConstraints="NO" id="aID-ti-OxN">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="130" id="bK6-co-3sl"/>
-                        <constraint firstAttribute="width" constant="130" id="zwf-fA-uW8"/>
-                    </constraints>
-                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-180" translatesAutoresizingMaskIntoConstraints="NO" id="aID-ti-OxN"/>
             </objects>
             <point key="canvasLocation" x="522" y="-264"/>
         </scene>
@@ -575,8 +542,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="days/weeks/months/years" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO9-un-4n7">
-                                <frame key="frameInset" minX="160" minY="190" width="280" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="days/weeks/months/years" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO9-un-4n7">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="XAP-lq-okE"/>
                                 </constraints>
@@ -584,8 +550,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2. Choose a unit of time in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vh-lp-MD3">
-                                <frame key="frameInset" minX="160" minY="154" width="280" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Choose a unit of time in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vh-lp-MD3">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="EJ2-35-ocB"/>
                                 </constraints>
@@ -621,8 +586,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="days/weeks/months/years" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTn-Ta-cOr">
-                                <frame key="frameInset" minX="160" minY="190" width="280" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="days/weeks/months/years" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTn-Ta-cOr">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="MzN-cB-LJ8"/>
                                 </constraints>
@@ -630,8 +594,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="3. Choose a number of" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd9-OL-efC">
-                                <frame key="frameInset" minX="160" minY="154" width="280" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Choose a number of" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd9-OL-efC">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="mCr-TF-dDl"/>
                                 </constraints>
@@ -667,11 +630,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="page_circle_kb" translatesAutoresizingMaskIntoConstraints="NO" id="xRn-JM-Q4i">
-                                <frame key="frameInset" minX="247" minY="317" width="106" height="106"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Start reading your daily" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nws-VT-ZLU">
-                                <frame key="frameInset" minX="177" minY="224" width="247" height="36"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page_circle_kb" translatesAutoresizingMaskIntoConstraints="NO" id="xRn-JM-Q4i"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start reading your daily" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nws-VT-ZLU">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="RVs-RP-lai"/>
                                 </constraints>
@@ -679,8 +639,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="page requirement." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2K-IF-RBY">
-                                <frame key="frameInset" minX="203" minY="261" width="195" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="page requirement." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2K-IF-RBY">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="H4y-eh-zI5"/>
                                 </constraints>
