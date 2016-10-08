@@ -44,6 +44,27 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
     }
     
+    @IBOutlet weak var InLabel: UILabel!
+    
+    //Following IBOutlets are created to change constrains for iPhone5/SE
+    @IBOutlet weak var FromAppLogoBotToCompReadTop: NSLayoutConstraint!
+    @IBOutlet weak var FromMyPickViewTopToCompReadBot: NSLayoutConstraint!
+    @IBOutlet weak var FromCompReadBotToItemLabTop: NSLayoutConstraint!
+    @IBOutlet weak var FromItemLabBotToInTop: NSLayoutConstraint!
+    @IBOutlet weak var FromItemLabBotToTUTop: NSLayoutConstraint!
+    @IBOutlet weak var FromItemLabBotToDurLabTop: NSLayoutConstraint!
+    @IBOutlet weak var FromCirBackBotToViewDemoTop: NSLayoutConstraint!
+    @IBOutlet weak var FromPageLabBotToViewDemoTop: NSLayoutConstraint!
+    @IBOutlet var FromViewDemoBotToBotLayGuiTop: UIView!
+    @IBOutlet weak var ViewDemoHeight: NSLayoutConstraint!
+    @IBOutlet weak var FromViewDemoBotToBotLay: NSLayoutConstraint!
+    @IBOutlet weak var CircleBgHeight: NSLayoutConstraint!
+    @IBOutlet weak var CircleBgWidth: NSLayoutConstraint!
+    @IBOutlet weak var PageLabHeight: NSLayoutConstraint!
+    @IBOutlet weak var PickerHeight: NSLayoutConstraint!
+    @IBOutlet weak var FromCirBgBotToPagDayTop: NSLayoutConstraint!
+    @IBOutlet weak var YouHavToReadHeight: NSLayoutConstraint!
+    
     func isAppAlreadyLaunchedOnce()->Bool{
         let defaults = UserDefaults.standard
         
@@ -83,6 +104,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var finalNumPages = 0
     var singularTime = ""
     var fontSize = 24
+    var indurtimeView = UIView()
     
     // add this right above your viewDidLoad function for right to left transition
     let transitionManager = TransitionManager()
@@ -101,8 +123,28 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         itemLabel.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.itemLabelTapFunction(_:)))
         itemLabel.addGestureRecognizer(tap)
-        //let deviceType = UIDevice.current.modelName
+        
         print("PRINTING DEVICE:"+deviceType)
+        // Change constraints based on iPhone model
+        if (deviceType.range(of:"iPhone 5") != nil) || (deviceType.range(of:"iPhone SE") != nil) {
+            self.FromAppLogoBotToCompReadTop.constant -= 25
+            self.FromMyPickViewTopToCompReadBot.constant -= -22
+            self.FromCompReadBotToItemLabTop.constant -= 9
+            self.FromItemLabBotToInTop.constant -= 9
+            self.FromItemLabBotToTUTop.constant -= 9
+            self.FromItemLabBotToDurLabTop.constant -= 9
+            self.FromCirBackBotToViewDemoTop.constant -= 10
+            self.FromPageLabBotToViewDemoTop.constant -= 10
+            self.ViewDemoHeight.constant -= 19
+            self.FromViewDemoBotToBotLay.constant -= 6
+            self.CircleBgHeight.constant -= 10
+            self.CircleBgWidth.constant -= 10
+            self.PageLabHeight.constant -= 10
+            self.PickerHeight.constant -= 20
+            self.FromCirBgBotToPagDayTop.constant -= 7
+            self.YouHavToReadHeight.constant -= 7
+        }
+        //indurtimeLabelcenter()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -160,10 +202,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // Smaller fonts in picker for iPhone 5
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
             // Assign font size based on iPhone model
-            if deviceType.range(of:"iPhone 5") != nil {
+            if (deviceType.range(of:"iPhone 5") != nil) || (deviceType.range(of:"iPhone SE") != nil) {
                 fontSize = 20
-            } else {
-                fontSize = 24
             }
             //let pickerLabel = UILabel()
             var pickerLabel = view as! UILabel!
@@ -280,7 +320,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // for best use with multitasking , dont use a constant here.
     // this is for demonstration purposes only.
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        if deviceType.range(of:"iPhone 5") != nil {
+        if (deviceType.range(of:"iPhone 5") != nil) || (deviceType.range(of:"iPhone SE") != nil) {
             //don't make column width bigger for iPhone 5
             switch(component) {
                 case 0:
@@ -309,5 +349,39 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return .none
     }
     
+    func indurtimeLabelcenter() {
+        //Align "In", "Duration Lable" and "Time Unit Label" to center
+        //indurtimeView = UIView()
+        view.addSubview(indurtimeView)
+        indurtimeView.translatesAutoresizingMaskIntoConstraints = false
+        indurtimeView.clipsToBounds = true
+        //self.view.addSubview(indurtimeView)
+        indurtimeView.addSubview(InLabel)
+        
+        //Constraints
+        var viewsDict = Dictionary <String, UIView>()
+        viewsDict["InLabel"] = InLabel
+        viewsDict["durationLabel"] = durationLabel
+        viewsDict["timeunitLabel"] = timeUnitLabel
+        
+        indurtimeView.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|[InLabel]|", options: [], metrics: nil, views: viewsDict))
+        indurtimeView.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|[durationLabel]|", options: [], metrics: nil, views: viewsDict))
+        indurtimeView.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|[timeunitLabell]|", options: [], metrics: nil, views: viewsDict))
+        indurtimeView.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-[InLabel]-5-[durationLabel]-5-[timeunitLabel]-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: viewsDict))
+        //costView!.backgroundColor = UIColor.redColor()
+        
+        // center costView inside self
+        let centerXCons = NSLayoutConstraint(item: indurtimeView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0);
+        let centerYCons = NSLayoutConstraint(item: indurtimeView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0);
+        view.addConstraints([centerXCons, centerYCons])
+    }
 }
 

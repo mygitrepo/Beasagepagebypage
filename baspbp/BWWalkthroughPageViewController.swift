@@ -42,6 +42,8 @@ public enum WalkthroughAnimationType:String{
 }
 
 open class BWWalkthroughPageViewController: UIViewController, BWWalkthroughPage {
+    @IBOutlet weak var DemoPage1TitleHeignt: NSLayoutConstraint!
+    @IBOutlet weak var DemoPage1FromToptoTitle: NSLayoutConstraint!
     
     fileprivate var animation:WalkthroughAnimationType = .Linear
     fileprivate var subsWeights:[CGPoint] = Array()
@@ -74,6 +76,11 @@ open class BWWalkthroughPageViewController: UIViewController, BWWalkthroughPage 
     override open func viewDidLoad() {
         super.viewDidLoad()
         self.view.layer.masksToBounds = true
+        // Change constraints based on iPhone model
+        //if (ViewController().deviceType.range(of:"iPhone 5") != nil) || (ViewController().deviceType.range(of:"iPhone SE") != nil) {
+        //    self.DemoPage1TitleHeignt.constant -= 10
+        //    self.DemoPage1FromToptoTitle.constant -= 20
+        //}
         subsWeights = Array()
         
         for v in view.subviews{
