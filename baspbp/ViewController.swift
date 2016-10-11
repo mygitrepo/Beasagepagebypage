@@ -144,7 +144,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.FromCirBgBotToPagDayTop.constant -= 7
             self.YouHavToReadHeight.constant -= 7
         }
-        //indurtimeLabelcenter()
+        //indurtimeLabelcenter(view: self.view)
+        indurtimeLabelcenter()
+        //let newView = UIView()
+        //newView.translatesAutoresizingMaskIntoConstraints = false
+        //view.addSubview(newView)
+        //newView.addSubview(InLabel)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -349,14 +355,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return .none
     }
     
+    //func indurtimeLabelcenter(view: UIView) {
     func indurtimeLabelcenter() {
         //Align "In", "Duration Lable" and "Time Unit Label" to center
         //indurtimeView = UIView()
-        view.addSubview(indurtimeView)
+        self.view.addSubview(indurtimeView)
         indurtimeView.translatesAutoresizingMaskIntoConstraints = false
-        indurtimeView.clipsToBounds = true
+        //self.automaticallyAdjustsScrollViewInsets = false
+        //indurtimeView.clipsToBounds = true
+        //indurtimeView.backgroundColor = UIColor.white
+
         //self.view.addSubview(indurtimeView)
         indurtimeView.addSubview(InLabel)
+        indurtimeView.addSubview(durationLabel)
+        indurtimeView.addSubview(timeUnitLabel)
         
         //Constraints
         var viewsDict = Dictionary <String, UIView>()
@@ -372,16 +384,19 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 withVisualFormat: "V:|[durationLabel]|", options: [], metrics: nil, views: viewsDict))
         indurtimeView.addConstraints(
             NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|[timeunitLabell]|", options: [], metrics: nil, views: viewsDict))
+                withVisualFormat: "V:|[timeunitLabel]|", options: [], metrics: nil, views: viewsDict))
         indurtimeView.addConstraints(
             NSLayoutConstraint.constraints(
                 withVisualFormat: "H:|-[InLabel]-5-[durationLabel]-5-[timeunitLabel]-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: viewsDict))
         //costView!.backgroundColor = UIColor.redColor()
         
         // center costView inside self
-        let centerXCons = NSLayoutConstraint(item: indurtimeView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0);
-        let centerYCons = NSLayoutConstraint(item: indurtimeView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0);
-        view.addConstraints([centerXCons, centerYCons])
+        let centerXCons = NSLayoutConstraint(item: indurtimeView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);
+        //let centerYCons = NSLayoutConstraint(item: indurtimeView, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: 0);
+        self.view.addConstraints([centerXCons])
+        //indurtimeView.removeFromSuperview()
+        //self.view.addSubview(indurtimeView)
+        //self.view.bringSubview(toFront: indurtimeView)
     }
 }
 
