@@ -64,6 +64,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var PickerHeight: NSLayoutConstraint!
     @IBOutlet weak var FromCirBgBotToPagDayTop: NSLayoutConstraint!
     @IBOutlet weak var YouHavToReadHeight: NSLayoutConstraint!
+    @IBOutlet weak var BeaSageLabel: UILabel!
+    @IBOutlet weak var PagebyPageLabel: UILabel!
     
     func isAppAlreadyLaunchedOnce()->Bool{
         let defaults = UserDefaults.standard
@@ -143,6 +145,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.PickerHeight.constant -= 20
             self.FromCirBgBotToPagDayTop.constant -= 7
             self.YouHavToReadHeight.constant -= 7
+            self.BeaSageLabel.font = UIFont(name: "HelveticaNeue-UltraLight", size: 34)
+            self.PagebyPageLabel.font = UIFont(name: "HelveticaNeue-Light", size: 24)
+        } else if(deviceType.range(of:"iPad") != nil) {
+            self.FromAppLogoBotToCompReadTop.constant += 200
+            self.FromMyPickViewTopToCompReadBot.constant -= 197
+            self.PickerHeight.constant += 120
         }
         //indurtimeLabelcenter(view: self.view)
         indurtimeLabelcenter()

@@ -261,6 +261,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
+                        <outlet property="BeaSageLabel" destination="xEq-T5-5X3" id="OBs-7G-e3g"/>
                         <outlet property="CircleBgHeight" destination="6DA-9r-wEs" id="mOr-JO-GaO"/>
                         <outlet property="CircleBgWidth" destination="dZ3-QE-csb" id="fRa-hn-nbx"/>
                         <outlet property="FromAppLogoBotToCompReadTop" destination="sQ6-xi-XvE" id="0ML-Ry-tXk"/>
@@ -276,6 +277,7 @@
                         <outlet property="FromViewDemoBotToBotLayGuiTop" destination="8bC-Xf-vdC" id="4ZO-q3-77s"/>
                         <outlet property="InLabel" destination="IvI-tY-dcV" id="quC-Ka-j8h"/>
                         <outlet property="PageLabHeight" destination="AIy-vV-93N" id="mVw-Mf-y5P"/>
+                        <outlet property="PagebyPageLabel" destination="cui-hc-b6w" id="KUd-Rb-t58"/>
                         <outlet property="PagesLabel" destination="6zL-Fe-RJ4" id="OZ4-eD-T1E"/>
                         <outlet property="PickerHeight" destination="3lA-sm-iMP" id="Ask-1U-AXC"/>
                         <outlet property="ViewDemoHeight" destination="WOo-bU-Iah" id="g4V-vT-o1V"/>
