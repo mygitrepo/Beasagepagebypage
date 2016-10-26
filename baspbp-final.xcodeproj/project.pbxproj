@@ -238,7 +238,7 @@
 				TargetAttributes = {
 					9EA35CE91C233A3C00995F37 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = Q7HK8D8S92;
+						DevelopmentTeam = MV3W95C4GZ;
 						LastSwiftMigration = 0800;
 					};
 					9EA35CFD1C233A3C00995F37 = {
@@ -469,11 +469,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Q7HK8D8S92;
+				DEVELOPMENT_TEAM = MV3W95C4GZ;
 				INFOPLIST_FILE = baspbp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "isvsw.baspbp-final";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ceoisv.baspbp;
 				PRODUCT_NAME = "baspbp-final";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -487,11 +487,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Q7HK8D8S92;
+				DEVELOPMENT_TEAM = MV3W95C4GZ;
 				INFOPLIST_FILE = baspbp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "isvsw.baspbp-final";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ceoisv.baspbp;
 				PRODUCT_NAME = "baspbp-final";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
