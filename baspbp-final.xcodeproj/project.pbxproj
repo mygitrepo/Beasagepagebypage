@@ -12,6 +12,7 @@
 		9E315D3B1D5AA1BE00F48C88 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E315D3A1D5AA1BE00F48C88 /* ReminderViewController.swift */; };
 		9E3FE1C31D9F31960097C3DF /* BWWalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FE1C11D9F31960097C3DF /* BWWalkthroughPageViewController.swift */; };
 		9E3FE1C41D9F31960097C3DF /* BWWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FE1C21D9F31960097C3DF /* BWWalkthroughViewController.swift */; };
+		9E56459D1DDBE98B004B1A33 /* book_click-1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 9E56459C1DDBE98B004B1A33 /* book_click-1.m4v */; };
 		9EA35CEE1C233A3C00995F37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA35CED1C233A3C00995F37 /* AppDelegate.swift */; };
 		9EA35CF01C233A3C00995F37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA35CEF1C233A3C00995F37 /* ViewController.swift */; };
 		9EA35CF31C233A3C00995F37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EA35CF11C233A3C00995F37 /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		9E315D3A1D5AA1BE00F48C88 /* ReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
 		9E3FE1C11D9F31960097C3DF /* BWWalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughPageViewController.swift; sourceTree = "<group>"; };
 		9E3FE1C21D9F31960097C3DF /* BWWalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughViewController.swift; sourceTree = "<group>"; };
+		9E56459C1DDBE98B004B1A33 /* book_click-1.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = "book_click-1.m4v"; sourceTree = "<group>"; };
 		9EA35CEA1C233A3C00995F37 /* baspbp-final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "baspbp-final.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EA35CED1C233A3C00995F37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EA35CEF1C233A3C00995F37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		9EA35CE11C233A3C00995F37 = {
 			isa = PBXGroup;
 			children = (
+				9E56459C1DDBE98B004B1A33 /* book_click-1.m4v */,
 				9EF168A41D5E402C008C10FA /* sel_number.m4v */,
 				9EF168A21D5E4000008C10FA /* sel_time.m4v */,
 				9EE802F01D9C77A5004189DD /* link_tap_demo-1.m4v */,
@@ -276,6 +279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E56459D1DDBE98B004B1A33 /* book_click-1.m4v in Resources */,
 				11EB5C281D7B2F0000DDC1BE /* app_logo.png in Resources */,
 				9EF168A51D5E402C008C10FA /* sel_number.m4v in Resources */,
 				9EE802F11D9C77A5004189DD /* link_tap_demo-1.m4v in Resources */,

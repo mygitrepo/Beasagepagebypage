@@ -161,9 +161,11 @@ At the moment it's only used to perform custom animations on didScroll.
         }
         player = AVPlayer(url: URL(fileURLWithPath: path))
         playerLayer = AVPlayerLayer(player: player!)
-        //playerLayer.frame.size = CGSize(width: 150,height: 150)
         //playerLayer.frame.origin = self.view.center
+        //playerLayer.frame.size = CGSize(width: 250,height: 150)
+        playerLayer.frame.origin = self.view.center
         playerLayer.frame = self.view.bounds
+        //playerLayer.frame=CGRect(x: 45, y: 100, width: 287, height: 450)
         self.view.layer.addSublayer(playerLayer)
         //player!.rate = 2.0
         player!.play()
@@ -320,7 +322,7 @@ At the moment it's only used to perform custom animations on didScroll.
             case 2:
                 startVideo("sel_number")
             case 3:
-                startVideo("link_tap_demo-1")
+                startVideo("book_click-1")
             default: break
         }
     }

@@ -6,7 +6,7 @@
 //  Copyright © 2016 isv. All rights reserved.
 //
 
-import Foundation
+//import Foundation
 import UIKit
 
 class MainViewController: UIViewController, BWWalkthroughViewControllerDelegate {
@@ -73,7 +73,7 @@ class MainViewController: UIViewController, BWWalkthroughViewControllerDelegate 
     }
 }
 
-
+// FIXME: Do we need following code block anymore?
 //extension MainViewController{
 //    
 //    func walkthroughCloseButtonPressed() {

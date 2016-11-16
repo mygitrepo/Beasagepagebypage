@@ -6,7 +6,7 @@
 //  Copyright © 2015 isv. All rights reserved.
 //
 
-import Foundation
+//import Foundation
 import UIKit
 
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -40,6 +40,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var myPickerView: UIPickerView!
     @IBAction func unwindToViewController (_ sender: UIStoryboardSegue){
             BWWalkthroughViewController().closePlayer()
+            // MARK: why following line still here
             //self.dismissViewControllerAnimated(true, completion: nil)
         
     }
@@ -75,6 +76,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             return true
         }else{
             defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+            // FIXME: Remove following line
             //print("App launched first time")
             return false
         }
