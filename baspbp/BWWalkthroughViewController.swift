@@ -323,6 +323,8 @@ At the moment it's only used to perform custom animations on didScroll.
                 startVideo("sel_number")
             case 3:
                 startVideo("book_click-1")
+            case 4:
+                startVideo("switch_demo_new-1")
             default: break
         }
     }

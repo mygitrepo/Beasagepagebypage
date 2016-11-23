@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11EB5C281D7B2F0000DDC1BE /* app_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 11EB5C271D7B2F0000DDC1BE /* app_logo.png */; };
+		9E21E6B21DE3BE0400DFDFFE /* switch_demo_new-1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 9E21E6B11DE3BE0400DFDFFE /* switch_demo_new-1.m4v */; };
 		9E315D311D5935AD00F48C88 /* instr_page1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E315D301D5935AD00F48C88 /* instr_page1.swift */; };
 		9E315D3B1D5AA1BE00F48C88 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E315D3A1D5AA1BE00F48C88 /* ReminderViewController.swift */; };
 		9E3FE1C31D9F31960097C3DF /* BWWalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FE1C11D9F31960097C3DF /* BWWalkthroughPageViewController.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		11EB5C271D7B2F0000DDC1BE /* app_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_logo.png; sourceTree = "<group>"; };
+		9E21E6B11DE3BE0400DFDFFE /* switch_demo_new-1.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = "switch_demo_new-1.m4v"; sourceTree = "<group>"; };
 		9E315D301D5935AD00F48C88 /* instr_page1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = instr_page1.swift; sourceTree = "<group>"; };
 		9E315D3A1D5AA1BE00F48C88 /* ReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
 		9E3FE1C11D9F31960097C3DF /* BWWalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughPageViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		9EA35CE11C233A3C00995F37 = {
 			isa = PBXGroup;
 			children = (
+				9E21E6B11DE3BE0400DFDFFE /* switch_demo_new-1.m4v */,
 				9E56459C1DDBE98B004B1A33 /* book_click-1.m4v */,
 				9EF168A41D5E402C008C10FA /* sel_number.m4v */,
 				9EF168A21D5E4000008C10FA /* sel_time.m4v */,
@@ -279,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E21E6B21DE3BE0400DFDFFE /* switch_demo_new-1.m4v in Resources */,
 				9E56459D1DDBE98B004B1A33 /* book_click-1.m4v in Resources */,
 				11EB5C281D7B2F0000DDC1BE /* app_logo.png in Resources */,
 				9EF168A51D5E402C008C10FA /* sel_number.m4v in Resources */,

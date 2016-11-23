@@ -217,7 +217,29 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pages per day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YG0-AZ-uGq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="per day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YG0-AZ-uGq">
+                                <frame key="frameInset" minX="123" minY="485" width="74" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P3B-WR-p2h">
+                                <connections>
+                                    <action selector="switchPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="IsL-DY-BHi"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slokas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPF-oh-S6P">
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rON-FG-F5d">
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="pages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0JW-zc-4ff">
+                                <frame key="frameInset" minX="54" minY="485" width="63" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -225,43 +247,51 @@
                         </subviews>
                         <color key="backgroundColor" red="0.74901960784313726" green="0.45098039215686275" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xEq-T5-5X3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="0ci-qJ-3ts"/>
-                            <constraint firstItem="YG0-AZ-uGq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3QF-Zj-p9h"/>
-                            <constraint firstItem="IvI-tY-dcV" firstAttribute="top" secondItem="gsi-SG-hzP" secondAttribute="bottom" priority="999" constant="10" id="8TH-Wg-qxV"/>
+                            <constraint firstItem="xEq-T5-5X3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="34" id="0ci-qJ-3ts"/>
+                            <constraint firstItem="1Uh-dG-3D9" firstAttribute="top" secondItem="0JW-zc-4ff" secondAttribute="bottom" priority="999" constant="55" id="2my-PH-lAx"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="P3B-WR-p2h" secondAttribute="bottom" constant="37" id="6H1-PY-fag"/>
+                            <constraint firstItem="IvI-tY-dcV" firstAttribute="top" secondItem="gsi-SG-hzP" secondAttribute="bottom" priority="999" constant="5" id="8TH-Wg-qxV"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="rON-FG-F5d" secondAttribute="bottom" constant="39" id="AhI-U9-3Kx"/>
                             <constraint firstItem="wXB-1e-I92" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="BPj-7Q-gqW"/>
                             <constraint firstItem="cui-hc-b6w" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="Dhm-jh-3Qc"/>
-                            <constraint firstItem="1Uh-dG-3D9" firstAttribute="top" secondItem="hJn-Bl-PqZ" secondAttribute="bottom" constant="44" id="J7E-I7-vVA"/>
+                            <constraint firstItem="1Uh-dG-3D9" firstAttribute="top" secondItem="hJn-Bl-PqZ" secondAttribute="bottom" constant="87" id="J7E-I7-vVA"/>
                             <constraint firstItem="P4N-cz-VgG" firstAttribute="leading" secondItem="Lqc-nL-IVM" secondAttribute="trailing" priority="999" constant="5" id="JEt-77-dZk"/>
                             <constraint firstItem="1Uh-dG-3D9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N9C-Te-oSg"/>
                             <constraint firstItem="IvI-tY-dcV" firstAttribute="baseline" secondItem="P4N-cz-VgG" secondAttribute="baseline" priority="999" constant="-1" id="NeT-RA-QW5"/>
-                            <constraint firstItem="gsi-SG-hzP" firstAttribute="top" secondItem="hqL-AG-Jed" secondAttribute="bottom" constant="10" id="Nim-Ku-FDd"/>
+                            <constraint firstItem="gsi-SG-hzP" firstAttribute="top" secondItem="hqL-AG-Jed" secondAttribute="bottom" constant="5" id="Nim-Ku-FDd"/>
                             <constraint firstItem="IvI-tY-dcV" firstAttribute="baseline" secondItem="Lqc-nL-IVM" secondAttribute="baseline" priority="999" id="O7F-UT-gdr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wXB-1e-I92" secondAttribute="trailing" constant="-20" id="PKZ-bB-o73"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u2R-PM-5x6" secondAttribute="trailing" constant="-20" id="QbB-Zq-eB7"/>
+                            <constraint firstItem="P3B-WR-p2h" firstAttribute="leading" secondItem="rON-FG-F5d" secondAttribute="trailing" constant="5" id="Qp5-gn-wLs"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MPF-oh-S6P" secondAttribute="bottom" constant="39" id="S3q-3y-FLe"/>
                             <constraint firstItem="xEq-T5-5X3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="S5K-h4-VDm"/>
                             <constraint firstItem="cui-hc-b6w" firstAttribute="top" secondItem="xEq-T5-5X3" secondAttribute="bottom" constant="-9" id="Un2-Ym-0xa"/>
                             <constraint firstItem="Lqc-nL-IVM" firstAttribute="leading" secondItem="IvI-tY-dcV" secondAttribute="trailing" priority="999" constant="5" id="VxN-Ay-Xvc"/>
-                            <constraint firstItem="1Uh-dG-3D9" firstAttribute="top" secondItem="6zL-Fe-RJ4" secondAttribute="bottom" constant="65" id="WZX-UA-Vsd"/>
-                            <constraint firstItem="P4N-cz-VgG" firstAttribute="top" secondItem="gsi-SG-hzP" secondAttribute="bottom" priority="999" constant="10" id="ZqE-xU-VHn"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1Uh-dG-3D9" secondAttribute="bottom" constant="12" id="bcV-7D-h9n"/>
-                            <constraint firstItem="wXB-1e-I92" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="38" id="cwL-yJ-uaz"/>
+                            <constraint firstItem="1Uh-dG-3D9" firstAttribute="top" secondItem="6zL-Fe-RJ4" secondAttribute="bottom" constant="108" id="WZX-UA-Vsd"/>
+                            <constraint firstItem="P4N-cz-VgG" firstAttribute="top" secondItem="gsi-SG-hzP" secondAttribute="bottom" priority="999" constant="5" id="ZqE-xU-VHn"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1Uh-dG-3D9" secondAttribute="bottom" id="bcV-7D-h9n"/>
+                            <constraint firstItem="MPF-oh-S6P" firstAttribute="leading" secondItem="P3B-WR-p2h" secondAttribute="trailing" constant="5" id="c42-8v-Tqo"/>
+                            <constraint firstItem="wXB-1e-I92" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="28" id="cwL-yJ-uaz"/>
                             <constraint firstItem="hJn-Bl-PqZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dL1-aY-EjY"/>
                             <constraint firstItem="u2R-PM-5x6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="e4P-dt-FEd"/>
                             <constraint firstItem="hJn-Bl-PqZ" firstAttribute="top" secondItem="Gsj-Zp-Xrh" secondAttribute="bottom" constant="5" id="fQt-4y-QfP"/>
                             <constraint firstItem="u2R-PM-5x6" firstAttribute="top" secondItem="hqL-AG-Jed" secondAttribute="bottom" constant="-235" id="hLS-Nl-r1a"/>
                             <constraint firstItem="Gsj-Zp-Xrh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jch-5q-pQx"/>
                             <constraint firstItem="gsi-SG-hzP" firstAttribute="centerX" secondItem="hqL-AG-Jed" secondAttribute="centerX" constant="0.5" id="jim-dj-GQW"/>
+                            <constraint firstItem="P3B-WR-p2h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ks1-wm-c8E"/>
                             <constraint firstItem="6zL-Fe-RJ4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m85-iN-lv7"/>
                             <constraint firstItem="YG0-AZ-uGq" firstAttribute="top" secondItem="hJn-Bl-PqZ" secondAttribute="bottom" constant="5" id="myb-Fb-Ugd"/>
                             <constraint firstItem="hqL-AG-Jed" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="q6s-PH-LO3"/>
-                            <constraint firstItem="hqL-AG-Jed" firstAttribute="top" secondItem="wXB-1e-I92" secondAttribute="bottom" constant="198" id="sQ6-xi-XvE"/>
-                            <constraint firstItem="Lqc-nL-IVM" firstAttribute="top" secondItem="gsi-SG-hzP" secondAttribute="bottom" priority="999" constant="9" id="ur1-c2-Tg7"/>
+                            <constraint firstItem="hqL-AG-Jed" firstAttribute="top" secondItem="wXB-1e-I92" secondAttribute="bottom" constant="188" id="sQ6-xi-XvE"/>
+                            <constraint firstItem="Lqc-nL-IVM" firstAttribute="top" secondItem="gsi-SG-hzP" secondAttribute="bottom" priority="999" constant="4" id="ur1-c2-Tg7"/>
+                            <constraint firstItem="YG0-AZ-uGq" firstAttribute="leading" secondItem="0JW-zc-4ff" secondAttribute="trailing" priority="999" constant="6" id="w1p-nf-xFN"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="BeaSageLabel" destination="xEq-T5-5X3" id="OBs-7G-e3g"/>
+                        <outlet property="CirBackPngTopToPlsReadBot" destination="fQt-4y-QfP" id="FNS-Sh-nMm"/>
                         <outlet property="CircleBgHeight" destination="6DA-9r-wEs" id="mOr-JO-GaO"/>
                         <outlet property="CircleBgWidth" destination="dZ3-QE-csb" id="fRa-hn-nbx"/>
                         <outlet property="FromAppLogoBotToCompReadTop" destination="sQ6-xi-XvE" id="0ML-Ry-tXk"/>
@@ -279,12 +309,19 @@
                         <outlet property="PageLabHeight" destination="AIy-vV-93N" id="mVw-Mf-y5P"/>
                         <outlet property="PagebyPageLabel" destination="cui-hc-b6w" id="KUd-Rb-t58"/>
                         <outlet property="PagesLabel" destination="6zL-Fe-RJ4" id="OZ4-eD-T1E"/>
+                        <outlet property="PagesperdayBottoViewDemotop" destination="2my-PH-lAx" id="kRu-Ui-AXd"/>
+                        <outlet property="PagestoBottom" destination="AhI-U9-3Kx" id="aRN-o1-n4z"/>
                         <outlet property="PickerHeight" destination="3lA-sm-iMP" id="Ask-1U-AXC"/>
+                        <outlet property="SlokastoBottom" destination="S3q-3y-FLe" id="rvJ-Ni-cMX"/>
+                        <outlet property="SwitchtoBottom" destination="6H1-PY-fag" id="htb-AO-Y8C"/>
                         <outlet property="ViewDemoHeight" destination="WOo-bU-Iah" id="g4V-vT-o1V"/>
                         <outlet property="YouHavToReadHeight" destination="tH9-M3-jf8" id="mkp-ZS-n3P"/>
                         <outlet property="durationLabel" destination="Lqc-nL-IVM" id="AW3-Kw-h5u"/>
                         <outlet property="itemLabel" destination="gsi-SG-hzP" id="jUO-Cd-CMe"/>
                         <outlet property="myPickerView" destination="u2R-PM-5x6" id="WCq-0X-rAw"/>
+                        <outlet property="pageslokaLabel" destination="0JW-zc-4ff" id="4MO-QH-oLs"/>
+                        <outlet property="pageslokaSwitch" destination="P3B-WR-p2h" id="Flc-tP-XYT"/>
+                        <outlet property="perdayLabel" destination="YG0-AZ-uGq" id="1HC-cb-Ykt"/>
                         <outlet property="scriptureLabel" destination="gsi-SG-hzP" id="xy1-kP-DwL"/>
                         <outlet property="timeUnitLabel" destination="P4N-cz-VgG" id="Vhc-yU-odG"/>
                         <outlet property="viewDemoHeight" destination="WOo-bU-Iah" id="rk7-6E-6IR"/>
@@ -292,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-120" y="413.02816901408454"/>
+            <point key="canvasLocation" x="-120" y="411.09445277361323"/>
         </scene>
         <!--Remidner View Controller-->
         <scene sceneID="z2h-1p-Vhg">
@@ -648,7 +685,7 @@
         <!--Walkthrough Page View Controller-->
         <scene sceneID="P3r-za-jfF">
             <objects>
-                <viewController storyboardIdentifier="instr_page5" id="hH1-Dl-cMb" customClass="BWWalkthroughPageViewController" customModule="baspbp_final" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="instr_page6" id="hH1-Dl-cMb" customClass="BWWalkthroughPageViewController" customModule="baspbp_final" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z8d-Ql-iK9"/>
                         <viewControllerLayoutGuide type="bottom" id="fbY-Oh-aeh"/>
@@ -688,7 +725,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4dd-eG-XG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2985" y="-264"/>
+            <point key="canvasLocation" x="3644" y="-264"/>
         </scene>
         <!--Walkthrough Page View Controller-->
         <scene sceneID="K6M-2w-odm">
@@ -702,8 +739,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4. Tap on selected book name " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwu-dh-gub">
-                                <frame key="frameInset" minX="23" minY="144" width="328" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. Tap on selected book name " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwu-dh-gub">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="KQU-td-jEI"/>
                                 </constraints>
@@ -711,8 +747,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="to start reading on your device" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqT-xA-0G7">
-                                <frame key="frameInset" minX="23" minY="175" width="328" height="31"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to start reading on your device" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqT-xA-0G7">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="QfP-fr-nYt"/>
                                 </constraints>
@@ -733,6 +768,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ymv-Fb-Asj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2368.8000000000002" y="-264.01799100449779"/>
+        </scene>
+        <!--Walkthrough Page View Controller-->
+        <scene sceneID="0QA-9Y-Z6u">
+            <objects>
+                <viewController storyboardIdentifier="instr_page5" id="PWK-xK-iNk" customClass="BWWalkthroughPageViewController" customModule="baspbp_final" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gAM-4P-u9a"/>
+                        <viewControllerLayoutGuide type="bottom" id="gri-o4-HLe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vhk-qD-Tv0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5. Switch between Pages/Slokas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZq-Fy-I8d">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="1XZ-4z-0ZZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.5568627451" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="AZq-Fy-I8d" firstAttribute="centerX" secondItem="vhk-qD-Tv0" secondAttribute="centerX" id="5Fy-Y2-ur7"/>
+                            <constraint firstItem="AZq-Fy-I8d" firstAttribute="top" secondItem="gAM-4P-u9a" secondAttribute="bottom" constant="124" id="XWj-Q8-uh5"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dBi-y3-hp8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3007" y="-264"/>
         </scene>
     </scenes>
     <resources>

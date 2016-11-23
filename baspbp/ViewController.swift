@@ -32,6 +32,9 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    @IBOutlet weak var perdayLabel: UILabel!
+    @IBOutlet weak var pageslokaLabel: UILabel!
+    @IBOutlet weak var pageslokaSwitch: UISwitch!
     @IBOutlet weak var PagesLabel: UILabel!
     @IBOutlet weak var itemLabel: UILabel!
     @IBOutlet weak var timeUnitLabel: UILabel!
@@ -43,6 +46,19 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             // MARK: why following line still here
             //self.dismissViewControllerAnimated(true, completion: nil)
         
+    }
+    
+    var pages = true
+    @IBAction func switchPressed(_ sender: AnyObject) {
+        if pageslokaSwitch.isOn {
+            pageslokaLabel.text = "slokas"
+            pages = false
+            calcPagesSlokas()
+        } else {
+            pageslokaLabel.text = "pages"
+            pages = true
+            calcPagesSlokas()
+        }
     }
     
     @IBOutlet weak var InLabel: UILabel!
@@ -67,6 +83,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var YouHavToReadHeight: NSLayoutConstraint!
     @IBOutlet weak var BeaSageLabel: UILabel!
     @IBOutlet weak var PagebyPageLabel: UILabel!
+    @IBOutlet weak var SwitchtoBottom: NSLayoutConstraint!
+    @IBOutlet weak var SlokastoBottom: NSLayoutConstraint!
+    @IBOutlet weak var PagestoBottom: NSLayoutConstraint!
+    @IBOutlet weak var PagesperdayBottoViewDemotop: NSLayoutConstraint!
+    @IBOutlet weak var CirBackPngTopToPlsReadBot: NSLayoutConstraint!
     
     func isAppAlreadyLaunchedOnce()->Bool{
         let defaults = UserDefaults.standard
@@ -101,6 +122,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let ndPages = 407
     let tlPages = 347
     let isPages = 158
+    let sbSlokas = 14094
+    let bgSlokas = 700
+    let ccSlokas = 11555
+    let krSlokas = 706
+    let ndSlokas = 407
+    let tlSlokas = 347
+    let isSlokas = 19
     let deviceType = UIDevice.current.modelName
     var selScripturePages = 0
     var rowWidth = 0
@@ -109,6 +137,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var singularTime = ""
     var fontSize = 24
     var indurtimeView = UIView()
+    var slokasperdayView = UIView()
     
     // add this right above your viewDidLoad function for right to left transition
     let transitionManager = TransitionManager()
@@ -131,8 +160,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         print("PRINTING DEVICE:"+deviceType)
         // Change constraints based on iPhone model
         if (deviceType.range(of:"iPhone 5") != nil) || (deviceType.range(of:"iPhone SE") != nil) {
-            self.FromAppLogoBotToCompReadTop.constant -= 25
-            self.FromMyPickViewTopToCompReadBot.constant -= -22
+            self.FromAppLogoBotToCompReadTop.constant -= 30
+            self.FromMyPickViewTopToCompReadBot.constant -= -27
             self.FromCompReadBotToItemLabTop.constant -= 9
             self.FromItemLabBotToInTop.constant -= 9
             self.FromItemLabBotToTUTop.constant -= 9
@@ -140,26 +169,28 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.FromCirBackBotToViewDemoTop.constant -= 10
             self.FromPageLabBotToViewDemoTop.constant -= 10
             self.ViewDemoHeight.constant -= 19
-            self.FromViewDemoBotToBotLay.constant -= 6
+            self.FromViewDemoBotToBotLay.constant += 7
             self.CircleBgHeight.constant -= 10
             self.CircleBgWidth.constant -= 10
             self.PageLabHeight.constant -= 10
             self.PickerHeight.constant -= 20
-            self.FromCirBgBotToPagDayTop.constant -= 7
+            self.FromCirBgBotToPagDayTop.constant -= 15
             self.YouHavToReadHeight.constant -= 7
             self.BeaSageLabel.font = UIFont(name: "HelveticaNeue-UltraLight", size: 34)
             self.PagebyPageLabel.font = UIFont(name: "HelveticaNeue-Light", size: 24)
+            self.SwitchtoBottom.constant -= 4
+            self.SlokastoBottom.constant -= 4
+            self.PagestoBottom.constant -= 4
+            self.CirBackPngTopToPlsReadBot.constant -= 7
+            //self.PagesperdayBottoViewDemotop.constant -= 5
         } else if(deviceType.range(of:"iPad") != nil) {
             self.FromAppLogoBotToCompReadTop.constant += 200
             self.FromMyPickViewTopToCompReadBot.constant -= 197
             self.PickerHeight.constant += 120
         }
-        //indurtimeLabelcenter(view: self.view)
+
         indurtimeLabelcenter()
-        //let newView = UIView()
-        //newView.translatesAutoresizingMaskIntoConstraints = false
-        //view.addSubview(newView)
-        //newView.addSubview(InLabel)
+        slokasperdayLabelcenter()
         
     }
     
@@ -259,23 +290,43 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         PagesLabel.text = "0"
         
-        // Original Code
-        switch(itemLabel.text) {
-        case "Bhagavad-gita"?:
-            selScripturePages = bgPages
-        case "Srimad Bhagavatam"?:
-            selScripturePages = sbPages
-        case "Caitanya Caritamrta"?:
-            selScripturePages = ccPages
-        case "Krsna Book"?:
-            selScripturePages = krPages
-        case "Sri Isopanishad"?:
-            selScripturePages = isPages
-        case "Nectar of Devotion"?:
-            selScripturePages = ndPages
-        case "Teachings of Lord Caitanya"?:
-            selScripturePages = tlPages
-        default: break
+        if pages {
+            // Original Code
+            switch(itemLabel.text) {
+            case "Bhagavad-gita"?:
+                selScripturePages = bgPages
+            case "Srimad Bhagavatam"?:
+                selScripturePages = sbPages
+            case "Caitanya Caritamrta"?:
+                selScripturePages = ccPages
+            case "Krsna Book"?:
+                selScripturePages = krPages
+            case "Sri Isopanishad"?:
+                selScripturePages = isPages
+            case "Nectar of Devotion"?:
+                selScripturePages = ndPages
+            case "Teachings of Lord Caitanya"?:
+                selScripturePages = tlPages
+            default: break
+            }
+        } else {
+            switch(itemLabel.text) {
+            case "Bhagavad-gita"?:
+                selScripturePages = bgSlokas
+            case "Srimad Bhagavatam"?:
+                selScripturePages = sbSlokas
+            case "Caitanya Caritamrta"?:
+                selScripturePages = ccSlokas
+            case "Krsna Book"?:
+                selScripturePages = krSlokas
+            case "Sri Isopanishad"?:
+                selScripturePages = isSlokas
+            case "Nectar of Devotion"?:
+                selScripturePages = ndSlokas
+            case "Teachings of Lord Caitanya"?:
+                selScripturePages = tlSlokas
+            default: break
+            }
         }
         
         switch(timeUnitLabel.text) {
@@ -408,5 +459,103 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         //self.view.addSubview(indurtimeView)
         //self.view.bringSubview(toFront: indurtimeView)
     }
+    
+    func slokasperdayLabelcenter() {
+        //Align "slokas/pages" and "per day Label" to center
+        self.view.addSubview(slokasperdayView)
+        slokasperdayView.translatesAutoresizingMaskIntoConstraints = false
+        
+        slokasperdayView.addSubview(pageslokaLabel)
+        slokasperdayView.addSubview(perdayLabel)
+        
+        //Constraints
+        var viewsDict = Dictionary <String, UIView>()
+        viewsDict["pageslokaLabel"] = pageslokaLabel
+        viewsDict["perdayLabel"] = perdayLabel
+        
+        slokasperdayView.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|[pageslokaLabel]|", options: [], metrics: nil, views: viewsDict))
+        slokasperdayView.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|[perdayLabel]|", options: [], metrics: nil, views: viewsDict))
+        slokasperdayView.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-[pageslokaLabel]-5-[perdayLabel]-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: viewsDict))
+        
+        // center View inside self
+        let centerXCons = NSLayoutConstraint(item: slokasperdayView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);
+        self.view.addConstraints([centerXCons])
+    }
+    
+    func calcPagesSlokas() {
+        PagesLabel.text = "0"
+        
+        if pages {
+            // Original Code
+            switch(itemLabel.text) {
+            case "Bhagavad-gita"?:
+                selScripturePages = bgPages
+            case "Srimad Bhagavatam"?:
+                selScripturePages = sbPages
+            case "Caitanya Caritamrta"?:
+                selScripturePages = ccPages
+            case "Krsna Book"?:
+                selScripturePages = krPages
+            case "Sri Isopanishad"?:
+                selScripturePages = isPages
+            case "Nectar of Devotion"?:
+                selScripturePages = ndPages
+            case "Teachings of Lord Caitanya"?:
+                selScripturePages = tlPages
+            default: break
+            }
+        } else {
+            switch(itemLabel.text) {
+            case "Bhagavad-gita"?:
+                selScripturePages = bgSlokas
+            case "Srimad Bhagavatam"?:
+                selScripturePages = sbSlokas
+            case "Caitanya Caritamrta"?:
+                selScripturePages = ccSlokas
+            case "Krsna Book"?:
+                selScripturePages = krSlokas
+            case "Sri Isopanishad"?:
+                selScripturePages = isSlokas
+            case "Nectar of Devotion"?:
+                selScripturePages = ndSlokas
+            case "Teachings of Lord Caitanya"?:
+                selScripturePages = tlSlokas
+            default: break
+            }
+        }
+        
+        switch(timeUnitLabel.text) {
+        case "Day"?,"Days"?:
+            //numPagesDay = selScripturePages / (7 * Int(durationLabel.text!)!)
+            numPagesDay = Double(selScripturePages) / Double(1 *  Int(durationLabel.text!)!)
+        case "Week"?,"Weeks"?:
+            //numPagesDay = selScripturePages / (7 * Int(durationLabel.text!)!)
+            numPagesDay = Double(selScripturePages) / Double(7 *  Int(durationLabel.text!)!)
+        //numPagesDay = Double(1000 / Int("3")!)
+        case "Month"?,"Months"?:
+            //numPagesDay = selScripturePages / (30 * Int(durationLabel.text!)!)
+            numPagesDay = Double(selScripturePages) / Double(30 * Int(durationLabel.text!)!)
+        case "Year"?,"Years"?:
+            //numPagesDay = selScripturePages / (365 * Int(durationLabel.text!)!)
+            numPagesDay = Double(selScripturePages) / Double(365 * Int(durationLabel.text!)!)
+        default: break
+        }
+        
+        
+        //following code for not displaying PagesLabel as 0
+        if numPagesDay < 0.5 {
+            numPagesDay = 1.0
+        }
+        //numPagesDay = Int(NSString(format:"%.1f", numPagesDay) as String)!
+        //finalNumPages = round(numPagesDay)
+        PagesLabel.text = String(Int(round(numPagesDay)))
+    }
+
 }
 
