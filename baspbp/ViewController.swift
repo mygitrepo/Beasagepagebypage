@@ -105,14 +105,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // Define scripture array
     var scripture = [
-        ["Bhagavad-gita","Srimad Bhagavatam","Caitanya Caritamrta","Krsna Book","Sri Isopanishad","Nectar of Devotion","Teachings of Lord Caitanya"],
+        ["Bhagavad-gita","Srimad Bhagavatam","Caitanya Caritamrta","Krsna Book","Sri Isopanishad","Nectar of Devotion","TLC", "Nectar of Instruction"],
         ["Day", "Week", "Month", "Year"],["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"]
     ]
     
-    var scriptureArray = ["Bhagavad-gita","Srimad Bhagavatam","Caitanya Caritamrta","Krsna Book","Sri Isopanishad","Nectar of Devotion","Teachings of Lord Caitanya"]
+    var scriptureArray = ["Bhagavad-gita","Srimad Bhagavatam","Caitanya Caritamrta","Krsna Book","Sri Isopanishad","Nectar of Devotion","TLC", "Nectar of Instruction"]
     
     // For clickable scriptureLabel
-    var urls = ["bg","sb","cc","kb","iso", "nod", "tlc"]
+    var urls = ["bg","sb","cc","kb","iso", "nod", "tlc", "noi"]
         
     
     let sbPages = 15119
@@ -122,12 +122,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let ndPages = 407
     let tlPages = 347
     let isPages = 158
+    let niPages = 130
     let sbSlokas = 14094
     let bgSlokas = 700
     let ccSlokas = 11555
-    let krSlokas = 706
-    let ndSlokas = 407
-    let tlSlokas = 347
+    let krSlokas = 0
+    let ndSlokas = 0
+    let niSlokas = 11
+    let tlSlokas = 0
     let isSlokas = 19
     let deviceType = UIDevice.current.modelName
     var selScripturePages = 0
@@ -288,72 +290,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             timeUnitLabel.text = String(timeUnitLabel.text!.characters.dropLast())
         }
         
-        PagesLabel.text = "0"
-        
-        if pages {
-            // Original Code
-            switch(itemLabel.text) {
-            case "Bhagavad-gita"?:
-                selScripturePages = bgPages
-            case "Srimad Bhagavatam"?:
-                selScripturePages = sbPages
-            case "Caitanya Caritamrta"?:
-                selScripturePages = ccPages
-            case "Krsna Book"?:
-                selScripturePages = krPages
-            case "Sri Isopanishad"?:
-                selScripturePages = isPages
-            case "Nectar of Devotion"?:
-                selScripturePages = ndPages
-            case "Teachings of Lord Caitanya"?:
-                selScripturePages = tlPages
-            default: break
-            }
-        } else {
-            switch(itemLabel.text) {
-            case "Bhagavad-gita"?:
-                selScripturePages = bgSlokas
-            case "Srimad Bhagavatam"?:
-                selScripturePages = sbSlokas
-            case "Caitanya Caritamrta"?:
-                selScripturePages = ccSlokas
-            case "Krsna Book"?:
-                selScripturePages = krSlokas
-            case "Sri Isopanishad"?:
-                selScripturePages = isSlokas
-            case "Nectar of Devotion"?:
-                selScripturePages = ndSlokas
-            case "Teachings of Lord Caitanya"?:
-                selScripturePages = tlSlokas
-            default: break
-            }
-        }
-        
-        switch(timeUnitLabel.text) {
-        case "Day"?,"Days"?:
-            //numPagesDay = selScripturePages / (7 * Int(durationLabel.text!)!)
-            numPagesDay = Double(selScripturePages) / Double(1 *  Int(durationLabel.text!)!)
-        case "Week"?,"Weeks"?:
-            //numPagesDay = selScripturePages / (7 * Int(durationLabel.text!)!)
-            numPagesDay = Double(selScripturePages) / Double(7 *  Int(durationLabel.text!)!)
-        //numPagesDay = Double(1000 / Int("3")!)
-        case "Month"?,"Months"?:
-            //numPagesDay = selScripturePages / (30 * Int(durationLabel.text!)!)
-            numPagesDay = Double(selScripturePages) / Double(30 * Int(durationLabel.text!)!)
-        case "Year"?,"Years"?:
-            //numPagesDay = selScripturePages / (365 * Int(durationLabel.text!)!)
-            numPagesDay = Double(selScripturePages) / Double(365 * Int(durationLabel.text!)!)
-        default: break
-        }
-
-        
-        //following code for not displaying PagesLabel as 0
-        if numPagesDay < 0.5 {
-            numPagesDay = 1.0
-        }
-        //numPagesDay = Int(NSString(format:"%.1f", numPagesDay) as String)!
-        //finalNumPages = round(numPagesDay)
-        PagesLabel.text = String(Int(round(numPagesDay)))
+        calcPagesSlokas()        
     }
     
     func imageResize (_ imageObj:UIImage, sizeChange:CGSize)-> UIImage{        
@@ -506,8 +443,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 selScripturePages = isPages
             case "Nectar of Devotion"?:
                 selScripturePages = ndPages
-            case "Teachings of Lord Caitanya"?:
+            case "TLC"?:
                 selScripturePages = tlPages
+            case "Nectar of Instruction"?:
+                selScripturePages = niPages
             default: break
             }
         } else {
@@ -524,8 +463,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 selScripturePages = isSlokas
             case "Nectar of Devotion"?:
                 selScripturePages = ndSlokas
-            case "Teachings of Lord Caitanya"?:
+            case "TLC"?:
                 selScripturePages = tlSlokas
+            case "Nectar of Instruction"?:
+                selScripturePages = niSlokas
             default: break
             }
         }
@@ -547,15 +488,21 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         default: break
         }
         
-        
         //following code for not displaying PagesLabel as 0
+        //and if scripture doesn't have any sloka then display PagesLabel as "N/A"
         if numPagesDay < 0.5 {
-            numPagesDay = 1.0
+            //numPagesDay = 1.0
+            if numPagesDay == 0 {
+                PagesLabel.text = "N/A"
+            } else {
+                numPagesDay = 1.0
+                PagesLabel.text = String(Int(round(numPagesDay)))
+            }
+        } else {
+            //numPagesDay = Int(NSString(format:"%.1f", numPagesDay) as String)!
+            //finalNumPages = round(numPagesDay)
+            PagesLabel.text = String(Int(round(numPagesDay)))
         }
-        //numPagesDay = Int(NSString(format:"%.1f", numPagesDay) as String)!
-        //finalNumPages = round(numPagesDay)
-        PagesLabel.text = String(Int(round(numPagesDay)))
     }
-
 }
 
