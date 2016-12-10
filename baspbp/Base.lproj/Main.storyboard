@@ -6,6 +6,8 @@
     <dependencies>
         <deployment version="2352" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -171,7 +173,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IvI-tY-dcV">
-                                <rect key="frame" x="131" y="424" width="19" height="26.5"/>
+                                <rect key="frame" x="131" y="424" width="19" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="Dl2-ne-hyJ"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="I8Y-h3-94r"/>
@@ -219,13 +221,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="timeUnitLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4N-cz-VgG">
-                                <rect key="frame" x="295" y="424" width="147.5" height="27.5"/>
+                                <rect key="frame" x="295" y="424" width="148" height="28"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="durationLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqc-nL-IVM">
-                                <rect key="frame" x="155" y="423" width="135" height="27.5"/>
+                                <rect key="frame" x="155" y="423" width="135" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -260,6 +262,21 @@
                                 <color key="textColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3E-m7-A81">
+                                <rect key="frame" x="7" y="542" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9m1-Dj-bRl">
+                                <rect key="frame" x="220" y="540" width="93" height="24"/>
+                                <state key="normal" title="Set Reminder">
+                                    <color key="titleColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kqE-Xd-G6H" kind="show" identifier="SegueToReminderVC" id="4CV-qI-i8w"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.74901960784313726" green="0.45098039215686275" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -270,8 +287,11 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="rON-FG-F5d" secondAttribute="bottom" constant="39" id="AhI-U9-3Kx"/>
                             <constraint firstItem="wXB-1e-I92" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="BPj-7Q-gqW"/>
                             <constraint firstItem="cui-hc-b6w" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="Dhm-jh-3Qc"/>
+                            <constraint firstItem="v3E-m7-A81" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-9" id="Dyb-tf-wSr"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9m1-Dj-bRl" secondAttribute="bottom" constant="4" id="IHe-YN-c0D"/>
                             <constraint firstItem="1Uh-dG-3D9" firstAttribute="top" secondItem="hJn-Bl-PqZ" secondAttribute="bottom" constant="87" id="J7E-I7-vVA"/>
                             <constraint firstItem="P4N-cz-VgG" firstAttribute="leading" secondItem="Lqc-nL-IVM" secondAttribute="trailing" priority="999" constant="5" id="JEt-77-dZk"/>
+                            <constraint firstItem="1Uh-dG-3D9" firstAttribute="leading" secondItem="v3E-m7-A81" secondAttribute="trailing" constant="1" id="KuW-zt-8m6"/>
                             <constraint firstItem="1Uh-dG-3D9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N9C-Te-oSg"/>
                             <constraint firstItem="IvI-tY-dcV" firstAttribute="baseline" secondItem="P4N-cz-VgG" secondAttribute="baseline" priority="999" constant="-1" id="NeT-RA-QW5"/>
                             <constraint firstItem="gsi-SG-hzP" firstAttribute="top" secondItem="hqL-AG-Jed" secondAttribute="bottom" constant="5" id="Nim-Ku-FDd"/>
@@ -279,7 +299,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="wXB-1e-I92" secondAttribute="trailing" constant="-20" id="PKZ-bB-o73"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u2R-PM-5x6" secondAttribute="trailing" constant="-20" id="QbB-Zq-eB7"/>
                             <constraint firstItem="P3B-WR-p2h" firstAttribute="leading" secondItem="rON-FG-F5d" secondAttribute="trailing" constant="5" id="Qp5-gn-wLs"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="v3E-m7-A81" secondAttribute="bottom" constant="5" id="RPz-ov-w3d"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9m1-Dj-bRl" secondAttribute="trailing" constant="-9" id="RhS-hw-EHZ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MPF-oh-S6P" secondAttribute="bottom" constant="39" id="S3q-3y-FLe"/>
+                            <constraint firstItem="9m1-Dj-bRl" firstAttribute="baseline" secondItem="1Uh-dG-3D9" secondAttribute="firstBaseline" id="S5H-dj-fLJ"/>
                             <constraint firstItem="xEq-T5-5X3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="S5K-h4-VDm"/>
                             <constraint firstItem="cui-hc-b6w" firstAttribute="top" secondItem="xEq-T5-5X3" secondAttribute="bottom" constant="-9" id="Un2-Ym-0xa"/>
                             <constraint firstItem="Lqc-nL-IVM" firstAttribute="leading" secondItem="IvI-tY-dcV" secondAttribute="trailing" priority="999" constant="5" id="VxN-Ay-Xvc"/>
@@ -292,8 +315,11 @@
                             <constraint firstItem="u2R-PM-5x6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="e4P-dt-FEd"/>
                             <constraint firstItem="hJn-Bl-PqZ" firstAttribute="top" secondItem="Gsj-Zp-Xrh" secondAttribute="bottom" constant="5" id="fQt-4y-QfP"/>
                             <constraint firstItem="u2R-PM-5x6" firstAttribute="top" secondItem="hqL-AG-Jed" secondAttribute="bottom" constant="-235" id="hLS-Nl-r1a"/>
+                            <constraint firstItem="v3E-m7-A81" firstAttribute="centerY" secondItem="1Uh-dG-3D9" secondAttribute="centerY" id="iKW-z1-dov"/>
                             <constraint firstItem="Gsj-Zp-Xrh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jch-5q-pQx"/>
                             <constraint firstItem="gsi-SG-hzP" firstAttribute="centerX" secondItem="hqL-AG-Jed" secondAttribute="centerX" constant="0.5" id="jim-dj-GQW"/>
+                            <constraint firstItem="9m1-Dj-bRl" firstAttribute="firstBaseline" secondItem="1Uh-dG-3D9" secondAttribute="baseline" id="js2-oD-ERq"/>
+                            <constraint firstItem="v3E-m7-A81" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-9" id="kBJ-Hj-03Q"/>
                             <constraint firstItem="P3B-WR-p2h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ks1-wm-c8E"/>
                             <constraint firstItem="6zL-Fe-RJ4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m85-iN-lv7"/>
                             <constraint firstItem="YG0-AZ-uGq" firstAttribute="top" secondItem="hJn-Bl-PqZ" secondAttribute="bottom" constant="5" id="myb-Fb-Ugd"/>
@@ -337,6 +363,7 @@
                         <outlet property="durationLabel" destination="Lqc-nL-IVM" id="AW3-Kw-h5u"/>
                         <outlet property="itemLabel" destination="gsi-SG-hzP" id="jUO-Cd-CMe"/>
                         <outlet property="myPickerView" destination="u2R-PM-5x6" id="WCq-0X-rAw"/>
+                        <outlet property="orderbooksLabel" destination="v3E-m7-A81" id="Kw8-li-RpE"/>
                         <outlet property="pageslokaLabel" destination="0JW-zc-4ff" id="4MO-QH-oLs"/>
                         <outlet property="pageslokaSwitch" destination="P3B-WR-p2h" id="Flc-tP-XYT"/>
                         <outlet property="perdayLabel" destination="YG0-AZ-uGq" id="1HC-cb-Ykt"/>
@@ -349,89 +376,154 @@
             </objects>
             <point key="canvasLocation" x="-120" y="411.09445277361323"/>
         </scene>
-        <!--Remidner View Controller-->
+        <!--Reminder View Controller-->
         <scene sceneID="z2h-1p-Vhg">
             <objects>
-                <viewController storyboardIdentifier="ReminderViewController" id="kqE-Xd-G6H" customClass="RemidnerViewController" customModule="baspbp_final" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReminderViewController" id="kqE-Xd-G6H" customClass="ReminderViewController" customModule="baspbp_final" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LyX-pt-EVj"/>
                         <viewControllerLayoutGuide type="bottom" id="dt9-FZ-dqa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PxR-Tb-Ace">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUP-4m-H7U">
-                                <rect key="frame" x="117.5" y="254" width="140" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Add Reminder">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="addEvent:" destination="kqE-Xd-G6H" eventType="touchUpInside" id="Ss8-ng-mRJ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0x-F0-yQU">
-                                <rect key="frame" x="106" y="313" width="163" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Delete Reminder">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="removeEvent:" destination="kqE-Xd-G6H" eventType="touchUpInside" id="kox-4C-3Wh"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVi-fD-LYB">
-                                <rect key="frame" x="29" y="608" width="317" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Be a Sage Page by Page">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="PtW-PA-GBk" kind="unwind" unwindAction="unwindToViewController:" id="Mdy-QO-HpC"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-180" translatesAutoresizingMaskIntoConstraints="NO" id="OOo-wY-KYm">
-                                <rect key="frame" x="122.5" y="40" width="130" height="130"/>
+                                <rect key="frame" x="95" y="40" width="130" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="KYK-0A-qJN"/>
                                     <constraint firstAttribute="width" constant="130" id="nHi-2n-72t"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set reminder for your book selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWC-pw-5e7">
-                                <rect key="frame" x="25.5" y="210" width="324.5" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Bc1-bK-BVH">
+                                <rect key="frame" x="0.0" y="223" width="320" height="171"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="171" id="YPU-7S-FUW"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="502400006.22853601">
+                                    <!--2016-12-02 19:33:26 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="RemindPagesLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipC-Go-1Fg">
+                                <rect key="frame" x="186" y="184" width="39" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="PagesSlokaLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4S3-fb-unU">
+                                <rect key="frame" x="233" y="184" width="56" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8B-Tk-tKY">
+                                <rect key="frame" x="16" y="208" width="36" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="RemindBookLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHt-GB-SlK">
+                                <rect key="frame" x="60" y="208" width="39" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="everyday to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGa-09-BPo">
+                                <rect key="frame" x="107" y="209" width="91" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="complete reading it in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSO-sc-eKT">
+                                <rect key="frame" x="16" y="236" width="168" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="RemindLabelDuration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxl-he-NLj">
+                                <rect key="frame" x="186" y="237" width="39" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KvR-Z2-p9J">
+                                <rect key="frame" x="87" y="412" width="147" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="c72-AH-ZCu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Set Reminder">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="AddReminder:" destination="kqE-Xd-G6H" eventType="touchUpInside" id="JRt-KU-H8R"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="timeUnitLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnL-aw-qYR">
+                                <rect key="frame" x="233" y="238" width="38" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gai-wT-wPH">
+                                <rect key="frame" x="278" y="28" width="26" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="nt0-nJ-wst"/>
+                                    <constraint firstAttribute="width" constant="26" id="sE5-tE-gsp"/>
+                                </constraints>
+                                <state key="normal" image="Close"/>
+                                <connections>
+                                    <segue destination="PtW-PA-GBk" kind="unwind" unwindAction="FrmReminderunwindToViewController:" id="Xuc-jI-bcc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="You selected to read" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWC-pw-5e7">
+                                <rect key="frame" x="16" y="184" width="168" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Prev" translatesAutoresizingMaskIntoConstraints="NO" id="8N4-20-UGV">
-                                <rect key="frame" x="16" y="314.5" width="25" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="T1R-av-hbl"/>
-                                    <constraint firstAttribute="width" constant="25" id="s1y-xA-lLk"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.63137254899999995" green="1" blue="0.031372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.92941176470588238" green="0.55686274509803924" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="OOo-wY-KYm" firstAttribute="centerX" secondItem="PxR-Tb-Ace" secondAttribute="centerX" id="2lb-B1-boa"/>
-                            <constraint firstItem="8N4-20-UGV" firstAttribute="centerY" secondItem="PxR-Tb-Ace" secondAttribute="centerY" id="3s2-Xd-irM"/>
-                            <constraint firstItem="sWC-pw-5e7" firstAttribute="centerX" secondItem="PxR-Tb-Ace" secondAttribute="centerX" id="4L6-RF-UMm"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="8N4-20-UGV" secondAttribute="leading" id="AwH-mq-Kbq"/>
-                            <constraint firstItem="ZUP-4m-H7U" firstAttribute="centerX" secondItem="PxR-Tb-Ace" secondAttribute="centerX" id="D2u-Xy-qyt"/>
-                            <constraint firstItem="b0x-F0-yQU" firstAttribute="centerX" secondItem="ZUP-4m-H7U" secondAttribute="centerX" id="IO0-4S-xhy"/>
-                            <constraint firstItem="sWC-pw-5e7" firstAttribute="top" secondItem="OOo-wY-KYm" secondAttribute="bottom" constant="40" id="NRt-3W-84O"/>
-                            <constraint firstItem="b0x-F0-yQU" firstAttribute="top" secondItem="ZUP-4m-H7U" secondAttribute="bottom" constant="20" id="dx1-ht-nas"/>
-                            <constraint firstItem="ZUP-4m-H7U" firstAttribute="top" secondItem="sWC-pw-5e7" secondAttribute="bottom" constant="20" id="kMR-tD-nbY"/>
+                            <constraint firstItem="dxl-he-NLj" firstAttribute="top" secondItem="UGa-09-BPo" secondAttribute="bottom" priority="999" constant="8" symbolic="YES" id="542-bp-fTR"/>
+                            <constraint firstItem="NHt-GB-SlK" firstAttribute="top" secondItem="sWC-pw-5e7" secondAttribute="bottom" priority="999" constant="8" symbolic="YES" id="6jV-EY-H0q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gai-wT-wPH" secondAttribute="trailing" id="BnH-Kk-lCC"/>
+                            <constraint firstItem="KvR-Z2-p9J" firstAttribute="top" secondItem="Bc1-bK-BVH" secondAttribute="bottom" constant="18" id="Ed3-0z-je4"/>
+                            <constraint firstItem="Bc1-bK-BVH" firstAttribute="centerX" secondItem="KvR-Z2-p9J" secondAttribute="centerX" id="F7q-sK-ULu"/>
+                            <constraint firstItem="sWC-pw-5e7" firstAttribute="top" secondItem="OOo-wY-KYm" secondAttribute="bottom" priority="999" constant="40" id="NRt-3W-84O"/>
+                            <constraint firstItem="KvR-Z2-p9J" firstAttribute="leading" secondItem="PxR-Tb-Ace" secondAttribute="leadingMargin" constant="71" id="QCh-at-nMF"/>
+                            <constraint firstItem="j8B-Tk-tKY" firstAttribute="top" secondItem="sWC-pw-5e7" secondAttribute="bottom" priority="999" constant="8" symbolic="YES" id="TbX-jF-SOr"/>
+                            <constraint firstItem="UGa-09-BPo" firstAttribute="top" secondItem="sWC-pw-5e7" secondAttribute="bottom" priority="999" constant="8" symbolic="YES" id="XlY-Rg-KAF"/>
+                            <constraint firstItem="ipC-Go-1Fg" firstAttribute="top" secondItem="OOo-wY-KYm" secondAttribute="bottom" priority="999" constant="40" id="aOY-aV-ydf"/>
+                            <constraint firstItem="hnL-aw-qYR" firstAttribute="top" secondItem="UGa-09-BPo" secondAttribute="bottom" priority="999" constant="8" symbolic="YES" id="b2I-37-74p"/>
+                            <constraint firstItem="dt9-FZ-dqa" firstAttribute="top" secondItem="KvR-Z2-p9J" secondAttribute="bottom" constant="126" id="beO-sN-cOX"/>
+                            <constraint firstItem="Bc1-bK-BVH" firstAttribute="centerX" secondItem="OOo-wY-KYm" secondAttribute="centerX" id="oAr-c7-ymG"/>
+                            <constraint firstItem="xSO-sc-eKT" firstAttribute="top" secondItem="j8B-Tk-tKY" secondAttribute="bottom" priority="999" constant="8" symbolic="YES" id="oKg-72-mA7"/>
+                            <constraint firstItem="gai-wT-wPH" firstAttribute="top" secondItem="LyX-pt-EVj" secondAttribute="bottom" constant="8" id="qTc-4w-sRm"/>
                             <constraint firstItem="OOo-wY-KYm" firstAttribute="top" secondItem="LyX-pt-EVj" secondAttribute="bottom" constant="20" id="qhH-m0-1bP"/>
+                            <constraint firstItem="4S3-fb-unU" firstAttribute="top" secondItem="OOo-wY-KYm" secondAttribute="bottom" priority="999" constant="40" id="rpZ-MZ-Iac"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="FromBotToSetReminder" destination="beO-sN-cOX" id="lAV-MY-ECc"/>
+                        <outlet property="FromTopToApplogoTop" destination="qhH-m0-1bP" id="T9L-WX-EpU"/>
+                        <outlet property="RemindBookLabel" destination="NHt-GB-SlK" id="0fd-Kl-lc5"/>
+                        <outlet property="RemindLabelDuration" destination="dxl-he-NLj" id="gt7-vC-jvx"/>
+                        <outlet property="RemindPagesLabel" destination="ipC-Go-1Fg" id="Iyw-vy-uTT"/>
+                        <outlet property="RemindPagesSlokaLabel" destination="4S3-fb-unU" id="fLE-cv-PRr"/>
+                        <outlet property="RemindTimePicker" destination="Bc1-bK-BVH" id="9NS-R5-Kgk"/>
+                        <outlet property="RemindTimeUnitLabel" destination="hnL-aw-qYR" id="FYl-4R-CbO"/>
+                        <outlet property="RemindYouSelLabel" destination="sWC-pw-5e7" id="TKB-Ni-91J"/>
+                        <outlet property="RemindcompReadLabel" destination="xSO-sc-eKT" id="lBO-fP-dAe"/>
+                        <outlet property="RemindeverydayLabel" destination="UGa-09-BPo" id="hxU-lU-xG0"/>
+                        <outlet property="RemindfromLabel" destination="j8B-Tk-tKY" id="TC1-re-lPV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uzp-ss-UAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="PtW-PA-GBk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="593" y="495"/>
+            <point key="canvasLocation" x="580.79999999999995" y="433.58320839580216"/>
         </scene>
         <!--Walkthrough View Controller-->
         <scene sceneID="iXz-9z-CnP">

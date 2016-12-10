@@ -9,6 +9,9 @@
 //import Foundation
 import UIKit
 
+// For creating reminder
+import EventKit
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -41,6 +44,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var scriptureLabel: UILabel!
     @IBOutlet weak var myPickerView: UIPickerView!
+    @IBOutlet weak var orderbooksLabel: UILabel!
+    
     @IBAction func unwindToViewController (_ sender: UIStoryboardSegue){
             BWWalkthroughViewController().closePlayer()
             // MARK: why following line still here
@@ -48,7 +53,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
     }
     
-    var pages = true
+    //For back button from ReminderVC
+    @IBAction func FrmReminderunwindToViewController (_ sender: UIStoryboardSegue){
+        
+    }
+    
+    //Switching from Pages to Sloka & vice-a-versa
     @IBAction func switchPressed(_ sender: AnyObject) {
         if pageslokaSwitch.isOn {
             pageslokaLabel.text = "slokas"
@@ -142,6 +152,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var finalNumPages = 0
     var singularTime = ""
     var fontSize = 24
+    var timeInSeconds = 0
+    var pages = true
+    var calendarDatabase = EKEventStore()
     var indurtimeView = UIView()
     var slokasperdayView = UIView()
     
@@ -162,6 +175,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         itemLabel.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.itemLabelTapFunction(_:)))
         itemLabel.addGestureRecognizer(tap)
+        orderbooksLabel.isUserInteractionEnabled = true
+        let tapOrder = UITapGestureRecognizer(target: self, action: #selector(ViewController.orderBooksLabelTapFunction(_:)))
+        orderbooksLabel.addGestureRecognizer(tapOrder)
         
         print("PRINTING DEVICE:"+deviceType)
         // Change constraints based on iPhone model
@@ -224,8 +240,26 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
     }
     
+    func orderBooksLabelTapFunction(_ sender:UITapGestureRecognizer) {
+        //Action to execute once Order Book is tapped
+        let urlString = URL(string: "http://www.bbtacademic.com/books/")
+        UIApplication.shared.openURL(urlString!)
+    }
+    
     // Added for right to left transition instead of bottom to top
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueToReminderVC" {
+            if let destination = segue.destination as? ReminderViewController {
+                destination.itemLabelfromVC = self.itemLabel.text!
+                destination.pagesLabelfromVC = self.PagesLabel.text!
+                destination.durationLabelfromVC = self.durationLabel.text!
+                destination.timeUnitLabelfromVC = self.timeUnitLabel.text!
+                destination.pageSlokaLabelfromVC = self.pageslokaLabel.text!
+                destination.timeInSecondsfromVC = self.timeInSeconds
+                destination.deviceTypefromVC = self.deviceType
+                //print("ItemLable: \(self.itemLabel.text)")
+            }
+        }
         // this gets a reference to the screen that we're about to transition to
         let toViewController = segue.destination as UIViewController
         
@@ -483,16 +517,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         case "Day"?,"Days"?:
             //numPagesDay = selScripturePages / (7 * Int(durationLabel.text!)!)
             numPagesDay = Double(selScripturePages) / Double(1 *  Int(durationLabel.text!)!)
+            timeInSeconds = Int(durationLabel.text!)! * 86400
         case "Week"?,"Weeks"?:
             //numPagesDay = selScripturePages / (7 * Int(durationLabel.text!)!)
             numPagesDay = Double(selScripturePages) / Double(7 *  Int(durationLabel.text!)!)
+            timeInSeconds = Int(durationLabel.text!)! * 86400 * 7
         //numPagesDay = Double(1000 / Int("3")!)
         case "Month"?,"Months"?:
             //numPagesDay = selScripturePages / (30 * Int(durationLabel.text!)!)
             numPagesDay = Double(selScripturePages) / Double(30 * Int(durationLabel.text!)!)
+            timeInSeconds = Int(durationLabel.text!)! * 86400 * 30
         case "Year"?,"Years"?:
             //numPagesDay = selScripturePages / (365 * Int(durationLabel.text!)!)
             numPagesDay = Double(selScripturePages) / Double(365 * Int(durationLabel.text!)!)
+            timeInSeconds = Int(durationLabel.text!)! * 86400 * 365
         default: break
         }
         
