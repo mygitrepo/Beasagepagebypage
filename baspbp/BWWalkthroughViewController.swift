@@ -326,8 +326,7 @@ At the moment it's only used to perform custom animations on didScroll.
             case 4:
                 startVideo("switch_demo_new-1")
             case 5:
-                startVideo("set_remind_1")
-                startVideo("set_remind_2")
+                startVideo("set_remind_final")
             case 6:
                 startVideo("order_books_1")
             default: break
