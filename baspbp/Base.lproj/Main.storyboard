@@ -817,7 +817,7 @@
         <!--Walkthrough Page View Controller-->
         <scene sceneID="P3r-za-jfF">
             <objects>
-                <viewController storyboardIdentifier="instr_page6" id="hH1-Dl-cMb" customClass="BWWalkthroughPageViewController" customModule="baspbp_final" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="instr_page8" id="hH1-Dl-cMb" customClass="BWWalkthroughPageViewController" customModule="baspbp_final" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z8d-Ql-iK9"/>
                         <viewControllerLayoutGuide type="bottom" id="fbY-Oh-aeh"/>
@@ -861,7 +861,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4dd-eG-XG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3644" y="-264"/>
+            <point key="canvasLocation" x="4876" y="-264"/>
         </scene>
         <!--Walkthrough Page View Controller-->
         <scene sceneID="K6M-2w-odm">
@@ -939,6 +939,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dBi-y3-hp8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3007" y="-264"/>
+        </scene>
+        <!--Walkthrough Page View Controller-->
+        <scene sceneID="syc-jn-4ez">
+            <objects>
+                <viewController storyboardIdentifier="instr_page7" id="oR6-pb-r3b" customClass="BWWalkthroughPageViewController" customModule="baspbp_final" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9px-Zt-Oha"/>
+                        <viewControllerLayoutGuide type="bottom" id="gSj-op-LEQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b40-Tp-RJg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7. Order books online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRk-Ow-gwp">
+                                <rect key="frame" x="75" y="144" width="225.5" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="Xqm-9a-UrT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.5568627451" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="rRk-Ow-gwp" firstAttribute="top" secondItem="9px-Zt-Oha" secondAttribute="bottom" constant="124" id="ocO-Zr-v1n"/>
+                            <constraint firstItem="rRk-Ow-gwp" firstAttribute="centerX" secondItem="b40-Tp-RJg" secondAttribute="centerX" id="r0p-3e-MqL"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Byf-r9-VDl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4252" y="-264"/>
+        </scene>
+        <!--Walkthrough Page View Controller-->
+        <scene sceneID="KYA-CR-7MB">
+            <objects>
+                <viewController storyboardIdentifier="instr_page6" id="JAt-H5-Alj" customClass="BWWalkthroughPageViewController" customModule="baspbp_final" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4J3-Ci-r2m"/>
+                        <viewControllerLayoutGuide type="bottom" id="sKW-fb-qEa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YNI-mc-7cT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6. Set a reminder for reading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVQ-bM-t87">
+                                <rect key="frame" x="36" y="144" width="303.5" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="Ubr-Jn-auR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.5568627451" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tVQ-bM-t87" firstAttribute="top" secondItem="4J3-Ci-r2m" secondAttribute="bottom" constant="124" id="Gi4-0j-ydh"/>
+                            <constraint firstItem="tVQ-bM-t87" firstAttribute="centerX" secondItem="YNI-mc-7cT" secondAttribute="centerX" id="Y9R-Wf-BHq"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EP6-DB-CgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3633" y="-264"/>
         </scene>
     </scenes>
     <resources>

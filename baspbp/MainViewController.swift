@@ -51,6 +51,8 @@ class MainViewController: UIViewController, BWWalkthroughViewControllerDelegate 
         let page_four = stb.instantiateViewController(withIdentifier: "instr_page4")
         let page_five = stb.instantiateViewController(withIdentifier: "instr_page5")
         let page_six = stb.instantiateViewController(withIdentifier: "instr_page6")
+        let page_seven = stb.instantiateViewController(withIdentifier: "instr_page7")
+        let page_eight = stb.instantiateViewController(withIdentifier: "instr_page8")
         
         // Attach the pages to the master
         walkthrough.delegate = self
@@ -60,7 +62,8 @@ class MainViewController: UIViewController, BWWalkthroughViewControllerDelegate 
         walkthrough.addViewController(page_four)
         walkthrough.addViewController(page_five)
         walkthrough.addViewController(page_six)
-        
+        walkthrough.addViewController(page_seven)
+        walkthrough.addViewController(page_eight)
         
         // For transition right to left
         let transition = CATransition()
