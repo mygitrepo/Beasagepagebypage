@@ -102,6 +102,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     //Following two constrains for iPad
     @IBOutlet weak var FromTopLayBotToBeaSageLabTop: NSLayoutConstraint!
     @IBOutlet weak var FromTopLayGuiBotToAppLogoPngTop: NSLayoutConstraint!
+    @IBOutlet weak var OrderBooksLabel: UILabel!
+    @IBOutlet weak var ViewDemoLabel: UIButton!
+    @IBOutlet weak var SetReminderLabel: UIButton!
+    
+    
     
     func isAppAlreadyLaunchedOnce()->Bool{
         let defaults = UserDefaults.standard
@@ -213,6 +218,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.FromTopLayGuiBotToAppLogoPngTop.constant += 100
             self.FromAppLogoBotToCompReadTop.constant += 5
             self.FromAppLogoBotToCompReadTop.constant += 5
+            self.OrderBooksLabel.font = UIFont(name:"System", size: 19)
+            self.ViewDemoLabel.titleLabel?.font = UIFont(name:"System", size: 19)
+            self.SetReminderLabel.titleLabel?.font = UIFont(name:"System", size: 19)
         }
 
         indurtimeLabelcenter()

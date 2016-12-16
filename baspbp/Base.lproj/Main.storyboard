@@ -350,15 +350,18 @@
                         <outlet property="FromViewDemoBotToBotLay" destination="bcV-7D-h9n" id="g2A-5g-uQl"/>
                         <outlet property="FromViewDemoBotToBotLayGuiTop" destination="8bC-Xf-vdC" id="4ZO-q3-77s"/>
                         <outlet property="InLabel" destination="IvI-tY-dcV" id="quC-Ka-j8h"/>
+                        <outlet property="OrderBooksLabel" destination="v3E-m7-A81" id="izh-Bv-vQr"/>
                         <outlet property="PageLabHeight" destination="AIy-vV-93N" id="mVw-Mf-y5P"/>
                         <outlet property="PagebyPageLabel" destination="cui-hc-b6w" id="KUd-Rb-t58"/>
                         <outlet property="PagesLabel" destination="6zL-Fe-RJ4" id="OZ4-eD-T1E"/>
                         <outlet property="PagesperdayBottoViewDemotop" destination="2my-PH-lAx" id="kRu-Ui-AXd"/>
                         <outlet property="PagestoBottom" destination="AhI-U9-3Kx" id="aRN-o1-n4z"/>
                         <outlet property="PickerHeight" destination="3lA-sm-iMP" id="Ask-1U-AXC"/>
+                        <outlet property="SetReminderLabel" destination="9m1-Dj-bRl" id="8Ll-aA-upd"/>
                         <outlet property="SlokastoBottom" destination="S3q-3y-FLe" id="rvJ-Ni-cMX"/>
                         <outlet property="SwitchtoBottom" destination="6H1-PY-fag" id="htb-AO-Y8C"/>
                         <outlet property="ViewDemoHeight" destination="WOo-bU-Iah" id="g4V-vT-o1V"/>
+                        <outlet property="ViewDemoLabel" destination="1Uh-dG-3D9" id="LOA-Dq-3Dd"/>
                         <outlet property="YouHavToReadHeight" destination="tH9-M3-jf8" id="mkp-ZS-n3P"/>
                         <outlet property="durationLabel" destination="Lqc-nL-IVM" id="AW3-Kw-h5u"/>
                         <outlet property="itemLabel" destination="gsi-SG-hzP" id="jUO-Cd-CMe"/>
