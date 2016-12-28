@@ -162,6 +162,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var calendarDatabase = EKEventStore()
     var indurtimeView = UIView()
     var slokasperdayView = UIView()
+    var myMutableString = NSMutableAttributedString()
     
     // add this right above your viewDidLoad function for right to left transition
     let transitionManager = TransitionManager()
@@ -183,7 +184,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         orderbooksLabel.isUserInteractionEnabled = true
         let tapOrder = UITapGestureRecognizer(target: self, action: #selector(ViewController.orderBooksLabelTapFunction(_:)))
         orderbooksLabel.addGestureRecognizer(tapOrder)
-        
+        underlineText(text: itemLabel.text!)
         print("PRINTING DEVICE:"+deviceType)
         // Change constraints based on iPhone model
         if (deviceType.range(of:"iPhone 5") != nil) || (deviceType.range(of:"iPhone SE") != nil) {
@@ -340,6 +341,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             timeUnitLabel.text = String(timeUnitLabel.text!.characters.dropLast())
         }
         
+        //Underlining itemLabel
+        underlineText(text: itemLabel.text!)
+        
         calcPagesSlokas()        
     }
     
@@ -473,6 +477,16 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // center View inside self
         let centerXCons = NSLayoutConstraint(item: slokasperdayView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);
         self.view.addConstraints([centerXCons])
+    }
+    
+    func underlineText(text: String) {
+        //Defined underline attribute first
+        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        // Add attribute to itemLabel.text
+        myMutableString = NSMutableAttributedString(
+            string: text,
+            attributes: underlineAttribute)
+        itemLabel.attributedText = myMutableString
     }
     
     func calcPagesSlokas() {

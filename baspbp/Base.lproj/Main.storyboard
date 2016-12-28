@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2352" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -214,10 +214,18 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="BWb-b3-JdM"/>
                                 </connections>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ScriptureLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsi-SG-hzP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsi-SG-hzP">
                                 <rect key="frame" x="87" y="364" width="147" height="26"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="21"/>
-                                <color key="textColor" red="0.028922442459999999" green="0.00087094357270000005" blue="0.76955097849999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="ScriptureLabel">
+                                        <attributes>
+                                            <color key="NSColor" red="0.028922442459999999" green="0.00087094357270000005" blue="0.76955097849999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="21" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="timeUnitLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4N-cz-VgG">
@@ -378,6 +386,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-120" y="411.09445277361323"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="8Ke-fn-SKz">
+            <objects>
+                <viewController storyboardIdentifier="TrackProgressViewController" id="EkT-mJ-31x" customClass="MainViewController" customModule="baspbp_final" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6SY-gJ-gfx"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZuY-4d-Shn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pI6-dx-3yJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.92941176470588238" green="0.55686274509803924" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xn6-le-G0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-119" y="1146"/>
         </scene>
         <!--Reminder View Controller-->
         <scene sceneID="z2h-1p-Vhg">
@@ -696,34 +722,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVB-nP-cn0">
-                                <rect key="frame" x="95.5" y="180" width="184" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="Bqa-zi-PZ6"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Choose a book" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0Z-Ff-vTt">
+                                <rect key="frame" x="95.5" y="144" width="184" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="1. Choose a book">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176470588238" green="0.55686274509803924" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="sVB-nP-cn0" firstAttribute="top" secondItem="irA-GB-lKB" secondAttribute="bottom" constant="160" id="D8Z-bn-HuC"/>
-                            <constraint firstItem="sVB-nP-cn0" firstAttribute="centerX" secondItem="wUs-pS-A4c" secondAttribute="centerX" id="usz-U6-8Ao"/>
+                            <constraint firstItem="K0Z-Ff-vTt" firstAttribute="top" secondItem="irA-GB-lKB" secondAttribute="bottom" constant="124" id="ZLB-1V-PeR"/>
+                            <constraint firstItem="K0Z-Ff-vTt" firstAttribute="centerX" secondItem="wUs-pS-A4c" secondAttribute="centerX" id="ylc-Ko-KqC"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="DemoPage1FromToptoTitle" destination="D8Z-bn-HuC" id="uin-rh-rRf"/>
-                        <outlet property="DemoPage1TitleHeignt" destination="Bqa-zi-PZ6" id="bav-Vg-1RX"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pM6-l0-cgC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-180" translatesAutoresizingMaskIntoConstraints="NO" id="aID-ti-OxN">
                     <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="522" y="-264"/>
+            <point key="canvasLocation" x="520.79999999999995" y="-264.01799100449779"/>
         </scene>
         <!--Walkthrough Page View Controller-->
         <scene sceneID="COT-mm-uOB">
