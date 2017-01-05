@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Seed Items
+        seedItems()
         return true
     }
 
@@ -42,6 +44,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    // MARK: -
+    // MARK: Helper Methods
+    private func seedItems() {
+        let ud = UserDefaults.standard
+        
+        if !ud.bool(forKey: "UserDefaultsSeedItems") {
+            if let filePath = Bundle.main.path(forResource: "seed", ofType: "plist"), let seedItems = NSArray(contentsOfFile: filePath) {
+                // Items
+                var items = [Item]()
+                
+                // Create List of Items
+                for seedItem in seedItems as! [[String:Any]] {
+                    if let name = seedItem["name"] as? String {
+                        // Create Item
+                        let item = Item(name: name)
+                        
+                        // Add Item
+                        items.append(item)
+                    }
+                }
+                
+                if let itemsPath = pathForItems() {
+                    // Write to File
+                    if NSKeyedArchiver.archiveRootObject(items, toFile: itemsPath) {
+                        ud.set(true, forKey: "UserDefaultsSeedItems")
+                    }
+                }
+            }
+        }
+    }
+    
+    private func pathForItems() -> String? {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        
+        if let documents = paths.first, let documentsURL = NSURL(string: documents) {
+            return documentsURL.appendingPathComponent("items")?.path
+        }
+        
+        return nil
+    }
 }
 

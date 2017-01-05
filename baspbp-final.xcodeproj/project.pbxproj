@@ -26,12 +26,15 @@
 		9EA849EC1DA327D0002D4481 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA849EB1DA327D0002D4481 /* UIDevice.swift */; };
 		9EA849EE1DA3D370002D4481 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA849ED1DA3D370002D4481 /* UIDeviceExtensions.swift */; };
 		9EC2BB931D5BD1330042476C /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2BB921D5BD1330042476C /* TransitionManager.swift */; };
+		9EC3B4C51E172AD700285912 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC3B4C41E172AD700285912 /* Item.swift */; };
 		9EC69D3E1D417F3700E9C728 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC69D3D1D417F3700E9C728 /* MainViewController.swift */; };
+		9EDE4F641E1790AF00AD9276 /* seed.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EDE4F631E1790AF00AD9276 /* seed.plist */; };
 		9EE5DCE01D77A85D002B655D /* circle_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE5DCDF1D77A85D002B655D /* circle_background.png */; };
 		9EE802F11D9C77A5004189DD /* link_tap_demo-1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 9EE802F01D9C77A5004189DD /* link_tap_demo-1.m4v */; };
 		9EF168A11D5E3FE1008C10FA /* sel_books.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 9EF168A01D5E3FE1008C10FA /* sel_books.m4v */; };
 		9EF168A31D5E4000008C10FA /* sel_time.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 9EF168A21D5E4000008C10FA /* sel_time.m4v */; };
 		9EF168A51D5E402C008C10FA /* sel_number.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 9EF168A41D5E402C008C10FA /* sel_number.m4v */; };
+		9EFE18A41E15DBB40092ECE0 /* TrackProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE18A31E15DBB40092ECE0 /* TrackProgressViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,12 +83,15 @@
 		9EA849EB1DA327D0002D4481 /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		9EA849ED1DA3D370002D4481 /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensions.swift; sourceTree = "<group>"; };
 		9EC2BB921D5BD1330042476C /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		9EC3B4C41E172AD700285912 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		9EC69D3D1D417F3700E9C728 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9EDE4F631E1790AF00AD9276 /* seed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = seed.plist; sourceTree = "<group>"; };
 		9EE5DCDF1D77A85D002B655D /* circle_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_background.png; sourceTree = "<group>"; };
 		9EE802F01D9C77A5004189DD /* link_tap_demo-1.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = "link_tap_demo-1.m4v"; sourceTree = "<group>"; };
 		9EF168A01D5E3FE1008C10FA /* sel_books.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = sel_books.m4v; sourceTree = "<group>"; };
 		9EF168A21D5E4000008C10FA /* sel_time.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = sel_time.m4v; sourceTree = "<group>"; };
 		9EF168A41D5E402C008C10FA /* sel_number.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = sel_number.m4v; sourceTree = "<group>"; };
+		9EFE18A31E15DBB40092ECE0 /* TrackProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackProgressViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +169,9 @@
 				9EC2BB921D5BD1330042476C /* TransitionManager.swift */,
 				9EA849EB1DA327D0002D4481 /* UIDevice.swift */,
 				9EA849ED1DA3D370002D4481 /* UIDeviceExtensions.swift */,
+				9EFE18A31E15DBB40092ECE0 /* TrackProgressViewController.swift */,
+				9EC3B4C41E172AD700285912 /* Item.swift */,
+				9EDE4F631E1790AF00AD9276 /* seed.plist */,
 			);
 			name = "baspbp-final";
 			path = baspbp;
@@ -301,6 +310,7 @@
 				11EB5C281D7B2F0000DDC1BE /* app_logo.png in Resources */,
 				9EF168A51D5E402C008C10FA /* sel_number.m4v in Resources */,
 				9EE802F11D9C77A5004189DD /* link_tap_demo-1.m4v in Resources */,
+				9EDE4F641E1790AF00AD9276 /* seed.plist in Resources */,
 				9EE5DCE01D77A85D002B655D /* circle_background.png in Resources */,
 				9EF168A31D5E4000008C10FA /* sel_time.m4v in Resources */,
 				9EF168A11D5E3FE1008C10FA /* sel_books.m4v in Resources */,
@@ -332,8 +342,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E3FE1C31D9F31960097C3DF /* BWWalkthroughPageViewController.swift in Sources */,
+				9EFE18A41E15DBB40092ECE0 /* TrackProgressViewController.swift in Sources */,
 				9EA849EC1DA327D0002D4481 /* UIDevice.swift in Sources */,
 				9EC2BB931D5BD1330042476C /* TransitionManager.swift in Sources */,
+				9EC3B4C51E172AD700285912 /* Item.swift in Sources */,
 				9E3FE1C41D9F31960097C3DF /* BWWalkthroughViewController.swift in Sources */,
 				9EA35CF01C233A3C00995F37 /* ViewController.swift in Sources */,
 				9E315D3B1D5AA1BE00F48C88 /* ReminderViewController.swift in Sources */,
