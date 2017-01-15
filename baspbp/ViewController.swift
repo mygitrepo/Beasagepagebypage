@@ -134,14 +134,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var urls = ["bg","sb","cc","kb","iso", "nod", "tlc", "noi"]
         
     
-    let sbPages = 15119
-    let bgPages = 868
-    let ccPages = 6621
-    let krPages = 706
-    let ndPages = 407
-    let tlPages = 347
-    let isPages = 158
-    let niPages = 130
+    let sbPages = 14625
+    let bgPages = 717
+    let ccPages = 6624
+    let krPages = 796
+    let ndPages = 399
+    let tlPages = 350
+    let isPages = 138
+    let niPages = 91
     let sbSlokas = 14094
     let bgSlokas = 700
     let ccSlokas = 11555
@@ -251,7 +251,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func orderBooksLabelTapFunction(_ sender:UITapGestureRecognizer) {
         //Action to execute once Order Book is tapped
-        let urlString = URL(string: "http://www.bbtacademic.com/books/")
+        //let urlString = URL(string: "http://www.bbtacademic.com/books/")
+        let urlString = URL(string: "http://bbtacademic.com/product-tag/beasage_app/")
         UIApplication.shared.openURL(urlString!)
     }
     
@@ -564,12 +565,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 PagesLabel.text = "N/A"
             } else {
                 numPagesDay = 1.0
-                PagesLabel.text = String(Int(round(numPagesDay)))
+                //PagesLabel.text = String(Int(round(numPagesDay)))
+                PagesLabel.text = String(Int(ceil(numPagesDay)))
             }
         } else {
             //numPagesDay = Int(NSString(format:"%.1f", numPagesDay) as String)!
             //finalNumPages = round(numPagesDay)
-            PagesLabel.text = String(Int(round(numPagesDay)))
+            //PagesLabel.text = String(Int(round(numPagesDay)))
+            PagesLabel.text = String(Int(ceil(numPagesDay)))
         }
     }
 }

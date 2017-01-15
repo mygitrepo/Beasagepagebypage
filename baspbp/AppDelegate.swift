@@ -57,6 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // Create List of Items
                 for seedItem in seedItems as! [[String:Any]] {
                     if let name = seedItem["name"] as? String {
+                        print("Printing name before adding to items array")
+                        print("\(name)")
                         // Create Item
                         let item = Item(name: name)
                         
@@ -64,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         items.append(item)
                     }
                 }
+                
+                print("Now printing items")
+                print(items)
                 
                 if let itemsPath = pathForItems() {
                     // Write to File

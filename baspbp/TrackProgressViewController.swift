@@ -9,12 +9,45 @@
 import Foundation
 import UIKit
 
-class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    let CellIdentifier = "Cell Identifier"
+    var items = [Item]()
+    var list = ["Bhagavad-gita","Srimad Bhagavatam","Caitanya Caritamrta","Krsna Book","Sri Isopanishad","Nectar of Devotion","TLC", "Nectar of Instruction"]
     
     @IBOutlet weak var textBox: UITextField!
     @IBOutlet weak var dropDown: UIPickerView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableHeight: NSLayoutConstraint!
     
-    var items = [Item]()
+    @IBAction func trackScripture(_ sender: UIButton) {
+        
+        if(items.contains(where: {x in x.name == textBox.text!})) {
+            let alert = UIAlertController(title: "Failed!",
+                                          message: "You are already tracking \(textBox.text!). Please select a different scripture to track.",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                action in self.parent
+            }))
+            self.present(alert, animated: true, completion:nil)
+        } else {
+            let item = Item(name: textBox.text!)
+            // Add Item to Items
+            items.insert(item, at: 0)
+            //items.append(item)
+            
+            // Add Row to Table View
+            tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
+            //tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: (items.count - 1), inSection: 0)], withRowAnimation: .None)
+            
+            // Save Items
+            saveItems()
+            
+            // Set tableView height dynamically
+            UITableView_Auto_Height();
+        }
+    }
+    
     
     // MARK: -
     // MARK: Initialization
@@ -25,17 +58,34 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         loadItems()
     }
     
-    
-    var list = ["Bhagavad-gita","Srimad Bhagavatam","Caitanya Caritamrta","Krsna Book","Sri Isopanishad","Nectar of Devotion","TLC", "Nectar of Instruction"]
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //UITableView_Auto_Height();
+        //self.tableView.layoutSubviews()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.table.register(UITableViewCell.self, forCellReuseIdentifier: "td")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         dropDown.selectRow(3, inComponent: 0, animated: true)
         //let item = Item(name: "Bhagavad-Gita")
         //print(item.uuid)
         //loadItems()
-        print(items)
+        //print(items)
+        title = "Items"
+        // Register Class
+        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
         // Do any additional setup after loading the view, typically from a nib.
+        //UITableView_Auto_Height();
+        if((items.count * 44) <= 264) {
+            tableHeight.constant = CGFloat(items.count) * 44
+        } else {
+            tableHeight.constant = 264
+        }
+        // Need to call this line to force constraint updated
+        self.view.layoutIfNeeded()
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,27 +95,30 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
+        //UITableView_Auto_Height();
         return 1
         
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        
+        //UITableView_Auto_Height();
         return list.count
         
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
+        //UITableView_Auto_Height();
         self.view.endEditing(true)
+        //UITableView_Auto_Height();
         return list[row]
         
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        //UITableView_Auto_Height();
         self.textBox.text = self.list[row]
         self.dropDown.isHidden = true
+        //UITableView_Auto_Height();
         
     }
     
@@ -73,6 +126,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         if textField == self.textBox {
             self.dropDown.isHidden = false
+            //UITableView_Auto_Height();
             //if you dont want the users to se the keyboard type:            
             textField.endEditing(true)
         }
@@ -81,17 +135,18 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     // MARK: -
     // MARK: Table View Data Source Methods
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in table: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Dequeue Reusable Cell
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath)
+        //let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "td")
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath as IndexPath)
         
         // Fetch Item
         let item = items[indexPath.row]
@@ -112,19 +167,34 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
     }
     
+    private func saveItems() {
+        if let filePath = pathForItems() {
+            NSKeyedArchiver.archiveRootObject(items, toFile: filePath)
+        }
+    }
+    
     private func pathForItems() -> String? {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         
         if let documents = paths.first, let documentsURL = NSURL(string: documents) {
-            return documentsURL.appendingPathComponent("items")?.path
+            return documentsURL.appendingPathComponent("items")!.path
         }
         
         return nil
     }
     
-    private func saveItems() {
-        if let filePath = pathForItems() {
-            NSKeyedArchiver.archiveRootObject(items, toFile: filePath)
+    // Dynamic tableView height
+    func UITableView_Auto_Height()
+    {
+        if(tableView.contentSize.height > tableView.frame.height){
+            var frame: CGRect = tableView.frame;
+            if(tableView.contentSize.height < 264) {
+                frame.size.height = tableView.contentSize.height;
+                tableView.frame = frame;
+            } else {
+                frame.size.height = 264
+                tableView.frame = frame;
+            }
         }
     }
 

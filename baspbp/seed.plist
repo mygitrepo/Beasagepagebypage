@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   seed.plist
-   baspbp-final
-
-   Created by nikul on 12/30/16.
-   Copyright (c) 2016 isv. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-        <dict>
-                <key>name</key>
-                <string>Bhagavad-Gita</string>
-        </dict>
+	<dict>
+		<key>name</key>
+		<string>Bhagavad-Gita</string>
+	</dict>
 </array>
 </plist>
