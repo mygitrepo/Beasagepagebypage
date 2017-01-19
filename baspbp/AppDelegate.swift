@@ -17,8 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        // Seed Items
-        seedItems()
+        // Seed Items - Temporarily commented out to release old version of
+        // App with two enhancements
+        //seedItems()
         return true
     }
 
@@ -46,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: -
     // MARK: Helper Methods
+    // Added as a part of Track Progress feature
     private func seedItems() {
         let ud = UserDefaults.standard
         

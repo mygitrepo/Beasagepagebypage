@@ -124,14 +124,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // Define scripture array
     var scripture = [
-        ["Bhagavad-gita","Srimad Bhagavatam","Caitanya Caritamrta","Krsna Book","Sri Isopanishad","Nectar of Devotion","TLC", "Nectar of Instruction"],
-        ["Day", "Week", "Month", "Year"],["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"]
+        ["Bhagavad-gita","Caitanya Caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"],
+        ["Day", "Week", "Month", "Year"],["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"]
     ]
     
-    var scriptureArray = ["Bhagavad-gita","Srimad Bhagavatam","Caitanya Caritamrta","Krsna Book","Sri Isopanishad","Nectar of Devotion","TLC", "Nectar of Instruction"]
+    var scriptureArray = ["Bhagavad-gita","Caitanya Caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"]
     
     // For clickable scriptureLabel
-    var urls = ["bg","sb","cc","kb","iso", "nod", "tlc", "noi"]
+    var urls = ["bg","cc","kb","nod","noi","sb","iso","tlc"]
         
     
     let sbPages = 14625
