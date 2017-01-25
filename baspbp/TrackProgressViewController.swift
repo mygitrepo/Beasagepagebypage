@@ -8,12 +8,13 @@
 
 import Foundation
 import UIKit
+import QuartzCore
 
 class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
     let CellIdentifier = "Cell Identifier"
     var items = [Item]()
-    var list = ["Bhagavad-gita","Srimad Bhagavatam","Caitanya Caritamrta","Krsna Book","Sri Isopanishad","Nectar of Devotion","TLC", "Nectar of Instruction"]
+    var list = ["Bhagavad-gita","Caitanya Caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"]
     
     @IBOutlet weak var textBox: UITextField!
     @IBOutlet weak var dropDown: UIPickerView!
@@ -21,9 +22,9 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var tableHeight: NSLayoutConstraint!
     
     @IBAction func trackScripture(_ sender: UIButton) {
-        
+        if(textBox.text! != "Select a scripture") {
         if(items.contains(where: {x in x.name == textBox.text!})) {
-            let alert = UIAlertController(title: "Failed!",
+            let alert = UIAlertController(title: "Duplicate!",
                                           message: "You are already tracking \(textBox.text!). Please select a different scripture to track.",
                                           preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
@@ -39,13 +40,63 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
             // Add Row to Table View
             tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
             //tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: (items.count - 1), inSection: 0)], withRowAnimation: .None)
+            Adjust_Table_Height();
             
             // Save Items
             saveItems()
             
             // Set tableView height dynamically
-            UITableView_Auto_Height();
+            //UITableView_Auto_Height();
+            //Adjust_Table_Height();
+            //self.view.layoutIfNeeded();
         }
+        } else {
+            let alert = UIAlertController(title: "Not Allowed!",
+                                          message: "Please select a scripture from picker list",
+                preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                action in self.parent
+            }))
+            self.present(alert, animated: true, completion:nil)
+        }
+    }
+    
+    @IBAction func removeScripture(_ sender: UIButton) {
+        tableView.setEditing(!tableView.isEditing, animated: true);
+        //Adjust_Table_Height();
+        
+        
+        
+        
+        
+        
+//        if !(items.contains(where: {x in x.name == textBox.text!})) {
+//            let alert = UIAlertController(title: "Not Found!",
+//                                          message: "You are trying to remove scripture \(textBox.text!) which is not in tracking list. Please select a different scripture to remove.",
+//                preferredStyle: UIAlertControllerStyle.alert)
+//            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+//                action in self.parent
+//            }))
+//            self.present(alert, animated: true, completion:nil)
+//        } else {
+//            let item = Item(name: textBox.text!)
+//            // Add Item to Items
+//            items.remove(at: 0)
+//            //items.insert(item, at: 0)
+//            //items.append(item)
+//            
+//            // Add Row to Table View
+//            tableView.deleteRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
+//            //tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: (items.count - 1), inSection: 0)], withRowAnimation: .None)
+//            
+//            // Save Items
+//            saveItems()
+//            
+//            // Set tableView height dynamically
+//            //UITableView_Auto_Height_Remove();
+//            Adjust_Table_Height();
+//            //self.view.layoutIfNeeded();
+//        }
     }
     
     
@@ -79,11 +130,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
         // Do any additional setup after loading the view, typically from a nib.
         //UITableView_Auto_Height();
-        if((items.count * 44) <= 264) {
-            tableHeight.constant = CGFloat(items.count) * 44
-        } else {
-            tableHeight.constant = 264
-        }
+        Adjust_Table_Height();
         // Need to call this line to force constraint updated
         self.view.layoutIfNeeded()
     }
@@ -153,8 +200,36 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         // Configure Table View Cell
         cell.textLabel?.text = item.name
+        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.textColor = UIColor.blue
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightThin);
+        //cell.textLabel?.font = UIFont(name:"Avenir", size:22)
+//        let redColor = UIColor.yellow
+//        self.tableView.layer.borderColor = redColor.withAlphaComponent(0.9).cgColor
+//        self.tableView.layer.borderWidth = 1;
+        self.tableView.layer.cornerRadius = 4;
         
         return cell
+    }
+    
+    // Allowing table rows to be editable
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete Item from Items
+            items.remove(at: indexPath.row)
+            
+            // Update Table View
+            tableView.deleteRows(at: [indexPath], with: .right)
+            //tableView.reloadData();
+            Adjust_Table_Height();
+            
+            // Save Changes
+            saveItems()
+        }
     }
     
     // MARK: -
@@ -183,9 +258,8 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         return nil
     }
     
-    // Dynamic tableView height
-    func UITableView_Auto_Height()
-    {
+    // Dynamic tableView height after adding new element
+    func UITableView_Auto_Height() {
         if(tableView.contentSize.height > tableView.frame.height){
             var frame: CGRect = tableView.frame;
             if(tableView.contentSize.height < 264) {
@@ -197,5 +271,43 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
             }
         }
     }
+    
+    func UITableView_Auto_Height_Remove() {
+    // Dynamic tableView height after removing an element
+        if (tableView.contentSize.height < tableView.frame.height){
+            var frame: CGRect = tableView.frame;
+            if(tableView.contentSize.height == 44) {
+                frame.size.height = 44
+                tableView.frame = frame;
+                //frame.size.height = tableView.contentSize.height;
+                //tableView.frame = frame;
+            } else {
+                frame.size.height = tableView.contentSize.height;
+                tableView.frame = frame;
+                //frame.size.height = 44
+                //tableView.frame = frame;
+            }
+        }
+    }
+    
+    func Adjust_Table_Height() {
+        if((items.count * 44) <= 264) {
+            tableHeight.constant = CGFloat(items.count) * 44
+        } else {
+            tableHeight.constant = 264
+        }
+    }
+    
+//    func Adjust_Table_Height_Remove() {
+//        if((items.count * 44) <= 264) {
+//            if((items.count * 44) == 44) {
+//                //do nothing
+//            } else {
+//                tableHeight.constant = CGFloat(items.count) * 44
+//            }
+//        } else {
+//            tableHeight.constant = 264
+//        }
+//    }
 
 }

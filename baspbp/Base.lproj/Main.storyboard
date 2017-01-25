@@ -466,6 +466,9 @@
                                 <state key="normal" title="Remove">
                                     <color key="titleColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="removeScripture:" destination="EkT-mJ-31x" eventType="touchUpInside" id="Frg-oh-W6Q"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scriptures you are tracking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2N-Za-gvW">
                                 <rect key="frame" x="0.0" y="278.5" width="320" height="47"/>

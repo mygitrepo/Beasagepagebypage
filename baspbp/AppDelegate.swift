@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // Seed Items - Temporarily commented out to release old version of
         // App with two enhancements
-        //seedItems()
+        seedItems()
         return true
     }
 
