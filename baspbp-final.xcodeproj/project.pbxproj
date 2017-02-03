@@ -28,6 +28,9 @@
 		9EC2BB931D5BD1330042476C /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC2BB921D5BD1330042476C /* TransitionManager.swift */; };
 		9EC3B4C51E172AD700285912 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC3B4C41E172AD700285912 /* Item.swift */; };
 		9EC69D3E1D417F3700E9C728 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC69D3D1D417F3700E9C728 /* MainViewController.swift */; };
+		9ECBDAD11E43B47D00645040 /* ScripturePages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECBDAD01E43B47D00645040 /* ScripturePages.swift */; };
+		9ECBDAD31E43C49900645040 /* seedpages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ECBDAD21E43C49900645040 /* seedpages.plist */; };
+		9EDA755E1E39712000360B62 /* TrackBGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA755D1E39712000360B62 /* TrackBGViewController.swift */; };
 		9EDE4F641E1790AF00AD9276 /* seed.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EDE4F631E1790AF00AD9276 /* seed.plist */; };
 		9EE5DCE01D77A85D002B655D /* circle_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE5DCDF1D77A85D002B655D /* circle_background.png */; };
 		9EE802F11D9C77A5004189DD /* link_tap_demo-1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 9EE802F01D9C77A5004189DD /* link_tap_demo-1.m4v */; };
@@ -85,6 +88,9 @@
 		9EC2BB921D5BD1330042476C /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		9EC3B4C41E172AD700285912 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		9EC69D3D1D417F3700E9C728 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9ECBDAD01E43B47D00645040 /* ScripturePages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScripturePages.swift; sourceTree = "<group>"; };
+		9ECBDAD21E43C49900645040 /* seedpages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = seedpages.plist; sourceTree = "<group>"; };
+		9EDA755D1E39712000360B62 /* TrackBGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackBGViewController.swift; sourceTree = "<group>"; };
 		9EDE4F631E1790AF00AD9276 /* seed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = seed.plist; sourceTree = "<group>"; };
 		9EE5DCDF1D77A85D002B655D /* circle_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_background.png; sourceTree = "<group>"; };
 		9EE802F01D9C77A5004189DD /* link_tap_demo-1.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = "link_tap_demo-1.m4v"; sourceTree = "<group>"; };
@@ -158,6 +164,7 @@
 				9EA35CED1C233A3C00995F37 /* AppDelegate.swift */,
 				9EA35CEF1C233A3C00995F37 /* ViewController.swift */,
 				9EA35CF11C233A3C00995F37 /* Main.storyboard */,
+				9EDA755D1E39712000360B62 /* TrackBGViewController.swift */,
 				9EA35CF41C233A3C00995F37 /* Assets.xcassets */,
 				9EA35CF61C233A3C00995F37 /* LaunchScreen.storyboard */,
 				9E3FE1C11D9F31960097C3DF /* BWWalkthroughPageViewController.swift */,
@@ -171,7 +178,9 @@
 				9EA849ED1DA3D370002D4481 /* UIDeviceExtensions.swift */,
 				9EFE18A31E15DBB40092ECE0 /* TrackProgressViewController.swift */,
 				9EC3B4C41E172AD700285912 /* Item.swift */,
+				9ECBDAD01E43B47D00645040 /* ScripturePages.swift */,
 				9EDE4F631E1790AF00AD9276 /* seed.plist */,
+				9ECBDAD21E43C49900645040 /* seedpages.plist */,
 			);
 			name = "baspbp-final";
 			path = baspbp;
@@ -305,6 +314,7 @@
 			files = (
 				9E26D1381E0086420033ED59 /* set_remind_final.m4v in Resources */,
 				9E26D1341E0071EA0033ED59 /* order_books_1.m4v in Resources */,
+				9ECBDAD31E43C49900645040 /* seedpages.plist in Resources */,
 				9E21E6B21DE3BE0400DFDFFE /* switch_demo_new-1.m4v in Resources */,
 				9E56459D1DDBE98B004B1A33 /* book_click-1.m4v in Resources */,
 				11EB5C281D7B2F0000DDC1BE /* app_logo.png in Resources */,
@@ -348,6 +358,8 @@
 				9EC3B4C51E172AD700285912 /* Item.swift in Sources */,
 				9E3FE1C41D9F31960097C3DF /* BWWalkthroughViewController.swift in Sources */,
 				9EA35CF01C233A3C00995F37 /* ViewController.swift in Sources */,
+				9EDA755E1E39712000360B62 /* TrackBGViewController.swift in Sources */,
+				9ECBDAD11E43B47D00645040 /* ScripturePages.swift in Sources */,
 				9E315D3B1D5AA1BE00F48C88 /* ReminderViewController.swift in Sources */,
 				9E315D311D5935AD00F48C88 /* instr_page1.swift in Sources */,
 				9EC69D3E1D417F3700E9C728 /* MainViewController.swift in Sources */,

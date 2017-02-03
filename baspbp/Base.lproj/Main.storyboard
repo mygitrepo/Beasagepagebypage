@@ -291,7 +291,7 @@
                                     <color key="titleColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="EkT-mJ-31x" kind="show" id="Ck9-wH-CBL"/>
+                                    <segue destination="EkT-mJ-31x" kind="show" identifier="SegueToTrackProgressVC" id="Ck9-wH-CBL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -438,7 +438,7 @@
                                     <color key="titleColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="03O-Rf-60l" kind="unwind" unwindAction="unwindToViewController:" id="HE3-kp-16B"/>
+                                    <segue destination="03O-Rf-60l" kind="unwind" unwindAction="FrmReminderunwindToViewController:" id="PfM-tZ-vYa"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select a scripture" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sm2-MP-C2l">
@@ -518,12 +518,162 @@
                         <outlet property="tableHeight" destination="b39-Ok-QW7" id="Wgu-2K-fxm"/>
                         <outlet property="tableView" destination="Sa4-xj-Dgm" id="7dd-52-x8X"/>
                         <outlet property="textBox" destination="sm2-MP-C2l" id="dgp-07-Hk1"/>
+                        <segue destination="GNw-77-ifA" kind="show" identifier="BGProgress" id="Dqq-Zg-EY9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xn6-le-G0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="03O-Rf-60l" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-120" y="1109"/>
+        </scene>
+        <!--TrackBG View Controller-->
+        <scene sceneID="HrS-o7-6xn">
+            <objects>
+                <viewController storyboardIdentifier="TrackBGViewController" id="GNw-77-ifA" customClass="TrackBGViewController" customModule="baspbp_final" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gg5-18-vMU"/>
+                        <viewControllerLayoutGuide type="bottom" id="vSv-jS-uyA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lcf-bO-78I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bhagavad Gita" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scT-i5-GPP">
+                                <rect key="frame" x="77" y="20" width="167" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2g4-PV-tfk">
+                                <rect key="frame" x="143" y="518" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="FcG-gC-jOF" kind="unwind" unwindAction="FrmProgressVCunwindToTrackProgressViewController:" id="Oc7-Ue-20E"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have read" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mf7-Sq-TdL">
+                                <rect key="frame" x="16" y="57" width="121" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PSR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQQ-LG-3ch">
+                                <rect key="frame" x="139" y="57" width="38" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdG-UU-yRf">
+                                <rect key="frame" x="178" y="57" width="66" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="out of" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFD-oA-XuQ">
+                                <rect key="frame" x="16" y="86" width="49" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TPS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLn-AU-LHX">
+                                <rect key="frame" x="66" y="86" width="35" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmK-8g-h7J">
+                                <rect key="frame" x="109" y="86" width="61" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="of Bhagavad Gita" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7O-cW-dzX">
+                                <rect key="frame" x="169" y="86" width="144" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mrZ-ZM-JMQ">
+                                <rect key="frame" x="112" y="448" width="97" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qst-Wr-NMz">
+                                <rect key="frame" x="91" y="483" width="46" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="AddPagesSlokas:" destination="GNw-77-ifA" eventType="touchUpInside" id="v1o-p8-7YX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8s0-d4-Luk">
+                                <rect key="frame" x="162" y="483" width="70" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <state key="normal" title="Remove">
+                                    <color key="titleColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="RemovePagesSlokas:" destination="GNw-77-ifA" eventType="touchUpInside" id="PPj-3v-gLb"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XJ5-uX-A3m">
+                                <rect key="frame" x="136" y="397" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPi-1H-Aub">
+                                <rect key="frame" x="77" y="400" width="53" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Slokas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcC-5e-EYV">
+                                <rect key="frame" x="189" y="400" width="56" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.5568627451" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="scT-i5-GPP" firstAttribute="centerX" secondItem="Lcf-bO-78I" secondAttribute="centerX" id="6cD-QX-Thb"/>
+                            <constraint firstItem="scT-i5-GPP" firstAttribute="top" secondItem="gg5-18-vMU" secondAttribute="bottom" id="Idt-LR-KwO"/>
+                            <constraint firstItem="mrZ-ZM-JMQ" firstAttribute="top" secondItem="XJ5-uX-A3m" secondAttribute="bottom" constant="20" id="gHE-XC-hak"/>
+                            <constraint firstItem="mrZ-ZM-JMQ" firstAttribute="centerX" secondItem="Lcf-bO-78I" secondAttribute="centerX" id="vpA-sT-eHR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="OfBhagavadGitaLabel" destination="d7O-cW-dzX" id="cVW-yd-qlH"/>
+                        <outlet property="OutOfLabel" destination="JFD-oA-XuQ" id="Yx7-d7-6iO"/>
+                        <outlet property="PagesSlokasLabel" destination="DdG-UU-yRf" id="4KT-9L-tPR"/>
+                        <outlet property="PagesSlokasLabel2" destination="lmK-8g-h7J" id="7qN-fY-qwb"/>
+                        <outlet property="PagesSlokasReadLabel" destination="NQQ-LG-3ch" id="rbA-Xo-6Lf"/>
+                        <outlet property="PagesSlokasTextField" destination="mrZ-ZM-JMQ" id="Afh-E4-AMV"/>
+                        <outlet property="SwitchPagesLabel" destination="SPi-1H-Aub" id="3x5-6F-6Lj"/>
+                        <outlet property="SwitchSlokasLabel" destination="xcC-5e-EYV" id="Sx3-75-66z"/>
+                        <outlet property="TotalPagesSlokasLabel" destination="nLn-AU-LHX" id="YCK-Z2-9Va"/>
+                        <outlet property="YouHaveReadLabel" destination="Mf7-Sq-TdL" id="CZa-h7-e0A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aK7-wp-htJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="FcG-gC-jOF" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="580.79999999999995" y="1107.3463268365817"/>
         </scene>
         <!--Reminder View Controller-->
         <scene sceneID="z2h-1p-Vhg">

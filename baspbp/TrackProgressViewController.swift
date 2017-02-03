@@ -9,17 +9,50 @@
 import Foundation
 import UIKit
 import QuartzCore
+import EventKit
 
 class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    //Data received through segue
+    var itemLabelfromVC : String = ""
+    var pagesLabelfromVC : String = ""
+    var durationLabelfromVC : String = ""
+    var timeUnitLabelfromVC : String = ""
+    var pageSlokaLabelfromVC : String = ""
+    var deviceTypefromVC : String = ""
+    var timeInSecondsfromVC = 0
+    var sbPagesfromVC = 0
+    var bgPagesfromVC = 0
+    var ccPagesfromVC = 0
+    var krPagesfromVC = 0
+    var niPagesfromVC = 0
+    var ndPagesfromVC = 0
+    var tlPagesfromVC = 0
+    var isPagesfromVC = 0
+    var sbSlokasfromVC = 0
+    var bgSlokasfromVC = 0
+    var ccSlokasfromVC = 0
+    var niSlokasfromVC = 0
+    var ndSlokasfromVC = 0
+    var krSlokasfromVC = 0
+    var isSlokasfromVC = 0
+    var tlSlokasfromVC = 0
     let CellIdentifier = "Cell Identifier"
     var items = [Item]()
     var list = ["Bhagavad-gita","Caitanya Caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"]
+    // add this right above your viewDidLoad function for right to left transition
+    let transitionManager = TransitionManager()
     
     @IBOutlet weak var textBox: UITextField!
     @IBOutlet weak var dropDown: UIPickerView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableHeight: NSLayoutConstraint!
+    
+    
+    //For back button from ProgressVCs to TrackProgressVC
+    @IBAction func FrmProgressVCunwindToTrackProgressViewController (_ sender: UIStoryboardSegue){
+        
+    }
     
     @IBAction func trackScripture(_ sender: UIButton) {
         if(textBox.text! != "Select a scripture") {
@@ -117,6 +150,8 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(itemLabelfromVC)
+        print(sbPagesfromVC)
         //self.table.register(UITableViewCell.self, forCellReuseIdentifier: "td")
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -232,6 +267,19 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCell = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        print(currentCell.textLabel!.text as Any)
+        switch (currentCell.textLabel!.text) {
+            case "Krsna Book"?:
+                performSegue(withIdentifier: "KRProgress", sender: self)
+            case "Bhagavad-gita"?:
+                performSegue(withIdentifier: "BGProgress", sender: self)
+            default:
+                break
+        }
+    }
+    
     // MARK: -
     // MARK: Helper Methods
     private func loadItems() {
@@ -297,6 +345,17 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
             tableHeight.constant = 264
         }
     }
+    
+    // Added for right to left transition instead of bottom to top
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // this gets a reference to the screen that we're about to transition to
+        let toViewController = segue.destination as UIViewController
+        
+        // instead of using the default transition animation, we'll ask
+        // the segue to use our custom TransitionManager object to manage the transition animation
+        toViewController.transitioningDelegate = self.transitionManager
+    }
+
     
 //    func Adjust_Table_Height_Remove() {
 //        if((items.count * 44) <= 264) {

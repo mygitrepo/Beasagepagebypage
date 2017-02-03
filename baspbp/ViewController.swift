@@ -258,7 +258,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // Added for right to left transition instead of bottom to top
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SegueToReminderVC" {
+        if (segue.identifier == "SegueToReminderVC") || (segue.identifier == "SegueToTrackProgressVC") {
             if let destination = segue.destination as? ReminderViewController {
                 destination.itemLabelfromVC = self.itemLabel.text!
                 destination.pagesLabelfromVC = self.PagesLabel.text!
@@ -269,6 +269,33 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 destination.deviceTypefromVC = self.deviceType
                 //print("ItemLable: \(self.itemLabel.text)")
             }
+            if let destination = segue.destination as? TrackProgressViewController {
+                destination.sbPagesfromVC = self.sbPages
+                destination.bgPagesfromVC = self.bgPages
+                destination.ccPagesfromVC = self.ccPages
+                destination.krPagesfromVC = self.krPages
+                destination.ndPagesfromVC = self.ndPages
+                destination.tlPagesfromVC = self.tlPages
+                destination.isPagesfromVC = self.isPages
+                destination.niPagesfromVC = self.niPages
+                destination.sbSlokasfromVC = self.sbSlokas
+                destination.bgSlokasfromVC = self.bgSlokas
+                destination.ccSlokasfromVC = self.ccSlokas
+                destination.krSlokasfromVC = self.krSlokas
+                destination.ndSlokasfromVC = self.ndSlokas
+                destination.niSlokasfromVC = self.niSlokas
+                destination.tlSlokasfromVC = self.tlSlokas
+                destination.isSlokasfromVC = self.isSlokas
+                destination.itemLabelfromVC = self.itemLabel.text!
+                destination.pagesLabelfromVC = self.PagesLabel.text!
+                destination.durationLabelfromVC = self.durationLabel.text!
+                destination.timeUnitLabelfromVC = self.timeUnitLabel.text!
+                destination.pageSlokaLabelfromVC = self.pageslokaLabel.text!
+                destination.timeInSecondsfromVC = self.timeInSeconds
+                destination.deviceTypefromVC = self.deviceType
+                //print("ItemLable: \(self.itemLabel.text)")
+            }
+            
         }
         // this gets a reference to the screen that we're about to transition to
         let toViewController = segue.destination as UIViewController

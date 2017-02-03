@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Seed Items - Temporarily commented out to release old version of
         // App with two enhancements
         seedItems()
+        seedScripturePages()
         return true
     }
 
@@ -48,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: -
     // MARK: Helper Methods
     // Added as a part of Track Progress feature
+    // For seeding scripture name in the list
     private func seedItems() {
         let ud = UserDefaults.standard
         
@@ -91,5 +93,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return nil
     }
+
+    // For seeding all scripture pages in the list
+    private func seedScripturePages() {
+        let ud = UserDefaults.standard
+        
+        if !ud.bool(forKey: "UserDefaultsSeedItems") {
+            if let filePath = Bundle.main.path(forResource: "seedpages", ofType: "plist"), let seedScripturePages = NSArray(contentsOfFile: filePath) {
+                // Items
+                var scripturepages = [ScripturePages]()
+                
+                // Create List of Items
+                for seedScripturePage in seedScripturePages as! [[String:Any]] {
+                    if let name = seedScripturePage["name"] as? String {
+                        if let pagesread = seedScripturePage["pagesread"] as? Int {
+                            if let totalpages = seedScripturePage["totalpages"] as? Int {
+                                if let slokasread = seedScripturePage["slokasread"] as? Int {
+                                    if let totalslokas = seedScripturePage["totalslokas"] as? Int {
+                                        print("Printing name, pagesread, totalpages, slokasread and totalslokas before adding to scripturepages array")
+                                        print("\(name) - \(pagesread) - \(totalpages) - \(slokasread) - \(totalpages)")
+                                        // Create ScripturePages
+                                        let item = ScripturePages(name: name, pagesread: pagesread, totalpages: totalpages, slokasread: slokasread, totalslokas: totalslokas)
+                        
+                                        // Add Item
+                                        scripturepages.append(item)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                print("Now printing items in ScripturePages")
+                print(scripturepages)
+                
+                if let itemsPath = pathForScripturePages() {
+                    // Write to File
+                    if NSKeyedArchiver.archiveRootObject(scripturepages, toFile: itemsPath) {
+                        ud.set(true, forKey: "UserDefaultsSeedItems")
+                    }
+                }
+            }
+        }
+    }
+    
+    private func pathForScripturePages() -> String? {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        
+        if let documents = paths.first, let documentsURL = NSURL(string: documents) {
+            return documentsURL.appendingPathComponent("scripturepages")?.path
+        }
+        
+        return nil
+    }
+    
 }
 

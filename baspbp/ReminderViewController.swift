@@ -47,6 +47,7 @@ class ReminderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(pagesLabelfromVC)
         RemindPagesLabel.text = pagesLabelfromVC
         RemindBookLabel.text = itemLabelfromVC
         RemindLabelDuration.text = durationLabelfromVC

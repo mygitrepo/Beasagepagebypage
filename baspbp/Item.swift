@@ -10,8 +10,6 @@ import UIKit
 
 class Item: NSObject, NSCoding {
     
-    //var items = [Item]()
-    
     init(name: String) {
         super.init()
         self.name = name
