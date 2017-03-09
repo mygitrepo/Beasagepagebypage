@@ -16,6 +16,7 @@
 		9E3FE1C31D9F31960097C3DF /* BWWalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FE1C11D9F31960097C3DF /* BWWalkthroughPageViewController.swift */; };
 		9E3FE1C41D9F31960097C3DF /* BWWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FE1C21D9F31960097C3DF /* BWWalkthroughViewController.swift */; };
 		9E56459D1DDBE98B004B1A33 /* book_click-1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 9E56459C1DDBE98B004B1A33 /* book_click-1.m4v */; };
+		9E896DB81E5BBBB100A85187 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E896DB71E5BBBB100A85187 /* String.swift */; };
 		9EA35CEE1C233A3C00995F37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA35CED1C233A3C00995F37 /* AppDelegate.swift */; };
 		9EA35CF01C233A3C00995F37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA35CEF1C233A3C00995F37 /* ViewController.swift */; };
 		9EA35CF31C233A3C00995F37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EA35CF11C233A3C00995F37 /* Main.storyboard */; };
@@ -70,6 +71,7 @@
 		9E3FE1C11D9F31960097C3DF /* BWWalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughPageViewController.swift; sourceTree = "<group>"; };
 		9E3FE1C21D9F31960097C3DF /* BWWalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughViewController.swift; sourceTree = "<group>"; };
 		9E56459C1DDBE98B004B1A33 /* book_click-1.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = "book_click-1.m4v"; sourceTree = "<group>"; };
+		9E896DB71E5BBBB100A85187 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		9EA35CEA1C233A3C00995F37 /* baspbp-final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "baspbp-final.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EA35CED1C233A3C00995F37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EA35CEF1C233A3C00995F37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				9EA35CEF1C233A3C00995F37 /* ViewController.swift */,
 				9EA35CF11C233A3C00995F37 /* Main.storyboard */,
 				9EDA755D1E39712000360B62 /* TrackBGViewController.swift */,
+				9E896DB71E5BBBB100A85187 /* String.swift */,
 				9EA35CF41C233A3C00995F37 /* Assets.xcassets */,
 				9EA35CF61C233A3C00995F37 /* LaunchScreen.storyboard */,
 				9E3FE1C11D9F31960097C3DF /* BWWalkthroughPageViewController.swift */,
@@ -363,6 +366,7 @@
 				9E315D3B1D5AA1BE00F48C88 /* ReminderViewController.swift in Sources */,
 				9E315D311D5935AD00F48C88 /* instr_page1.swift in Sources */,
 				9EC69D3E1D417F3700E9C728 /* MainViewController.swift in Sources */,
+				9E896DB81E5BBBB100A85187 /* String.swift in Sources */,
 				9EA35CEE1C233A3C00995F37 /* AppDelegate.swift in Sources */,
 				9EA849EE1DA3D370002D4481 /* UIDeviceExtensions.swift in Sources */,
 			);

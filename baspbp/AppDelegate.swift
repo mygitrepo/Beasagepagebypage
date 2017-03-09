@@ -75,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(items)
                 
                 if let itemsPath = pathForItems() {
+                    print("Print itemsPath: \(itemsPath)")
                     // Write to File
                     if NSKeyedArchiver.archiveRootObject(items, toFile: itemsPath) {
                         ud.set(true, forKey: "UserDefaultsSeedItems")
@@ -98,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func seedScripturePages() {
         let ud = UserDefaults.standard
         
-        if !ud.bool(forKey: "UserDefaultsSeedItems") {
+        if !ud.bool(forKey: "UserDefaultsScript7SeedItems") {
             if let filePath = Bundle.main.path(forResource: "seedpages", ofType: "plist"), let seedScripturePages = NSArray(contentsOfFile: filePath) {
                 // Items
                 var scripturepages = [ScripturePages]()
@@ -111,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 if let slokasread = seedScripturePage["slokasread"] as? Int {
                                     if let totalslokas = seedScripturePage["totalslokas"] as? Int {
                                         print("Printing name, pagesread, totalpages, slokasread and totalslokas before adding to scripturepages array")
-                                        print("\(name) - \(pagesread) - \(totalpages) - \(slokasread) - \(totalpages)")
+                                        print("\(name) - \(pagesread) - \(totalpages) - \(slokasread) - \(totalslokas)")
                                         // Create ScripturePages
                                         let item = ScripturePages(name: name, pagesread: pagesread, totalpages: totalpages, slokasread: slokasread, totalslokas: totalslokas)
                         
@@ -125,12 +126,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 
                 print("Now printing items in ScripturePages")
-                print(scripturepages)
+                for book in scripturepages {
+                    print(book.name)
+                    print(book.pagesread)
+                    print(book.slokasread)
+                    print(book.totalpages)
+                    print(book.totalslokas)
+                }
+                //print(scripturepages)
                 
-                if let itemsPath = pathForScripturePages() {
+                if let scripturepagesPath = pathForScripturePages() {
                     // Write to File
-                    if NSKeyedArchiver.archiveRootObject(scripturepages, toFile: itemsPath) {
-                        ud.set(true, forKey: "UserDefaultsSeedItems")
+                    print("Print scripturepagesPath: \(scripturepagesPath)")
+                    if NSKeyedArchiver.archiveRootObject(scripturepages, toFile: scripturepagesPath) {
+                        ud.set(true, forKey: "UserDefaultsScript7SeedItems")
                     }
                 }
             }
@@ -138,9 +147,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func pathForScripturePages() -> String? {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let pathsScript = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         
-        if let documents = paths.first, let documentsURL = NSURL(string: documents) {
+        if let documents = pathsScript.first, let documentsURL = NSURL(string: documents) {
             return documentsURL.appendingPathComponent("scripturepages")?.path
         }
         

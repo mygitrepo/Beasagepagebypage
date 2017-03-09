@@ -20,6 +20,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     var timeUnitLabelfromVC : String = ""
     var pageSlokaLabelfromVC : String = ""
     var deviceTypefromVC : String = ""
+    var currentCellText : String = ""
     var timeInSecondsfromVC = 0
     var sbPagesfromVC = 0
     var bgPagesfromVC = 0
@@ -39,7 +40,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     var tlSlokasfromVC = 0
     let CellIdentifier = "Cell Identifier"
     var items = [Item]()
-    var list = ["Bhagavad-gita","Caitanya Caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"]
+    var list = ["Bhagavad-Gita","Caitanya Caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"]
     // add this right above your viewDidLoad function for right to left transition
     let transitionManager = TransitionManager()
     
@@ -269,15 +270,18 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCell = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        currentCellText = currentCell.textLabel!.text!
+        print(currentCellText)
         print(currentCell.textLabel!.text as Any)
-        switch (currentCell.textLabel!.text) {
-            case "Krsna Book"?:
-                performSegue(withIdentifier: "KRProgress", sender: self)
-            case "Bhagavad-gita"?:
-                performSegue(withIdentifier: "BGProgress", sender: self)
-            default:
-                break
-        }
+        performSegue(withIdentifier: "ScriptureProgress", sender: self)
+//        switch (currentCell.textLabel!.text) {
+//            case "Krsna Book"?:
+//                performSegue(withIdentifier: "KRProgress", sender: self)
+//            case "Bhagavad-gita"?:
+//                performSegue(withIdentifier: "ScriptureProgress", sender: self)
+//            default:
+//                break
+//        }
     }
     
     // MARK: -
@@ -348,6 +352,12 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     // Added for right to left transition instead of bottom to top
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ScriptureProgress") {
+            if let destination = segue.destination as? TrackBGViewController {
+                destination.scriptureLabelfromVC = self.currentCellText
+            }
+        }
+        
         // this gets a reference to the screen that we're about to transition to
         let toViewController = segue.destination as UIViewController
         

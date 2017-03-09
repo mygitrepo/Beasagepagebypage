@@ -10,6 +10,14 @@ import UIKit
 
 class ScripturePages: NSObject, NSCoding {
     
+    var uuid: String = NSUUID().uuidString
+    var name: String!
+    var pagesread: Int!
+    var totalpages: Int!
+    var slokasread: Int!
+    var totalslokas: Int!
+    var inScripturePagesList = false
+    
     init(name: String, pagesread: Int, totalpages: Int, slokasread: Int, totalslokas: Int) {
         super.init()
         self.name = name
@@ -19,13 +27,13 @@ class ScripturePages: NSObject, NSCoding {
         self.totalslokas = totalslokas
     }
     
-    var uuid: String = NSUUID().uuidString
-    var name: String = ""
-    var pagesread: Int = 0
-    var totalpages: Int = 0
-    var slokasread: Int = 0
-    var totalslokas: Int = 0
-    var inScripturePagesList = false
+//    var uuid: String = NSUUID().uuidString
+//    var name: String = ""
+//    var pagesread: Int = 0
+//    var totalpages: Int = 0
+//    var slokasread: Int = 0
+//    var totalslokas: Int = 0
+//    var inScripturePagesList = false
     
     func encode(with coder: NSCoder) {
         coder.encode(uuid, forKey: "uuid")
