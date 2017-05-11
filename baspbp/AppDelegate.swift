@@ -8,12 +8,14 @@
 
 import UIKit
 import Foundation
+import Firebase
+import FirebaseAuth
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -21,8 +23,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // App with two enhancements
         seedItems()
         seedScripturePages()
+        FIRApp.configure()
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        if GIDSignIn.sharedInstance().hasAuthInKeychain() {
+            print("Found hasAuthInKeychain for GIDSignIn")
+        } else {
+            print("NOT Able to find hasAuthInKeychain for GIDSignIn")
+        }
         return true
     }
+
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+        -> Bool {
+            return GIDSignIn.sharedInstance().handle(url,
+                sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                annotation: [:])
+    }
+    
+    //For app to run on iOS 8 and older, also implement the deprecated application:openURL:sourceApplication:annotation: method.
+//    func application(_ application: UIApplication,
+//                     open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
+//    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -154,6 +178,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return nil
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        if let error = error {
+            print("Failed to log into Google: ")
+            print("Error \(error)")
+            return
+        }
+        
+        print("Successfully logged into Google", user)
+        
+        guard let authentication = user.authentication else { return }
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+            if let error = error {
+                print("Error \(error)")
+                return
+            }
+        }
+        
+        //let sb = UIStoryboard(name: "Main", bundle: nil)
+        //if let tabBarVC = sb.instantiateViewController(withIdentifier: "TrackProgressViewController") as? ViewController {
+        //    window!.rootViewController = tabBarVC
+        //}
     }
     
 }

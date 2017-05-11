@@ -10,8 +10,13 @@ import Foundation
 import UIKit
 import QuartzCore
 import EventKit
+import Firebase
+import GoogleSignIn
 
-class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, GIDSignInUIDelegate {
+    
+    //For Google SIgnIn
+    var handle: FIRAuthStateDidChangeListenerHandle?
     
     //Data received through segue
     var itemLabelfromVC : String = ""
@@ -48,42 +53,58 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var dropDown: UIPickerView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableHeight: NSLayoutConstraint!
-    
+    @IBOutlet weak var signInButton: UIButton!
     
     //For back button from ProgressVCs to TrackProgressVC
     @IBAction func FrmProgressVCunwindToTrackProgressViewController (_ sender: UIStoryboardSegue){
         
     }
+    @IBAction func signOutTapped(_ sender: UIButton) {
+        //let firebaseAuth = FIRAuth.auth()
+        if (FIRAuth.auth()?.currentUser != nil) {
+            //user is signed in
+            do {
+                try FIRAuth.auth()?.signOut()
+                try GIDSignIn.sharedInstance().signOut()
+                if (FIRAuth.auth()?.currentUser == nil) {
+                    print("User successfully signed OUT")
+                    let alert = UIAlertController(title: "Signed Out!",
+                                                  message: "You successfully signed out through Google.",
+                        preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                        action in self.parent
+                    }))
+                    self.present(alert, animated: true, completion:nil)
+                    self.signInButton.setTitle("SignIn", for: .normal)
+                } else {
+                    print("User is STILL signed in. Sign Out Failed.")
+                }
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+        }
+    }
     
     @IBAction func trackScripture(_ sender: UIButton) {
         if(textBox.text! != "Select a scripture") {
-        if(items.contains(where: {x in x.name == textBox.text!})) {
-            let alert = UIAlertController(title: "Duplicate!",
-                                          message: "You are already tracking \(textBox.text!). Please select a different scripture to track.",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                action in self.parent
-            }))
-            self.present(alert, animated: true, completion:nil)
-        } else {
-            let item = Item(name: textBox.text!)
-            // Add Item to Items
-            items.insert(item, at: 0)
-            //items.append(item)
-            
-            // Add Row to Table View
-            tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
-            //tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: (items.count - 1), inSection: 0)], withRowAnimation: .None)
-            Adjust_Table_Height();
-            
-            // Save Items
-            saveItems()
-            
-            // Set tableView height dynamically
-            //UITableView_Auto_Height();
-            //Adjust_Table_Height();
-            //self.view.layoutIfNeeded();
-        }
+            if(items.contains(where: {x in x.name == textBox.text!})) {
+                let alert = UIAlertController(title: "Duplicate!",
+                                              message: "You are already tracking \(textBox.text!). Please select a different scripture to track.",
+                    preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                    action in self.parent
+                }))
+                self.present(alert, animated: true, completion:nil)
+            } else {
+                let item = Item(name: textBox.text!)
+                // Add Item to Items
+                items.insert(item, at: 0)
+                // Add Row to Table View
+                tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
+                Adjust_Table_Height();
+                // Save Items
+                saveItems()
+            }
         } else {
             let alert = UIAlertController(title: "Not Allowed!",
                                           message: "Please select a scripture from picker list",
@@ -98,41 +119,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBAction func removeScripture(_ sender: UIButton) {
         tableView.setEditing(!tableView.isEditing, animated: true);
         //Adjust_Table_Height();
-        
-        
-        
-        
-        
-        
-//        if !(items.contains(where: {x in x.name == textBox.text!})) {
-//            let alert = UIAlertController(title: "Not Found!",
-//                                          message: "You are trying to remove scripture \(textBox.text!) which is not in tracking list. Please select a different scripture to remove.",
-//                preferredStyle: UIAlertControllerStyle.alert)
-//            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-//                action in self.parent
-//            }))
-//            self.present(alert, animated: true, completion:nil)
-//        } else {
-//            let item = Item(name: textBox.text!)
-//            // Add Item to Items
-//            items.remove(at: 0)
-//            //items.insert(item, at: 0)
-//            //items.append(item)
-//            
-//            // Add Row to Table View
-//            tableView.deleteRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
-//            //tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: (items.count - 1), inSection: 0)], withRowAnimation: .None)
-//            
-//            // Save Items
-//            saveItems()
-//            
-//            // Set tableView height dynamically
-//            //UITableView_Auto_Height_Remove();
-//            Adjust_Table_Height();
-//            //self.view.layoutIfNeeded();
-//        }
     }
-    
     
     // MARK: -
     // MARK: Initialization
@@ -145,8 +132,25 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //UITableView_Auto_Height();
-        //self.tableView.layoutSubviews()
+        //Code added for Google SignIn
+        GIDSignIn.sharedInstance().uiDelegate = self
+        
+        if (GIDSignIn.sharedInstance().hasAuthInKeychain()) {
+            // user is signed in or has previous authentication parameters saved in keychain
+            //SignIn silently only if user is not already signed in
+            GIDSignIn.sharedInstance().signInSilently()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                self.handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+                    if user != nil {
+                        print("USER SIGNED IN SILENTLY !!")
+                        self.signInButton.setTitle("SignedIn", for: .normal)
+                        //MeasurementHelper.sendLoginEvent()
+                        //self.performSegue(withIdentifier: Constants.Segues.SignInToFp, sender: nil)
+                    }
+                }
+            })
+        }
+        print("====>>>> DONE WITH viewDidAppear in TrackProgressVC")
     }
     
     override func viewDidLoad() {
@@ -169,6 +173,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         Adjust_Table_Height();
         // Need to call this line to force constraint updated
         self.view.layoutIfNeeded()
+        print("====>>>> DONE WITH viewDidLoad in TrackProgressVC")
     }
     
     override func didReceiveMemoryWarning() {
@@ -273,6 +278,14 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         currentCellText = currentCell.textLabel!.text!
         print(currentCellText)
         print(currentCell.textLabel!.text as Any)
+        //Check first if user is signed in
+//        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+//            if user != nil {
+//                self.performSegue(withIdentifier: "ScriptureProgress", sender: self)
+//            } else {
+//                print("NOT Allowed")
+//            }
+//        }
         performSegue(withIdentifier: "ScriptureProgress", sender: self)
 //        switch (currentCell.textLabel!.text) {
 //            case "Krsna Book"?:
@@ -351,20 +364,35 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     // Added for right to left transition instead of bottom to top
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // Only for 'ScriptureProgress' segue
+    // For 'SignUp' segue, we want cross dissolve popup VC
+    override func prepare(for segue: UIStoryboardSegue!, sender: Any?) {
         if (segue.identifier == "ScriptureProgress") {
             if let destination = segue.destination as? TrackBGViewController {
                 destination.scriptureLabelfromVC = self.currentCellText
             }
+        
+            // this gets a reference to the screen that we're about to transition to
+            let toViewController = segue.destination as UIViewController
+        
+            // instead of using the default transition animation, we'll ask
+            // the segue to use our custom TransitionManager object to manage the transition animation
+            toViewController.transitioningDelegate = self.transitionManager
+            
+        } else if (segue.identifier == "SignUp") {
+            print("Transition using SignUp segue")
+            //performSegue(withIdentifier: "SignUp", sender: nil)
+            // this gets a reference to the screen that we're about to transition to
+//            let toViewController = segue.destination as UIViewController
+//            toViewController.transitioningDelegate = self.transitionManager
         }
-        
-        // this gets a reference to the screen that we're about to transition to
-        let toViewController = segue.destination as UIViewController
-        
-        // instead of using the default transition animation, we'll ask
-        // the segue to use our custom TransitionManager object to manage the transition animation
-        toViewController.transitioningDelegate = self.transitionManager
     }
+    
+//    deinit {
+//        if let handle = handle {
+//            FIRAuth.auth()?.removeStateDidChangeListener(handle)
+//        }
+//    }
 
     
 //    func Adjust_Table_Height_Remove() {

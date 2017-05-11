@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>1061402372197-q9i5o40tvljrk9c4jnhvpc42o3klr30q.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1061402372197-q9i5o40tvljrk9c4jnhvpc42o3klr30q</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA94ACq2Ee0VpCMsDr5JjNsJ0Dllu8JbyU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1061402372197</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ceoisv.baspbp</string>
+	<key>PROJECT_ID</key>
+	<string>be-a-sage-page-by-page</string>
+	<key>STORAGE_BUCKET</key>
+	<string>be-a-sage-page-by-page.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1061402372197:ios:66c40321b6ee8971</string>
+	<key>DATABASE_URL</key>
+	<string>https://be-a-sage-page-by-page.firebaseio.com</string>
+</dict>
+</plist>
