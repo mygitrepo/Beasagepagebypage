@@ -11,6 +11,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         seedItems()
         seedScripturePages()
         FIRApp.configure()
+        //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         if GIDSignIn.sharedInstance().hasAuthInKeychain() {
@@ -33,14 +35,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
         return true
     }
-
-    @available(iOS 9.0, *)
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
-        -> Bool {
-            return GIDSignIn.sharedInstance().handle(url,
-                sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                annotation: [:])
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        let sourceApplication =  options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String
+        let annotation = options[UIApplicationOpenURLOptionsKey.annotation]
+        
+        let googleHandler = GIDSignIn.sharedInstance().handle(
+            url,
+            sourceApplication: sourceApplication,
+            annotation: annotation )
+        
+        let facebookHandler = FBSDKApplicationDelegate.sharedInstance().application (
+            app,
+            open: url,
+            sourceApplication: sourceApplication,
+            annotation: annotation )
+        
+        return googleHandler || facebookHandler
     }
+
+//    @available(iOS 9.0, *)
+//    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
+//        -> Bool {
+//            
+//            return GIDSignIn.sharedInstance().handle(url,
+//                sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+//                annotation: [:])
+//    }
     
     //For app to run on iOS 8 and older, also implement the deprecated application:openURL:sourceApplication:annotation: method.
 //    func application(_ application: UIApplication,
@@ -191,6 +212,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         guard let authentication = user.authentication else { return }
         let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        
         FIRAuth.auth()?.signIn(with: credential) { (user, error) in
             if let error = error {
                 print("Error \(error)")

@@ -12,8 +12,9 @@ import QuartzCore
 import EventKit
 import Firebase
 import GoogleSignIn
+import FBSDKLoginKit
 
-class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, GIDSignInUIDelegate {
+class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
     
     //For Google SIgnIn
     var handle: FIRAuthStateDidChangeListenerHandle?
@@ -60,27 +61,116 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         
     }
     @IBAction func signOutTapped(_ sender: UIButton) {
-        //let firebaseAuth = FIRAuth.auth()
-        if (FIRAuth.auth()?.currentUser != nil) {
+        
+        // START HERE: Following code is in trial basis. Original code is commented out below
+        // temporarily. Current probelm is that even after logging out google user, while clicking
+        // on signin -> google sign in, it is signing in user silently. Actually it should ask for
+        // singin information! - solution for some reason try FIRAuth.auth()?.signOut() is not
+        // signin out user who signed in silently but GIDSignIn.sharedInstance().signOut() does the job.
+        
+//        guard FIRAuth.auth()?.currentUser != nil else {
+//            print("No User signed in!!")
+//            let alert = UIAlertController(title: "No User Signed In!",
+//                                          message: "User can't be signed out.",
+//                                          preferredStyle: UIAlertControllerStyle.alert)
+//            //Show alert for successful sign in
+//            self.present(alert, animated: true, completion:nil)
+//            // change to desired number of seconds (in this case 5 seconds)
+//            let when = DispatchTime.now() + 2
+//            DispatchQueue.main.asyncAfter(deadline: when){
+//                // your code with delay
+//                alert.dismiss(animated: true, completion: nil)
+//            }
+//            return
+//        }
+//        
+//        do {
+//            //First print signed in users
+//            print("Printing user login providers ......")
+//            for user in (FIRAuth.auth()?.currentUser?.providerData)! {
+//                print(user.providerID)
+//            }
+//
+//            print("User signed in. Signing Out....")
+//            try FIRAuth.auth()?.signOut()
+//            FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+//                if user != nil {
+//                    print("User STILL Signed In...")
+//                } else {
+//                    print("User Signed Out!!")
+//                }
+//            }
+//            FBSDKAccessToken.setCurrent(nil)
+//            
+//        } catch let error as NSError {
+//            print(error.localizedDescription)
+//        }
+        let firebaseAuth = FIRAuth.auth()
+        print("Printing user login providers ......")
+        if (firebaseAuth?.currentUser != nil) {
+            for user in (firebaseAuth?.currentUser?.providerData)! {
+                    print(user.providerID)
+            }
+        }
+        //print(FIRAuth.auth()?.currentUser?.providerData as Any)
+        if (firebaseAuth?.currentUser != nil) {
             //user is signed in
             do {
-                try FIRAuth.auth()?.signOut()
-                try GIDSignIn.sharedInstance().signOut()
-                if (FIRAuth.auth()?.currentUser == nil) {
+                for user in (firebaseAuth?.currentUser?.providerData)! {
+                    if(user.providerID == "google.com") {
+                        print("Signing Out Google user")
+                        try firebaseAuth?.signOut()
+                        GIDSignIn.sharedInstance().signOut()
+                    }
+                    if(user.providerID == "facebook.com") {
+                        print("Signing Out Facebook user")
+                        try firebaseAuth?.signOut()
+                        FBSDKLoginManager().logOut()
+                    }
+                    if(user.providerID == "password") {
+                        print("Signing Out Email/Password user")
+                        try firebaseAuth?.signOut()
+                    }
+                }
+                //try FIRAuth.auth()?.signOut()
+                //FBSDKLoginManager().logOut()
+                //try GIDSignIn.sharedInstance().signOut()
+                if (firebaseAuth?.currentUser == nil) {
                     print("User successfully signed OUT")
                     let alert = UIAlertController(title: "Signed Out!",
-                                                  message: "You successfully signed out through Google.",
+                                                  message: "You successfully signed out.",
                         preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                        action in self.parent
-                    }))
+                    //Show alert for successful sign out
                     self.present(alert, animated: true, completion:nil)
+//                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+//                        action in self.parent
+//                    }))
+//                    self.present(alert, animated: true, completion:nil)
+                    // change to desired number of seconds (in this case 5 seconds)
+                    let when = DispatchTime.now() + 2
+                    DispatchQueue.main.asyncAfter(deadline: when){
+                        // your code with delay
+                        alert.dismiss(animated: true, completion: nil)
+                    }
                     self.signInButton.setTitle("SignIn", for: .normal)
                 } else {
                     print("User is STILL signed in. Sign Out Failed.")
                 }
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)
+            }
+        } else {
+            print("No User Logged in!!")
+            let alert = UIAlertController(title: "No User Signed In!",
+                                          message: "User can't be signed out.",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            //Show alert for successful sign in
+            self.present(alert, animated: true, completion:nil)
+            // change to desired number of seconds (in this case 5 seconds)
+            let when = DispatchTime.now() + 2
+            DispatchQueue.main.asyncAfter(deadline: when){
+                // your code with delay
+                alert.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -134,21 +224,29 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         super.viewWillAppear(animated)
         //Code added for Google SignIn
         GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
         
         if (GIDSignIn.sharedInstance().hasAuthInKeychain()) {
             // user is signed in or has previous authentication parameters saved in keychain
             //SignIn silently only if user is not already signed in
-            GIDSignIn.sharedInstance().signInSilently()
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                self.handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
-                    if user != nil {
-                        print("USER SIGNED IN SILENTLY !!")
-                        self.signInButton.setTitle("SignedIn", for: .normal)
-                        //MeasurementHelper.sendLoginEvent()
-                        //self.performSegue(withIdentifier: Constants.Segues.SignInToFp, sender: nil)
+            if(GIDSignIn.sharedInstance().currentUser == nil) {
+                GIDSignIn.sharedInstance().signInSilently()
+                //if(GIDSignIn.sharedInstance().currentUser == nil) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                    self.handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+                        if user != nil {
+                            print("USER SIGNED IN SILENTLY !!")
+                            self.signInButton.setTitle("SignedIn", for: .normal)
+                            //MeasurementHelper.sendLoginEvent()
+                            //self.performSegue(withIdentifier: Constants.Segues.SignInToFp, sender: nil)
+                        }
                     }
-                }
-            })
+                })
+            } else if (GIDSignIn.sharedInstance().currentUser != nil) {
+                self.signInButton.setTitle("SignedIn", for: .normal)
+            }
+        } else if(FBSDKAccessToken.current() != nil) {
+            self.signInButton.setTitle("SignedIn", for: .normal)
         }
         print("====>>>> DONE WITH viewDidAppear in TrackProgressVC")
     }
@@ -388,11 +486,11 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
     }
     
-//    deinit {
-//        if let handle = handle {
-//            FIRAuth.auth()?.removeStateDidChangeListener(handle)
-//        }
-//    }
+    deinit {
+        if let handle = handle {
+            FIRAuth.auth()?.removeStateDidChangeListener(handle)
+        }
+    }
 
     
 //    func Adjust_Table_Height_Remove() {
@@ -406,5 +504,32 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
 //            tableHeight.constant = 264
 //        }
 //    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        if let error = error {
+            print("Failed to log into Google: ")
+            print("Error \(error)")
+            return
+        }
+        
+        // START HERE: User status is displayed only first time as "SignedIn" after manually signing in
+        // from signupVC.
+        print("TrackProgressVC: Successfully logged into Google", user)
+        self.signInButton.setTitle("SignedIn", for: .normal)
+        
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if error != nil {
+            print(error)
+            return
+        }
+        print("TrackProgressVC: Successfully logged into Facebook")
+        self.signInButton.setTitle("SignedIn", for: .normal)
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("Did log out from Facebook")
+    }
 
 }
