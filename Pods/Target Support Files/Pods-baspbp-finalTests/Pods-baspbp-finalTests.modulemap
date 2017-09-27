@@ -1,0 +1,6 @@
+framework module Pods_baspbp_finalTests {
+  umbrella header "Pods-baspbp-finalTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

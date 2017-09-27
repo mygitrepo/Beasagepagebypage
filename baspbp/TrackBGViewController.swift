@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 import EventKit
+import Charts
 
 class TrackBGViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class TrackBGViewController: UIViewController {
     var scriptureLabelfromVC : String = ""
     var lineOneView = UIView()
     var lineTwoView = UIView()
+    //var diff: Int
     
     @IBOutlet weak var ScriptureLabel: UILabel!
     @IBOutlet weak var YouHaveReadLabel: UILabel!
@@ -30,6 +32,7 @@ class TrackBGViewController: UIViewController {
     @IBOutlet weak var OfLabel: UILabel!
     @IBOutlet weak var ScriptLab: UILabel!
     @IBOutlet weak var psSwitch: UISwitch!
+    @IBOutlet weak var chartView: UIView!
     
     
     @IBAction func psSwitchPressed(_ sender: UISwitch) {
@@ -122,6 +125,7 @@ class TrackBGViewController: UIViewController {
         }
         alignLabelsincenter(mainview: lineOneView, extleftlabel: YouHaveReadLabel, midleftlabel: PagesSlokasReadLabel, midrightlabel: PagesSlokasLabel, extrightlabel: OutOfLabel)
         alignLabelsincenter(mainview: lineTwoView, extleftlabel: TotalPagesSlokasLabel, midleftlabel: PagesSlokasLabel2, midrightlabel: OfLabel, extrightlabel: ScriptLab)
+        updateChartData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -233,6 +237,60 @@ class TrackBGViewController: UIViewController {
         // center costView inside self
         let centerXCons = NSLayoutConstraint(item: mainview, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);
         self.view.addConstraints([centerXCons])
+    }
+    
+    func updateChartData()  {
+        
+        //let chart = PieChartView(frame: self.view.frame)
+        let chart = PieChartView(frame: chartView.frame)
+        // 2. generate chart data entries
+        let label = ["Completed", "To read"]
+        if let tpsl = Int(TotalPagesSlokasLabel.text!) {
+            if let psrl = Int(PagesSlokasReadLabel.text!) {
+                let diff=tpsl - psrl
+                //let diff = Int(TotalPagesSlokasLabel.text!) - Int(PagesSlokasReadLabel.text!)
+                let money = [Int(PagesSlokasReadLabel.text!), diff]
+                
+                var entries = [PieChartDataEntry]()
+                for (index, value) in money.enumerated() {
+                    let entry = PieChartDataEntry()
+                    entry.y = Double(value!)
+                    entry.label = label[index]
+                    entries.append( entry)
+                }
+                
+                // 3. chart setup
+                let set = PieChartDataSet( values: entries, label: "Pie Chart")
+                // this is custom extension method. Download the code for more details.
+                var colors: [UIColor] = []
+                
+                for _ in 0..<money.count {
+                    let red = Double(arc4random_uniform(256))
+                    let green = Double(arc4random_uniform(256))
+                    let blue = Double(arc4random_uniform(256))
+                    let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+                    colors.append(color)
+                }
+                set.colors = colors
+                let data = PieChartData(dataSet: set)
+                chart.data = data
+                chart.noDataText = "No data available"
+                // user interaction
+                chart.isUserInteractionEnabled = true
+                
+                //let d = Description()
+                //d.text = "iOSCharts.io"
+                //chart.chartDescription = d
+                //chart.centerText = "Pie Chart"
+                //chart.holeRadiusPercent = 0.2
+                chart.transparentCircleColor = UIColor.clear
+                chart.legend.enabled = false
+                chart.chartDescription?.text = ""
+                chart.holeColor = nil
+                //chart.frame.size = CGSize(width: chartView.frame.size.width, height: chartView.frame.size.height)
+                self.view.addSubview(chart)                
+            }
+        }
     }
     
 }

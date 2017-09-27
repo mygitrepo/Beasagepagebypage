@@ -1,0 +1,6 @@
+framework module Pods_baspbp_final {
+  umbrella header "Pods-baspbp-final-umbrella.h"
+
+  export *
+  module * { export * }
+}
