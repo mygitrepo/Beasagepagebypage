@@ -121,8 +121,8 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
         
         let loginButton = FBSDKLoginButton()
         signUpPopupView.addSubview(loginButton)
-        loginButton.frame = CGRect(x: 27, y: 72, width: view.frame.width - 188, height: 35)
-        //loginButton.layer.cornerRadius = 5
+        loginButton.frame = CGRect(x: 27, y: 72, width: signUpPopupView.frame.width - 52, height: 35)
+        //loginButton.frame = CGRect(x: 27, y: 72, width: view.frame.width - 188, height: 35)
         loginButton.delegate = self
         loginButton.readPermissions = ["email","public_profile"]
         

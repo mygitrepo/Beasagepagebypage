@@ -17,7 +17,7 @@ class TrackBGViewController: UIViewController {
     var scriptureLabelfromVC : String = ""
     var lineOneView = UIView()
     var lineTwoView = UIView()
-    //var diff: Int
+    var retChart = PieChartView()
     
     @IBOutlet weak var ScriptureLabel: UILabel!
     @IBOutlet weak var YouHaveReadLabel: UILabel!
@@ -34,6 +34,24 @@ class TrackBGViewController: UIViewController {
     @IBOutlet weak var psSwitch: UISwitch!
     @IBOutlet weak var chartView: UIView!
     
+    fileprivate func slokaError() {
+        // Changed so that it won't display message for book which has slokas but none
+        // of them (0) have read by a user.
+        //if PagesSlokasReadLabel.text == "0" || TotalPagesSlokasLabel.text == "0" {
+        if TotalPagesSlokasLabel.text == "0" {
+            let alert = UIAlertController(title: "Slokas Not Applicable!",
+                                          message: "There are No Slokas in this book.",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            //Show alert for successful sign in
+            self.present(alert, animated: true, completion:nil)
+            // change to desired number of seconds (in this case 5 seconds)
+            let when = DispatchTime.now() + 2
+            DispatchQueue.main.asyncAfter(deadline: when){
+                // your code with delay
+                alert.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
     
     @IBAction func psSwitchPressed(_ sender: UISwitch) {
         if psSwitch.isOn {
@@ -43,6 +61,8 @@ class TrackBGViewController: UIViewController {
                 PagesSlokasReadLabel.text = String(book.slokasread)
                 TotalPagesSlokasLabel.text = String(book.totalslokas)
             }
+            
+            slokaError()
             //pages = false
             //calcPagesSlokas()
         } else {
@@ -55,6 +75,9 @@ class TrackBGViewController: UIViewController {
             //pages = true
             //calcPagesSlokas()
         }
+        //First remove instance of earlier piechart
+        self.retChart.removeFromSuperview()
+        retChart = updateChartData()
     }
     
     
@@ -62,6 +85,7 @@ class TrackBGViewController: UIViewController {
         var number: Int!
         for book in scripturepages where book.name == ScriptureLabel.text {
             if psSwitch.isOn {
+                slokaError()
                 number = calculatePagesSlokas(Operation: "Add", number: book.slokasread, finalnumber: book.totalslokas)
                 if (number != -1) {
                     book.slokasread = number
@@ -78,12 +102,16 @@ class TrackBGViewController: UIViewController {
                 }
             }
         }
+        //First remove instance of earlier piechart
+        self.retChart.removeFromSuperview()
+        retChart = updateChartData()
     }
     
     @IBAction func RemovePagesSlokas(_ sender: UIButton) {
         var number: Int!
         for book in scripturepages where book.name == ScriptureLabel.text {
             if psSwitch.isOn {
+                slokaError()
                 number = calculatePagesSlokas(Operation: "Subtract", number: book.slokasread, finalnumber: book.totalslokas)
                 if (number != -1) {
                     book.slokasread = number
@@ -100,6 +128,9 @@ class TrackBGViewController: UIViewController {
                 }
             }
         }
+        //First remove instance of earlier piechart
+        self.retChart.removeFromSuperview()
+        retChart = updateChartData()
     }
     
     var scripturepages = [ScripturePages]()
@@ -114,6 +145,7 @@ class TrackBGViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        //let chart = PieChartView(frame: chartView.frame)
         super.viewDidLoad()
         ScriptureLabel.text = scriptureLabelfromVC
         ScriptLab.text = scriptureLabelfromVC
@@ -125,7 +157,7 @@ class TrackBGViewController: UIViewController {
         }
         alignLabelsincenter(mainview: lineOneView, extleftlabel: YouHaveReadLabel, midleftlabel: PagesSlokasReadLabel, midrightlabel: PagesSlokasLabel, extrightlabel: OutOfLabel)
         alignLabelsincenter(mainview: lineTwoView, extleftlabel: TotalPagesSlokasLabel, midleftlabel: PagesSlokasLabel2, midrightlabel: OfLabel, extrightlabel: ScriptLab)
-        updateChartData()
+        retChart = updateChartData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -170,7 +202,7 @@ class TrackBGViewController: UIViewController {
     
     private func presentNotNumericAlert() {
         let alert = UIAlertController(title: "Error!",
-                                      message: "Please enter a number. Other values are not allowed",
+                                      message: "Please enter a positive number. Other values are not allowed",
                                       preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
             action in self.parent
@@ -239,10 +271,12 @@ class TrackBGViewController: UIViewController {
         self.view.addConstraints([centerXCons])
     }
     
-    func updateChartData()  {
-        
+    func updateChartData() -> PieChartView {
         //let chart = PieChartView(frame: self.view.frame)
         let chart = PieChartView(frame: chartView.frame)
+        //First free memory occupied by preview chart view
+        //self.view.removeFromSuperview()
+        //chart.removeFromSuperview()
         // 2. generate chart data entries
         let label = ["Completed", "To read"]
         if let tpsl = Int(TotalPagesSlokasLabel.text!) {
@@ -256,6 +290,7 @@ class TrackBGViewController: UIViewController {
                     let entry = PieChartDataEntry()
                     entry.y = Double(value!)
                     entry.label = label[index]
+                    //entry.label.distance(from:  ,to:)
                     entries.append( entry)
                 }
                 
@@ -282,15 +317,25 @@ class TrackBGViewController: UIViewController {
                 //d.text = "iOSCharts.io"
                 //chart.chartDescription = d
                 //chart.centerText = "Pie Chart"
-                //chart.holeRadiusPercent = 0.2
+                // Following line changes width of pie chart donut
+                chart.holeRadiusPercent = 0.8
                 chart.transparentCircleColor = UIColor.clear
                 chart.legend.enabled = false
                 chart.chartDescription?.text = ""
                 chart.holeColor = nil
                 //chart.frame.size = CGSize(width: chartView.frame.size.width, height: chartView.frame.size.height)
-                self.view.addSubview(chart)                
+                
+                // Adding image
+                let attachment = NSTextAttachment()
+                attachment.image = UIImage(named: "govardhan_parikrama")
+                let attachmentString = NSAttributedString(attachment: attachment)
+                let labelImg = NSMutableAttributedString(string: "")
+                labelImg.append(attachmentString)
+                chart.centerAttributedText = labelImg
+                
+                self.view.addSubview(chart)
             }
         }
+    return chart
     }
-    
 }
