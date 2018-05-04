@@ -50,7 +50,45 @@ class TrackBGViewController: UIViewController {
                 // your code with delay
                 alert.dismiss(animated: true, completion: nil)
             }
+            // Turn switch back to off (pages)
+            psSwitch.setOn(false, animated: false)
         }
+    }
+    
+    @IBAction func add_40_button(_ sender: UIButton) {
+        validateSavescripture(operation: "Add", delta: 40, textFieldcheck: false)
+    }
+    @IBAction func add_20_button(_ sender: UIButton) {
+        validateSavescripture(operation: "Add", delta: 20, textFieldcheck: false)
+    }
+    @IBAction func add_10_button(_ sender: UIButton) {
+        validateSavescripture(operation: "Add", delta: 10, textFieldcheck: false)
+//        var number: Int!
+//        for book in scripturepages where book.name == ScriptureLabel.text {
+//            if psSwitch.isOn {
+//                slokaError()
+//                number = calculatePagesSlokas(Operation: "Add", number: book.slokasread, TextFieldCheck: false, delta: 10, finalnumber: book.totalslokas)
+//                if (number != -1) {
+//                    book.slokasread = number
+//                    PagesSlokasReadLabel.text = String(number)
+//                    saveScripturePages()
+//                }
+//            } else {
+//                number = calculatePagesSlokas(Operation: "Add", number: book.pagesread, TextFieldCheck: false, delta: 10, finalnumber: book.totalpages)
+//                if (number != -1) {
+//                    book.pagesread = number
+//                    PagesSlokasReadLabel.text = String(number)
+//                    saveScripturePages()
+//                }
+//            }
+//        }
+//        //First remove instance of earlier piechart
+//        self.retChart.removeFromSuperview()
+//        retChart = updateChartData()
+    }
+    
+    @IBAction func add_5_button(_ sender: UIButton) {
+        validateSavescripture(operation: "Add", delta: 5, textFieldcheck: false)
     }
     
     @IBAction func psSwitchPressed(_ sender: UISwitch) {
@@ -82,55 +120,57 @@ class TrackBGViewController: UIViewController {
     
     
     @IBAction func AddPagesSlokas(_ sender: UIButton) {
-        var number: Int!
-        for book in scripturepages where book.name == ScriptureLabel.text {
-            if psSwitch.isOn {
-                slokaError()
-                number = calculatePagesSlokas(Operation: "Add", number: book.slokasread, finalnumber: book.totalslokas)
-                if (number != -1) {
-                    book.slokasread = number
-                    PagesSlokasReadLabel.text = String(number)
-                    saveScripturePages()
-                }
-                
-            } else {
-                number = calculatePagesSlokas(Operation: "Add", number: book.pagesread, finalnumber: book.totalpages)
-                if (number != -1) {
-                    book.pagesread = number
-                    PagesSlokasReadLabel.text = String(number)
-                    saveScripturePages()
-                }
-            }
-        }
-        //First remove instance of earlier piechart
-        self.retChart.removeFromSuperview()
-        retChart = updateChartData()
+        validateSavescripture(operation: "Add", delta: 0, textFieldcheck: true)
+//        var number: Int!
+//        for book in scripturepages where book.name == ScriptureLabel.text {
+//            if psSwitch.isOn {
+//                slokaError()
+//                number = calculatePagesSlokas(Operation: "Add", number: book.slokasread, TextFieldCheck: true, delta: 0, finalnumber: book.totalslokas)
+//                if (number != -1) {
+//                    book.slokasread = number
+//                    PagesSlokasReadLabel.text = String(number)
+//                    saveScripturePages()
+//                }
+//
+//            } else {
+//                number = calculatePagesSlokas(Operation: "Add", number: book.pagesread, TextFieldCheck: true, delta: 0, finalnumber: book.totalpages)
+//                if (number != -1) {
+//                    book.pagesread = number
+//                    PagesSlokasReadLabel.text = String(number)
+//                    saveScripturePages()
+//                }
+//            }
+//        }
+//        //First remove instance of earlier piechart
+//        self.retChart.removeFromSuperview()
+//        retChart = updateChartData()
     }
     
     @IBAction func RemovePagesSlokas(_ sender: UIButton) {
-        var number: Int!
-        for book in scripturepages where book.name == ScriptureLabel.text {
-            if psSwitch.isOn {
-                slokaError()
-                number = calculatePagesSlokas(Operation: "Subtract", number: book.slokasread, finalnumber: book.totalslokas)
-                if (number != -1) {
-                    book.slokasread = number
-                    PagesSlokasReadLabel.text = String(number)
-                    saveScripturePages()
-                }
-                
-            } else {
-                number = calculatePagesSlokas(Operation: "Subtract", number: book.pagesread, finalnumber: book.totalpages)
-                if (number != -1) {
-                    book.pagesread = number
-                    PagesSlokasReadLabel.text = String(number)
-                    saveScripturePages()
-                }
-            }
-        }
-        //First remove instance of earlier piechart
-        self.retChart.removeFromSuperview()
-        retChart = updateChartData()
+        validateSavescripture(operation: "Subtract", delta: 0, textFieldcheck: true)
+//        var number: Int!
+//        for book in scripturepages where book.name == ScriptureLabel.text {
+//            if psSwitch.isOn {
+//                slokaError()
+//                number = calculatePagesSlokas(Operation: "Subtract", number: book.slokasread, TextFieldCheck: true, delta: 0, finalnumber: book.totalslokas)
+//                if (number != -1) {
+//                    book.slokasread = number
+//                    PagesSlokasReadLabel.text = String(number)
+//                    saveScripturePages()
+//                }
+//
+//            } else {
+//                number = calculatePagesSlokas(Operation: "Subtract", number: book.pagesread, TextFieldCheck: true, delta: 0, finalnumber: book.totalpages)
+//                if (number != -1) {
+//                    book.pagesread = number
+//                    PagesSlokasReadLabel.text = String(number)
+//                    saveScripturePages()
+//                }
+//            }
+//        }
+//        //First remove instance of earlier piechart
+//        self.retChart.removeFromSuperview()
+//        retChart = updateChartData()
     }
     
     var scripturepages = [ScripturePages]()
@@ -201,8 +241,8 @@ class TrackBGViewController: UIViewController {
     }
     
     private func presentNotNumericAlert() {
-        let alert = UIAlertController(title: "Error!",
-                                      message: "Please enter a positive number. Other values are not allowed",
+        let alert = UIAlertController(title: "Warning!",
+                                      message: "Please enter a number",
                                       preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
             action in self.parent
@@ -210,27 +250,67 @@ class TrackBGViewController: UIViewController {
         self.present(alert, animated: true, completion:nil)
     }
     
-    private func calculatePagesSlokas(Operation: String, number: Int, finalnumber: Int) -> Int {
-        var number = number
-        let finalnumber = finalnumber
-            
-        if (PagesSlokasTextField.text?.isNumeric)! {
-            if (Operation == "Add") {
-                number = number + Int(PagesSlokasTextField.text!)!
-                if (number > finalnumber) {
-                    number = finalnumber
+    private func validateSavescripture(operation: String, delta: Int, textFieldcheck: Bool) {
+        var number: Int!
+        for book in scripturepages where book.name == ScriptureLabel.text {
+            if psSwitch.isOn {
+                slokaError()
+                number = calculatePagesSlokas(Operation: operation, number: book.slokasread, TextFieldCheck: textFieldcheck, delta: delta, finalnumber: book.totalslokas)
+                if (number != -1) {
+                    book.slokasread = number
+                    PagesSlokasReadLabel.text = String(number)
+                    saveScripturePages()
                 }
-            } else if (Operation == "Subtract") {
-                number = number - Int(PagesSlokasTextField.text!)!
-                if (number < 0) {
-                    number = 0
+            } else {
+                number = calculatePagesSlokas(Operation: operation, number: book.pagesread, TextFieldCheck: textFieldcheck, delta: delta, finalnumber: book.totalpages)
+                if (number != -1) {
+                    book.pagesread = number
+                    PagesSlokasReadLabel.text = String(number)
+                    saveScripturePages()
                 }
             }
-        return number
-        } else {
-            presentNotNumericAlert()
-            return -1
         }
+        //First remove instance of earlier piechart
+        self.retChart.removeFromSuperview()
+        retChart = updateChartData()
+    }
+    
+    //private func
+    private func calculatePagesSlokas(Operation: String, number: Int, TextFieldCheck: Bool, delta: Int, finalnumber: Int) -> Int {
+        var number = number
+        let finalnumber = finalnumber
+        
+        if(TextFieldCheck) {
+            if (PagesSlokasTextField.text?.isNumeric)! && !(PagesSlokasTextField.text?.isEmpty)! {
+                number = AddSubtractPages(Operation: Operation, number: number, delta: Int(PagesSlokasTextField.text!)!, finalnumber: finalnumber)
+                return number
+            } else {
+                presentNotNumericAlert()
+                return -1
+            }
+        } else {
+            number = AddSubtractPages(Operation: Operation, number: number, delta: delta, finalnumber: finalnumber)
+            return number
+        }
+    }
+    
+    private func AddSubtractPages(Operation: String, number: Int, delta: Int, finalnumber: Int) -> Int {
+        var number = number
+        let finalnumber = finalnumber
+        if (Operation == "Add") {
+            number = number + delta
+            //number = number + Int(PagesSlokasTextField.text!)!
+            if (number > finalnumber) {
+                number = finalnumber
+            }
+        } else if (Operation == "Subtract") {
+            number = number - delta
+            //number = number - Int(PagesSlokasTextField.text!)!
+            if (number < 0) {
+                number = 0
+            }
+        }
+        return number
     }
     
     func alignLabelsincenter(mainview: UIView, extleftlabel: UILabel, midleftlabel: UILabel, midrightlabel:UILabel, extrightlabel: UILabel) {
@@ -278,7 +358,7 @@ class TrackBGViewController: UIViewController {
         //self.view.removeFromSuperview()
         //chart.removeFromSuperview()
         // 2. generate chart data entries
-        let label = ["Completed", "To read"]
+        let label = ["Done", "To Go"]
         if let tpsl = Int(TotalPagesSlokasLabel.text!) {
             if let psrl = Int(PagesSlokasReadLabel.text!) {
                 let diff=tpsl - psrl
@@ -307,6 +387,15 @@ class TrackBGViewController: UIViewController {
                     colors.append(color)
                 }
                 set.colors = colors
+                // For adding labels outside of chart
+                set.xValuePosition = .outsideSlice
+                set.yValuePosition = .outsideSlice
+                set.valueTextColor = .black
+                set.valueLineWidth = 0.5
+                set.valueLinePart1Length = 0.15
+                set.valueLinePart2Length = 0.3
+                set.drawValuesEnabled = true
+                
                 let data = PieChartData(dataSet: set)
                 chart.data = data
                 chart.noDataText = "No data available"

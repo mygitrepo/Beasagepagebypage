@@ -38,6 +38,7 @@
 		9ED0D3851E9C4CF800A8EA1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ED0D3841E9C4CF800A8EA1C /* GoogleService-Info.plist */; };
 		9ED0D3891E9C56E800A8EA1C /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED0D3881E9C56E800A8EA1C /* MeasurementHelper.swift */; };
 		9ED0D38B1E9C57A200A8EA1C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED0D38A1E9C57A200A8EA1C /* Constants.swift */; };
+		9ED4437F209A521800A13B2D /* add_page_button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED4437E209A521800A13B2D /* add_page_button.swift */; };
 		9EDA755E1E39712000360B62 /* TrackBGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA755D1E39712000360B62 /* TrackBGViewController.swift */; };
 		9EDE4F641E1790AF00AD9276 /* seed.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EDE4F631E1790AF00AD9276 /* seed.plist */; };
 		9EE5DCE01D77A85D002B655D /* circle_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EE5DCDF1D77A85D002B655D /* circle_background.png */; };
@@ -112,6 +113,7 @@
 		9ED0D3841E9C4CF800A8EA1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9ED0D3881E9C56E800A8EA1C /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementHelper.swift; sourceTree = "<group>"; };
 		9ED0D38A1E9C57A200A8EA1C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9ED4437E209A521800A13B2D /* add_page_button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_page_button.swift; sourceTree = "<group>"; };
 		9EDA755D1E39712000360B62 /* TrackBGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackBGViewController.swift; sourceTree = "<group>"; };
 		9EDE4F631E1790AF00AD9276 /* seed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = seed.plist; sourceTree = "<group>"; };
 		9EDE98FB1E9EE799002202C4 /* baspbp-final.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "baspbp-final.entitlements"; sourceTree = SOURCE_ROOT; };
@@ -241,6 +243,7 @@
 				9ED0D3881E9C56E800A8EA1C /* MeasurementHelper.swift */,
 				9ED0D38A1E9C57A200A8EA1C /* Constants.swift */,
 				9EC97EAE1EA0385D00268743 /* SignUpViewController.swift */,
+				9ED4437E209A521800A13B2D /* add_page_button.swift */,
 			);
 			name = "baspbp-final";
 			path = baspbp;
@@ -575,6 +578,7 @@
 				9EA35CF01C233A3C00995F37 /* ViewController.swift in Sources */,
 				9ED0D3891E9C56E800A8EA1C /* MeasurementHelper.swift in Sources */,
 				9EDA755E1E39712000360B62 /* TrackBGViewController.swift in Sources */,
+				9ED4437F209A521800A13B2D /* add_page_button.swift in Sources */,
 				9ECBDAD11E43B47D00645040 /* ScripturePages.swift in Sources */,
 				9E315D3B1D5AA1BE00F48C88 /* ReminderViewController.swift in Sources */,
 				9E315D311D5935AD00F48C88 /* instr_page1.swift in Sources */,

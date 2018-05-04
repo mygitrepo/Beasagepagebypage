@@ -792,29 +792,119 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wd1-3P-Md2">
-                                <rect key="frame" x="29" y="152" width="316" height="316"/>
+                                <rect key="frame" x="0.0" y="155" width="375" height="313"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.92941176470588238" green="0.55686274509803924" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0S-LE-XCK" customClass="add_page_button" customModule="baspbp_final" customModuleProvider="target">
+                                <rect key="frame" x="33" y="514" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="+5">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="add_5_button:" destination="GNw-77-ifA" eventType="touchUpInside" id="8vO-J6-Dcz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rN9-Qk-zme" customClass="add_page_button" customModule="baspbp_final" customModuleProvider="target">
+                                <rect key="frame" x="265" y="514" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="+20">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="add_20_button:" destination="GNw-77-ifA" eventType="touchUpInside" id="8Gu-7n-ZZa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rY-5W-nlX" customClass="add_page_button" customModule="baspbp_final" customModuleProvider="target">
+                                <rect key="frame" x="79" y="513" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="+10">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="add_10_button:" destination="GNw-77-ifA" eventType="touchUpInside" id="rTY-rf-S9U"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Koy-aZ-ALF" customClass="add_page_button" customModule="baspbp_final" customModuleProvider="target">
+                                <rect key="frame" x="313" y="514" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="+40">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="add_40_button:" destination="GNw-77-ifA" eventType="touchUpInside" id="aTL-fq-yWA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.5568627451" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="xcC-5e-EYV" firstAttribute="top" secondItem="8s0-d4-Luk" secondAttribute="bottom" constant="8" id="0y8-rc-iFr"/>
                             <constraint firstItem="XJ5-uX-A3m" firstAttribute="centerX" secondItem="Lcf-bO-78I" secondAttribute="centerX" id="1y2-MK-gWc"/>
+                            <constraint firstItem="vSv-jS-uyA" firstAttribute="top" secondItem="Koy-aZ-ALF" secondAttribute="bottom" constant="123" id="4Ly-aN-Kj4"/>
+                            <constraint firstItem="0rY-5W-nlX" firstAttribute="leading" secondItem="f0S-LE-XCK" secondAttribute="trailing" constant="16" id="5lh-sW-S4o"/>
                             <constraint firstItem="scT-i5-GPP" firstAttribute="centerX" secondItem="Lcf-bO-78I" secondAttribute="centerX" id="6cD-QX-Thb"/>
                             <constraint firstItem="mrZ-ZM-JMQ" firstAttribute="centerX" secondItem="Lcf-bO-78I" secondAttribute="centerX" id="7cL-bX-mch"/>
                             <constraint firstItem="qst-Wr-NMz" firstAttribute="leading" secondItem="Lcf-bO-78I" secondAttribute="leadingMargin" constant="91" id="82Q-yD-5rS"/>
                             <constraint firstItem="NQQ-LG-3ch" firstAttribute="top" secondItem="scT-i5-GPP" secondAttribute="bottom" priority="999" constant="29" id="8Ub-TI-uTf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8s0-d4-Luk" secondAttribute="trailing" constant="73" id="9hc-68-6Oa"/>
+                            <constraint firstItem="vSv-jS-uyA" firstAttribute="top" secondItem="0rY-5W-nlX" secondAttribute="bottom" constant="124" id="B2d-tn-veJ"/>
                             <constraint firstItem="2g4-PV-tfk" firstAttribute="centerX" secondItem="XJ5-uX-A3m" secondAttribute="centerX" id="Cnc-wr-ouU"/>
                             <constraint firstItem="gmd-tc-gI7" firstAttribute="top" secondItem="DdG-UU-yRf" secondAttribute="bottom" priority="999" constant="10" id="DQR-QS-ldM"/>
                             <constraint firstItem="8s0-d4-Luk" firstAttribute="top" secondItem="mrZ-ZM-JMQ" secondAttribute="bottom" constant="1" id="EGv-Th-G3Q"/>
                             <constraint firstItem="qst-Wr-NMz" firstAttribute="top" secondItem="mrZ-ZM-JMQ" secondAttribute="bottom" constant="1" id="FOE-Jz-Sfw"/>
+                            <constraint firstItem="mrZ-ZM-JMQ" firstAttribute="leading" secondItem="0rY-5W-nlX" secondAttribute="trailing" constant="30" id="GqN-PU-gqw"/>
                             <constraint firstItem="scT-i5-GPP" firstAttribute="top" secondItem="gg5-18-vMU" secondAttribute="bottom" id="Idt-LR-KwO"/>
+                            <constraint firstItem="vSv-jS-uyA" firstAttribute="top" secondItem="f0S-LE-XCK" secondAttribute="bottom" constant="123" id="LzX-eg-rqw"/>
                             <constraint firstItem="RKx-9s-uOM" firstAttribute="centerX" secondItem="Lcf-bO-78I" secondAttribute="centerX" id="Qvg-Yf-0Xy"/>
                             <constraint firstItem="vSv-jS-uyA" firstAttribute="top" secondItem="xcC-5e-EYV" secondAttribute="bottom" constant="50" id="RGD-rD-ppU"/>
                             <constraint firstItem="qst-Wr-NMz" firstAttribute="top" secondItem="mrZ-ZM-JMQ" secondAttribute="bottom" constant="1" id="Stg-4P-IUw"/>
                             <constraint firstItem="vSv-jS-uyA" firstAttribute="top" secondItem="2g4-PV-tfk" secondAttribute="bottom" constant="8" id="UDc-V4-f7E"/>
+                            <constraint firstItem="rN9-Qk-zme" firstAttribute="leading" secondItem="mrZ-ZM-JMQ" secondAttribute="trailing" constant="29" id="VXo-XE-xRe"/>
                             <constraint firstItem="8s0-d4-Luk" firstAttribute="top" secondItem="mrZ-ZM-JMQ" secondAttribute="bottom" constant="1" id="Wrq-al-T3p"/>
                             <constraint firstItem="JFD-oA-XuQ" firstAttribute="top" secondItem="scT-i5-GPP" secondAttribute="bottom" priority="999" constant="29" id="eU8-B8-Fll"/>
                             <constraint firstItem="2g4-PV-tfk" firstAttribute="centerX" secondItem="XJ5-uX-A3m" secondAttribute="centerX" id="fbv-Nz-pQ2"/>
@@ -822,9 +912,11 @@
                             <constraint firstItem="xcC-5e-EYV" firstAttribute="leading" secondItem="XJ5-uX-A3m" secondAttribute="trailing" constant="8" id="gMZ-9Y-uT1"/>
                             <constraint firstItem="qst-Wr-NMz" firstAttribute="top" secondItem="mrZ-ZM-JMQ" secondAttribute="bottom" constant="1" id="haK-aZ-1Dc"/>
                             <constraint firstItem="Mf7-Sq-TdL" firstAttribute="top" secondItem="scT-i5-GPP" secondAttribute="bottom" priority="999" constant="29" id="iAw-84-4G4"/>
+                            <constraint firstItem="Koy-aZ-ALF" firstAttribute="leading" secondItem="rN9-Qk-zme" secondAttribute="trailing" constant="18" id="jSx-Kc-TM8"/>
                             <constraint firstItem="vSv-jS-uyA" firstAttribute="top" secondItem="SPi-1H-Aub" secondAttribute="bottom" constant="50" id="k7i-fK-CHc"/>
                             <constraint firstItem="2g4-PV-tfk" firstAttribute="top" secondItem="XJ5-uX-A3m" secondAttribute="bottom" constant="8" id="lHh-Qz-Myn"/>
                             <constraint firstItem="XJ5-uX-A3m" firstAttribute="leading" secondItem="SPi-1H-Aub" secondAttribute="trailing" constant="8" id="laZ-3U-xXc"/>
+                            <constraint firstItem="vSv-jS-uyA" firstAttribute="top" secondItem="rN9-Qk-zme" secondAttribute="bottom" constant="123" id="qGt-B0-6SK"/>
                             <constraint firstItem="mrZ-ZM-JMQ" firstAttribute="top" secondItem="RKx-9s-uOM" secondAttribute="bottom" constant="8" id="tHC-XB-Qjf"/>
                             <constraint firstItem="d7O-cW-dzX" firstAttribute="top" secondItem="NQQ-LG-3ch" secondAttribute="bottom" priority="999" constant="8" id="tWt-OZ-raV"/>
                             <constraint firstItem="lmK-8g-h7J" firstAttribute="top" secondItem="Mf7-Sq-TdL" secondAttribute="bottom" priority="999" constant="11" id="whV-UA-2Td"/>
