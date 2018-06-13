@@ -36,14 +36,59 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
         if let email = emailText.text, let pass = passwordText.text {
             FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { user, error in
                 if let firebaseError = error {
-                    print(firebaseError.localizedDescription)
-                    let alert = UIAlertController(title: "Sign In Failed",
-                                                  message: "Not able to sign in to your account!",
-                                                  preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                        action in self.parent
-                    }))
-                    self.present(alert, animated: true, completion:nil)
+                    //Customized message based on error descr
+                    guard let _ = user else {
+                        if let error = error {
+                            if let errCode = FIRAuthErrorCode(rawValue: error._code) {
+                                switch errCode {
+                                case .errorCodeUserNotFound:
+                                    print(firebaseError.localizedDescription)
+                                    let alert = UIAlertController(title: "Sign In Failed",
+                                                                  message: "User account not found. Try registering!",
+                                                                  preferredStyle: UIAlertControllerStyle.alert)
+                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                        action in self.parent
+                                    }))
+                                    self.present(alert, animated: true, completion:nil)
+                                case .errorCodeWrongPassword:
+                                    print(firebaseError.localizedDescription)
+                                    let alert = UIAlertController(title: "Sign In Failed",
+                                                                  message: "Incorrect username/password combination!",
+                                                                  preferredStyle: UIAlertControllerStyle.alert)
+                                    alert.addAction(UIAlertAction(title: "Reset Passowrd", style: UIAlertActionStyle.default, handler: {
+                                        action in
+                                        self.didRequestPasswordReset()
+                                        //action in self.parent
+                                    }))
+                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                        action in self.parent
+                                    }))
+                                    self.present(alert, animated: true, completion:nil)
+                                default:
+                                    print(firebaseError.localizedDescription)
+                                    let alert = UIAlertController(title: "Sign In Failed",
+                                                                  message: "Not able to sign in to your account!",
+                                                                  preferredStyle: UIAlertControllerStyle.alert)
+                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                        action in self.parent
+                                    }))
+                                    //self.showAlert("Error: \(error.localizedDescription)")
+                                    self.present(alert, animated: true, completion:nil)
+                                }
+                            }
+                            return
+                        }
+                        assertionFailure("user and error are nil")
+                        return
+                    }
+//                    print(firebaseError.localizedDescription)
+//                    let alert = UIAlertController(title: "Sign In Failed",
+//                                                  message: "Not able to sign in to your account!",
+//                                                  preferredStyle: UIAlertControllerStyle.alert)
+//                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+//                        action in self.parent
+//                    }))
+//                    self.present(alert, animated: true, completion:nil)
                 } else {
                     //User authenticated successfully through
                     //FireBase
@@ -62,6 +107,46 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                 }
             })
         }
+    }
+    
+    @IBAction func didRequestPasswordReset() {
+        let prompt = UIAlertController(title: "Be a Sage Page by Page", message: "Email:", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            let userInput = prompt.textFields![0].text
+            if (userInput!.isEmpty) {
+                return
+            }
+            FIRAuth.auth()?.sendPasswordReset(withEmail: userInput!, completion: { (error) in
+                if let error = error {
+                    if let errCode = FIRAuthErrorCode(rawValue: error._code) {
+                        switch errCode {
+                        case .errorCodeUserNotFound:
+                            DispatchQueue.main.async {
+                                self.showAlert("User account not found. Try registering")
+                            }
+                        default:
+                            DispatchQueue.main.async {
+                                self.showAlert("Error: \(error.localizedDescription)")
+                            }
+                        }
+                    }
+                    return
+                } else {
+                    DispatchQueue.main.async {
+                        self.showAlert("You'll receive an email shortly to reset your password.")
+                    }
+                }
+            })
+        }
+        prompt.addTextField(configurationHandler: nil)
+        prompt.addAction(okAction)
+        present(prompt, animated: true, completion: nil)
+    }
+    
+    func showAlert(_ message: String) {
+        let alertController = UIAlertController(title: "Be a Sage Page by Page", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func createaccTapped(_ sender: UIButton) {
