@@ -118,18 +118,18 @@ class ReminderViewController: UIViewController {
                                               message: "App can't add Remidner as permission to access reminders NOT granted earlier!",
                                               preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                    action in self.parent
+                    action in _ = self.parent
                 }))
                 self.present(alert, animated: true, completion:nil)
                 print("Access to store not granted")
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             } else {
                 if (self.pagesLabelfromVC == "N/A") {
                     let alert = UIAlertController(title: "Failed",
                                                   message: "Can't add Reminder because number of Slokas is N/A",
                                                   preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                        action in self.parent
+                        action in _ = self.parent
                     }))
                     self.present(alert, animated: true, completion:nil)
                 } else {
@@ -139,7 +139,7 @@ class ReminderViewController: UIViewController {
                                                   message: "Added reminder to " + self.createReminderTitle + " everyday at " + self.RemindreminderTime,
                                                   preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                        action in self.parent
+                        action in _ = self.parent
                     }))
                     self.present(alert, animated: true, completion:nil)
                     print("Access to store granted")

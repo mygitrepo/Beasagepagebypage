@@ -17,7 +17,7 @@ import FBSDKLoginKit
 class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
     
     //For Google SIgnIn
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     
     //Data received through segue
     var itemLabelfromVC : String = ""
@@ -105,37 +105,37 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
 //        } catch let error as NSError {
 //            print(error.localizedDescription)
 //        }
-        let firebaseAuth = FIRAuth.auth()
+        let firebaseAuth = Auth.auth()
         print("Printing user login providers ......")
-        if (firebaseAuth?.currentUser != nil) {
-            for user in (firebaseAuth?.currentUser?.providerData)! {
+        if (firebaseAuth.currentUser != nil) {
+            for user in (firebaseAuth.currentUser?.providerData)! {
                     print(user.providerID)
             }
         }
         //print(FIRAuth.auth()?.currentUser?.providerData as Any)
-        if (firebaseAuth?.currentUser != nil) {
+        if (firebaseAuth.currentUser != nil) {
             //user is signed in
             do {
-                for user in (firebaseAuth?.currentUser?.providerData)! {
+                for user in (firebaseAuth.currentUser?.providerData)! {
                     if(user.providerID == "google.com") {
                         print("Signing Out Google user")
-                        try firebaseAuth?.signOut()
+                        try firebaseAuth.signOut()
                         GIDSignIn.sharedInstance().signOut()
                     }
                     if(user.providerID == "facebook.com") {
                         print("Signing Out Facebook user")
-                        try firebaseAuth?.signOut()
+                        try firebaseAuth.signOut()
                         FBSDKLoginManager().logOut()
                     }
                     if(user.providerID == "password") {
                         print("Signing Out Email/Password user")
-                        try firebaseAuth?.signOut()
+                        try firebaseAuth.signOut()
                     }
                 }
                 //try FIRAuth.auth()?.signOut()
                 //FBSDKLoginManager().logOut()
                 //try GIDSignIn.sharedInstance().signOut()
-                if (firebaseAuth?.currentUser == nil) {
+                if (firebaseAuth.currentUser == nil) {
                     print("User successfully signed OUT")
                     let alert = UIAlertController(title: "Signed Out!",
                                                   message: "You successfully signed out.",
@@ -182,7 +182,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                                               message: "You are already tracking \(textBox.text!). Please select a different scripture to track.",
                     preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                    action in self.parent
+                    action in _ = self.parent
                 }))
                 self.present(alert, animated: true, completion:nil)
             } else {
@@ -200,7 +200,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                                           message: "Please select a scripture from picker list",
                 preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                action in self.parent
+                action in _ = self.parent
             }))
             self.present(alert, animated: true, completion:nil)
         }
@@ -233,7 +233,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                 GIDSignIn.sharedInstance().signInSilently()
                 //if(GIDSignIn.sharedInstance().currentUser == nil) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                    self.handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
+                    self.handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
                         if user != nil {
                             print("USER SIGNED IN SILENTLY !!")
                             self.signInButton.setTitle("SignedIn", for: .normal)
@@ -341,7 +341,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         cell.textLabel?.text = item.name
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.textColor = UIColor.blue
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightThin);
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.thin);
         //cell.textLabel?.font = UIFont(name:"Avenir", size:22)
 //        let redColor = UIColor.yellow
 //        self.tableView.layer.borderColor = redColor.withAlphaComponent(0.9).cgColor
@@ -464,7 +464,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     // Added for right to left transition instead of bottom to top
     // Only for 'ScriptureProgress' segue
     // For 'SignUp' segue, we want cross dissolve popup VC
-    override func prepare(for segue: UIStoryboardSegue!, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "ScriptureProgress") {
             if let destination = segue.destination as? TrackBGViewController {
                 destination.scriptureLabelfromVC = self.currentCellText
@@ -488,7 +488,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     deinit {
         if let handle = handle {
-            FIRAuth.auth()?.removeStateDidChangeListener(handle)
+            Auth.auth().removeStateDidChangeListener(handle)
         }
     }
 

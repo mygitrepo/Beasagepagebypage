@@ -240,7 +240,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
     }
     
-    func itemLabelTapFunction(_ sender:UITapGestureRecognizer) {
+    @objc func itemLabelTapFunction(_ sender:UITapGestureRecognizer) {
         //Action to execute once selected scripture is tapped
         let urlIndex=scriptureArray.index(of: itemLabel.text!);
         let urlString = URL(string: "http://www.vedabase.com/en/" + urls[urlIndex!])
@@ -249,7 +249,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
     }
     
-    func orderBooksLabelTapFunction(_ sender:UITapGestureRecognizer) {
+    @objc func orderBooksLabelTapFunction(_ sender:UITapGestureRecognizer) {
         //Action to execute once Order Book is tapped
         //let urlString = URL(string: "http://www.bbtacademic.com/books/")
         let urlString = URL(string: "http://bbtacademic.com/product-tag/beasage_app/")
@@ -339,7 +339,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 pickerLabel = UILabel()
             }
             let titleData = scripture[component][row]
-            let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: CGFloat(fontSize)),NSForegroundColorAttributeName:UIColor.black])
+            let myTitle = NSAttributedString(string: titleData, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: CGFloat(fontSize)),NSAttributedStringKey.foregroundColor:UIColor.black])
             pickerLabel!.attributedText = myTitle
             pickerLabel!.textAlignment = .center
             return pickerLabel!
@@ -509,7 +509,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func underlineText(text: String) {
         //Defined underline attribute first
-        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttribute = [NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
         // Add attribute to itemLabel.text
         myMutableString = NSMutableAttributedString(
             string: text,

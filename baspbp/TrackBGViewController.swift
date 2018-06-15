@@ -245,7 +245,7 @@ class TrackBGViewController: UIViewController {
                                       message: "Please enter a number",
                                       preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-            action in self.parent
+            action in _ = self.parent
         }))
         self.present(alert, animated: true, completion:nil)
     }

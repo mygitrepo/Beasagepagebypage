@@ -17,7 +17,7 @@ import FBSDKLoginKit
 class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
     
     //For Google SIgnIn
-    var handle: FIRAuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     
     @IBOutlet weak var signInButton: GIDSignInButton!
     @IBOutlet weak var signUpPopupView: UIView!
@@ -34,23 +34,23 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
     
     @IBAction func logintapped(_ sender: UIButton) {
         if let email = emailText.text, let pass = passwordText.text {
-            FIRAuth.auth()?.signIn(withEmail: email, password: pass, completion: { user, error in
+            Auth.auth().signIn(withEmail: email, password: pass, completion: { user, error in
                 if let firebaseError = error {
                     //Customized message based on error descr
                     guard let _ = user else {
                         if let error = error {
-                            if let errCode = FIRAuthErrorCode(rawValue: error._code) {
+                            if let errCode = AuthErrorCode(rawValue: error._code) {
                                 switch errCode {
-                                case .errorCodeUserNotFound:
+                                case .userNotFound:
                                     print(firebaseError.localizedDescription)
                                     let alert = UIAlertController(title: "Sign In Failed",
                                                                   message: "User account not found. Try registering!",
                                                                   preferredStyle: UIAlertControllerStyle.alert)
                                     alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                                        action in self.parent
+                                        action in _ = self.parent
                                     }))
                                     self.present(alert, animated: true, completion:nil)
-                                case .errorCodeWrongPassword:
+                                case .wrongPassword:
                                     print(firebaseError.localizedDescription)
                                     let alert = UIAlertController(title: "Sign In Failed",
                                                                   message: "Incorrect username/password combination!",
@@ -61,7 +61,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                                         //action in self.parent
                                     }))
                                     alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                                        action in self.parent
+                                        action in _ = self.parent
                                     }))
                                     self.present(alert, animated: true, completion:nil)
                                 default:
@@ -70,7 +70,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                                                                   message: "Not able to sign in to your account!",
                                                                   preferredStyle: UIAlertControllerStyle.alert)
                                     alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                                        action in self.parent
+                                        action in _ = self.parent
                                     }))
                                     //self.showAlert("Error: \(error.localizedDescription)")
                                     self.present(alert, animated: true, completion:nil)
@@ -116,11 +116,11 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
             if (userInput!.isEmpty) {
                 return
             }
-            FIRAuth.auth()?.sendPasswordReset(withEmail: userInput!, completion: { (error) in
+            Auth.auth().sendPasswordReset(withEmail: userInput!, completion: { (error) in
                 if let error = error {
-                    if let errCode = FIRAuthErrorCode(rawValue: error._code) {
+                    if let errCode = AuthErrorCode(rawValue: error._code) {
                         switch errCode {
-                        case .errorCodeUserNotFound:
+                        case .userNotFound:
                             DispatchQueue.main.async {
                                 self.showAlert("User account not found. Try registering")
                             }
@@ -156,18 +156,18 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                                               message: "Please enter E-mail address and Password!",
                                               preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                    action in self.parent
+                    action in _ = self.parent
                 }))
                 self.present(alert, animated: true, completion:nil)
             } else {
-                FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { user, error in
+                Auth.auth().createUser(withEmail: email, password: pass, completion: { user, error in
                     if let firebaseError = error {
                         print(firebaseError.localizedDescription)
                         let alert = UIAlertController(title: "Error",
                                                       message: firebaseError.localizedDescription+"!",
                                                       preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                            action in self.parent
+                            action in _ = self.parent
                         }))
                         self.present(alert, animated: true, completion:nil)
                     } else {
@@ -194,7 +194,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                                           message: "Please enter e-mail address and password!",
                                           preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-                action in self.parent
+                action in _ = self.parent
             }))
             self.present(alert, animated: true, completion:nil)
         }
@@ -234,8 +234,8 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
         print("Successfully logged into Google", user)
         
         guard let authentication = user.authentication else { return }
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        Auth.auth().signInAndRetrieveData(with: credential) { (user, error) in
             if let error = error {
                 print("Error \(error)")
                 return
@@ -273,9 +273,8 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
             return
         }
         
-        let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
-        
-        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+        let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+        Auth.auth().signInAndRetrieveData(with: credential) { (user,error) in
             if let error = error {
                 print("Error \(error)")
                 return
@@ -298,7 +297,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
     
     deinit {
         if let handle = handle {
-            FIRAuth.auth()?.removeStateDidChangeListener(handle)
+            Auth.auth().removeStateDidChangeListener(handle)
         }
     }
     

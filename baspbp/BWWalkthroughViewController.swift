@@ -225,7 +225,7 @@ At the moment it's only used to perform custom animations on didScroll.
     //    delegate?.walkthroughCloseButtonPressed?()
     //}
     
-    func pageControlDidTouch(){
+    @objc func pageControlDidTouch(){
 
         if let pc = pageControl{
             gotoPage(pc.currentPage)

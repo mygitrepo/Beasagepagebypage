@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // App with two enhancements
         seedItems()
         seedScripturePages()
-        FIRApp.configure()
+        FirebaseApp.configure()
         //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         if GIDSignIn.sharedInstance().hasAuthInKeychain() {
             print("Found hasAuthInKeychain for GIDSignIn")
@@ -196,9 +196,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         print("Successfully logged into Google", user)
         
         guard let authentication = user.authentication else { return }
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-        
-        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        Auth.auth().signInAndRetrieveData(with: credential) { (user, error) in
             if let error = error {
                 print("Error \(error)")
                 return
