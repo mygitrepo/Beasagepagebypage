@@ -124,7 +124,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // Define scripture array
     var scripture = [
-        ["Bhagavad-gita","Caitanya Caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"],
+        ["Bhagavad-gita","Caitanya-caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"],
         ["Day", "Week", "Month", "Year"],["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"]
     ]
     

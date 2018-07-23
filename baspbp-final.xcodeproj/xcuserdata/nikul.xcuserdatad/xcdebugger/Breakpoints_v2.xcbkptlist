@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "baspbp/TrackProgressViewController.swift"
-            timestampString = "550719696.00685"
+            timestampString = "554080051.556121"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "trackScripture(_:)"
             landmarkType = "7">
          </BreakpointContent>

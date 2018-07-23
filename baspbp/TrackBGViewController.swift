@@ -10,14 +10,26 @@ import UIKit
 import QuartzCore
 import EventKit
 import Charts
+import Firebase
+import MapKit
 
-class TrackBGViewController: UIViewController {
+class TrackBGViewController: UIViewController, CLLocationManagerDelegate {
+    
+    //Initialize LocationManager
+    let locationManager = CLLocationManager()
+    var locValue = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
     //Data received via segue from TrackProgressViewController
     var scriptureLabelfromVC : String = ""
+    var userSignedInfromVC : Bool = false
     var lineOneView = UIView()
     var lineTwoView = UIView()
     var retChart = PieChartView()
+    
+    //Firestore document reference
+    var docRef: DocumentReference!
+    var user_id : String = ""
+    var todays_date : String = ""
     
     @IBOutlet weak var ScriptureLabel: UILabel!
     @IBOutlet weak var YouHaveReadLabel: UILabel!
@@ -184,9 +196,31 @@ class TrackBGViewController: UIViewController {
         loadScripturePages()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        docRef.addSnapshotListener { (docSnapshot, Error) in
+//            guard let docSnapshot = docSnapshot, docSnapshot.exists else {return}
+//            let myData = docSnapshot.data()
+//            let pagesRead = myData!["pages"] as? String ?? ""
+//            let slokasRead = myData!["slokasread"] as? String ?? "(none)"
+//            print(pagesRead + "----" + slokasRead)
+//        }
+    }
     override func viewDidLoad() {
-        //let chart = PieChartView(frame: chartView.frame)
         super.viewDidLoad()
+        // Ask for Location Permission
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        //If Location Usage Permission Granted
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
         ScriptureLabel.text = scriptureLabelfromVC
         ScriptLab.text = scriptureLabelfromVC
         PagesSlokasLabel2.text = "pages"
@@ -224,9 +258,37 @@ class TrackBGViewController: UIViewController {
         }
     }
     
-    private func saveScripturePages() {
+    private func saveScripturePages(delta: Int, locValue: CLLocationCoordinate2D) {
         if let filePath = pathForScripturePages() {
             NSKeyedArchiver.archiveRootObject(scripturepages, toFile: filePath)
+        }
+        if Auth.auth().currentUser != nil {
+            print("CloudFirestore: User is signed in!")
+            user_id = (Auth.auth().currentUser?.displayName)!
+            //Today's date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMddyyyy"
+            todays_date = dateFormatter.string(from:Date())
+            //num of pages or slokas read for today
+            var readingtype = ""
+            // Save Book, num of pages etc to Cloud Firestore
+            for book in scripturepages where book.name == ScriptureLabel.text {
+                if psSwitch.isOn {
+                    readingtype = "todayslokas"
+                } else {
+                    readingtype = "todaypages"
+                }
+                let dataToSave: [String: Any] = ["totalpagesread":book.pagesread, "totalslokasread": book.slokasread, readingtype:delta, "locLatitude": locValue.latitude, "locLongitude": locValue.longitude]
+                //let dataToSave: [String: Any] = ["totalpagesread":book.pagesread, "totalslokasread": book.slokasread, readingtype:delta]
+                docRef = Firestore.firestore().document("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/dailyEntries/" + todays_date + "/readingScores/" + book.name.replacingOccurrences(of: " ", with: "_"))
+                docRef.setData(dataToSave) { (error) in
+                    if let error = error {
+                        print("CloudFirestore Got error: \(error.localizedDescription)")
+                    } else {
+                        print("CloudFirestore: Data has been saved!")
+                    }
+                }
+            }
         }
     }
     
@@ -259,14 +321,14 @@ class TrackBGViewController: UIViewController {
                 if (number != -1) {
                     book.slokasread = number
                     PagesSlokasReadLabel.text = String(number)
-                    saveScripturePages()
+                    saveScripturePages(delta: delta, locValue: locValue)
                 }
             } else {
                 number = calculatePagesSlokas(Operation: operation, number: book.pagesread, TextFieldCheck: textFieldcheck, delta: delta, finalnumber: book.totalpages)
                 if (number != -1) {
                     book.pagesread = number
                     PagesSlokasReadLabel.text = String(number)
-                    saveScripturePages()
+                    saveScripturePages(delta: delta, locValue: locValue)
                 }
             }
         }
@@ -311,6 +373,12 @@ class TrackBGViewController: UIViewController {
             }
         }
         return number
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        locValue = manager.location!.coordinate
+        //print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
     func alignLabelsincenter(mainview: UIView, extleftlabel: UILabel, midleftlabel: UILabel, midrightlabel:UILabel, extrightlabel: UILabel) {

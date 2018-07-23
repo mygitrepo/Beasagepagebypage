@@ -27,14 +27,6 @@ class ScripturePages: NSObject, NSCoding {
         self.totalslokas = totalslokas
     }
     
-//    var uuid: String = NSUUID().uuidString
-//    var name: String = ""
-//    var pagesread: Int = 0
-//    var totalpages: Int = 0
-//    var slokasread: Int = 0
-//    var totalslokas: Int = 0
-//    var inScripturePagesList = false
-    
     func encode(with coder: NSCoder) {
         coder.encode(uuid, forKey: "uuid")
         coder.encode(name, forKey: "name")

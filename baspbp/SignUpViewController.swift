@@ -81,17 +81,11 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                         assertionFailure("user and error are nil")
                         return
                     }
-//                    print(firebaseError.localizedDescription)
-//                    let alert = UIAlertController(title: "Sign In Failed",
-//                                                  message: "Not able to sign in to your account!",
-//                                                  preferredStyle: UIAlertControllerStyle.alert)
-//                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-//                        action in self.parent
-//                    }))
-//                    self.present(alert, animated: true, completion:nil)
                 } else {
                     //User authenticated successfully through
                     //FireBase
+                    
+                    //START HERE: How to sync local data with firestore and vice-a-versa
                     let alert = UIAlertController(title: "Success!",
                                                   message: "You signed in successfully.",
                                                   preferredStyle: UIAlertControllerStyle.alert)
@@ -199,6 +193,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
             self.present(alert, animated: true, completion:nil)
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         signUpPopupView.layer.cornerRadius = 10

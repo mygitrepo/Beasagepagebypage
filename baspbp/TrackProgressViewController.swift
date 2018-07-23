@@ -44,9 +44,10 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     var krSlokasfromVC = 0
     var isSlokasfromVC = 0
     var tlSlokasfromVC = 0
+    var userSignedIn = false
     let CellIdentifier = "Cell Identifier"
     var items = [Item]()
-    var list = ["Bhagavad-Gita","Caitanya Caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"]
+    var list = ["Bhagavad-Gita","Caitanya-caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"]
     // add this right above your viewDidLoad function for right to left transition
     let transitionManager = TransitionManager()
     
@@ -60,6 +61,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBAction func FrmProgressVCunwindToTrackProgressViewController (_ sender: UIStoryboardSegue){
         
     }
+    
     @IBAction func signOutTapped(_ sender: UIButton) {
         
         // START HERE: Following code is in trial basis. Original code is commented out below
@@ -142,10 +144,6 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                         preferredStyle: UIAlertControllerStyle.alert)
                     //Show alert for successful sign out
                     self.present(alert, animated: true, completion:nil)
-//                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
-//                        action in self.parent
-//                    }))
-//                    self.present(alert, animated: true, completion:nil)
                     // change to desired number of seconds (in this case 5 seconds)
                     let when = DispatchTime.now() + 2
                     DispatchQueue.main.asyncAfter(deadline: when){
@@ -153,6 +151,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                         alert.dismiss(animated: true, completion: nil)
                     }
                     self.signInButton.setTitle("SignIn", for: .normal)
+                    userSignedIn = false
                 } else {
                     print("User is STILL signed in. Sign Out Failed.")
                 }
@@ -236,6 +235,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                     self.handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
                         if user != nil {
                             print("USER SIGNED IN SILENTLY !!")
+                            self.userSignedIn = true
                             self.signInButton.setTitle("SignedIn", for: .normal)
                             //MeasurementHelper.sendLoginEvent()
                             //self.performSegue(withIdentifier: Constants.Segues.SignInToFp, sender: nil)
@@ -244,6 +244,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                 })
             } else if (GIDSignIn.sharedInstance().currentUser != nil) {
                 self.signInButton.setTitle("SignedIn", for: .normal)
+                self.userSignedIn = true
             }
         } else if(FBSDKAccessToken.current() != nil) {
             self.signInButton.setTitle("SignedIn", for: .normal)
@@ -347,7 +348,6 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
 //        self.tableView.layer.borderColor = redColor.withAlphaComponent(0.9).cgColor
 //        self.tableView.layer.borderWidth = 1;
         self.tableView.layer.cornerRadius = 4;
-        
         return cell
     }
     
@@ -376,23 +376,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         currentCellText = currentCell.textLabel!.text!
         print(currentCellText)
         print(currentCell.textLabel!.text as Any)
-        //Check first if user is signed in
-//        handle = FIRAuth.auth()?.addStateDidChangeListener() { (auth, user) in
-//            if user != nil {
-//                self.performSegue(withIdentifier: "ScriptureProgress", sender: self)
-//            } else {
-//                print("NOT Allowed")
-//            }
-//        }
         performSegue(withIdentifier: "ScriptureProgress", sender: self)
-//        switch (currentCell.textLabel!.text) {
-//            case "Krsna Book"?:
-//                performSegue(withIdentifier: "KRProgress", sender: self)
-//            case "Bhagavad-gita"?:
-//                performSegue(withIdentifier: "ScriptureProgress", sender: self)
-//            default:
-//                break
-//        }
     }
     
     // MARK: -
@@ -417,7 +401,6 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         if let documents = paths.first, let documentsURL = NSURL(string: documents) {
             return documentsURL.appendingPathComponent("items")!.path
         }
-        
         return nil
     }
     
@@ -468,6 +451,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         if (segue.identifier == "ScriptureProgress") {
             if let destination = segue.destination as? TrackBGViewController {
                 destination.scriptureLabelfromVC = self.currentCellText
+                destination.userSignedInfromVC = self.userSignedIn
             }
         
             // this gets a reference to the screen that we're about to transition to
