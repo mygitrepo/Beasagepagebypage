@@ -30,6 +30,7 @@ class TrackBGViewController: UIViewController, CLLocationManagerDelegate {
     var docRef: DocumentReference!
     var user_id : String = ""
     var todays_date : String = ""
+    var timestamp = FieldValue.serverTimestamp()
     
     @IBOutlet weak var ScriptureLabel: UILabel!
     @IBOutlet weak var YouHaveReadLabel: UILabel!
@@ -269,6 +270,7 @@ class TrackBGViewController: UIViewController, CLLocationManagerDelegate {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMddyyyy"
             todays_date = dateFormatter.string(from:Date())
+            timestamp = FieldValue.serverTimestamp()
             //num of pages or slokas read for today
             var readingtype = ""
             // Save Book, num of pages etc to Cloud Firestore
