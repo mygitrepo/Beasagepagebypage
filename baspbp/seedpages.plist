@@ -1,109 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   seedpages.plist
-   baspbp-final
-
-   Created by nikul on 2/2/17.
-   Copyright (c) 2017 isv. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <array>
-        <dict>
-            <key>name</key>
-            <string>Bhagavad-Gita</string>
-            <key>pagesread</key>
-            <integer>0</integer>
-            <key>totalpages</key>
-            <integer>717</integer>
-            <key>slokasread</key>
-            <integer>0</integer>
-            <key>totalslokas</key>
-            <integer>700</integer>
-        </dict>
-        <dict>
-            <key>name</key>
-            <string>Caitanya Caritamrta</string>
-            <key>pagesread</key>
-            <integer>0</integer>
-            <key>totalpages</key>
-            <integer>6624</integer>
-            <key>slokasread</key>
-            <integer>0</integer>
-            <key>totalslokas</key>
-            <integer>11555</integer>
-        </dict>
-        <dict>
-            <key>name</key>
-            <string>Krsna Book</string>
-            <key>pagesread</key>
-            <integer>0</integer>
-            <key>totalpages</key>
-            <integer>796</integer>
-            <key>slokasread</key>
-            <integer>0</integer>
-            <key>totalslokas</key>
-            <integer>0</integer>
-        </dict>
-        <dict>
-            <key>name</key>
-            <string>Nectar of Devotion</string>
-            <key>pagesread</key>
-            <integer>0</integer>
-            <key>totalpages</key>
-            <integer>399</integer>
-            <key>slokasread</key>
-            <integer>0</integer>
-            <key>totalslokas</key>
-            <integer>0</integer>
-        </dict>
-        <dict>
-            <key>name</key>
-            <string>Nectar of Instruction</string>
-            <key>pagesread</key>
-            <integer>0</integer>
-            <key>totalpages</key>
-            <integer>91</integer>
-            <key>slokasread</key>
-            <integer>0</integer>
-            <key>totalslokas</key>
-            <integer>11</integer>
-        </dict>
-        <dict>
-            <key>name</key>
-            <string>Srimad Bhagavatam</string>
-            <key>pagesread</key>
-            <integer>0</integer>
-            <key>totalpages</key>
-            <integer>14625</integer>
-            <key>slokasread</key>
-            <integer>0</integer>
-            <key>totalslokas</key>
-            <integer>14094</integer>
-        </dict>
-        <dict>
-            <key>name</key>
-            <string>Sri Isopanishad</string>
-            <key>pagesread</key>
-            <integer>0</integer>
-            <key>totalpages</key>
-            <integer>138</integer>
-            <key>slokasread</key>
-            <integer>0</integer>
-            <key>totalslokas</key>
-            <integer>19</integer>
-        </dict>
-        <dict>
-            <key>name</key>
-            <string>TLC</string>
-            <key>pagesread</key>
-            <integer>0</integer>
-            <key>totalpages</key>
-            <integer>350</integer>
-            <key>slokasread</key>
-            <integer>0</integer>
-            <key>totalslokas</key>
-            <integer>0</integer>
-        </dict>
-    </array>
+<array>
+	<dict>
+		<key>name</key>
+		<string>Bhagavad-Gita</string>
+		<key>pagesread</key>
+		<integer>0</integer>
+		<key>totalpages</key>
+		<integer>717</integer>
+		<key>slokasread</key>
+		<integer>0</integer>
+		<key>totalslokas</key>
+		<integer>700</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Caitanya-caritamrta</string>
+		<key>pagesread</key>
+		<integer>0</integer>
+		<key>totalpages</key>
+		<integer>6624</integer>
+		<key>slokasread</key>
+		<integer>0</integer>
+		<key>totalslokas</key>
+		<integer>11555</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Krsna Book</string>
+		<key>pagesread</key>
+		<integer>0</integer>
+		<key>totalpages</key>
+		<integer>796</integer>
+		<key>slokasread</key>
+		<integer>0</integer>
+		<key>totalslokas</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Nectar of Devotion</string>
+		<key>pagesread</key>
+		<integer>0</integer>
+		<key>totalpages</key>
+		<integer>399</integer>
+		<key>slokasread</key>
+		<integer>0</integer>
+		<key>totalslokas</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Nectar of Instruction</string>
+		<key>pagesread</key>
+		<integer>0</integer>
+		<key>totalpages</key>
+		<integer>91</integer>
+		<key>slokasread</key>
+		<integer>0</integer>
+		<key>totalslokas</key>
+		<integer>11</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Srimad Bhagavatam</string>
+		<key>pagesread</key>
+		<integer>0</integer>
+		<key>totalpages</key>
+		<integer>14625</integer>
+		<key>slokasread</key>
+		<integer>0</integer>
+		<key>totalslokas</key>
+		<integer>14094</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Sri Isopanishad</string>
+		<key>pagesread</key>
+		<integer>0</integer>
+		<key>totalpages</key>
+		<integer>138</integer>
+		<key>slokasread</key>
+		<integer>0</integer>
+		<key>totalslokas</key>
+		<integer>19</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>TLC</string>
+		<key>pagesread</key>
+		<integer>0</integer>
+		<key>totalpages</key>
+		<integer>350</integer>
+		<key>slokasread</key>
+		<integer>0</integer>
+		<key>totalslokas</key>
+		<integer>0</integer>
+	</dict>
+</array>
 </plist>

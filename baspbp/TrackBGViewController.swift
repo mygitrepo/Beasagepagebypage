@@ -264,7 +264,7 @@ class TrackBGViewController: UIViewController, CLLocationManagerDelegate {
             NSKeyedArchiver.archiveRootObject(scripturepages, toFile: filePath)
         }
         if Auth.auth().currentUser != nil {
-            print("CloudFirestore: User is signed in!")
+            print("TrackBGViewController: CloudFirestore: User is signed in!")
             user_id = (Auth.auth().currentUser?.displayName)!
             //Today's date
             let dateFormatter = DateFormatter()
@@ -280,14 +280,15 @@ class TrackBGViewController: UIViewController, CLLocationManagerDelegate {
                 } else {
                     readingtype = "todaypages"
                 }
-                let dataToSave: [String: Any] = ["totalpagesread":book.pagesread, "totalslokasread": book.slokasread, readingtype:delta, "locLatitude": locValue.latitude, "locLongitude": locValue.longitude]
-                //let dataToSave: [String: Any] = ["totalpagesread":book.pagesread, "totalslokasread": book.slokasread, readingtype:delta]
-                docRef = Firestore.firestore().document("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/dailyEntries/" + todays_date + "/readingScores/" + book.name.replacingOccurrences(of: " ", with: "_"))
+                //let dataToSave: [String: Any] = ["totalpagesread":book.pagesread, "totalslokasread": book.slokasread, readingtype:delta, "locLatitude": locValue.latitude, "locLongitude": locValue.longitude]
+                let dataToSave: [String: Any] = ["totalPagesRead":book.pagesread, "totalSlokasRead": book.slokasread]
+                //docRef = Firestore.firestore().document("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/dailyEntries/" + todays_date + "/readingScores/" + book.name.replacingOccurrences(of: " ", with: "_"))
+                docRef = Firestore.firestore().document("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/books/" + book.name)
                 docRef.setData(dataToSave) { (error) in
                     if let error = error {
                         print("CloudFirestore Got error: \(error.localizedDescription)")
                     } else {
-                        print("CloudFirestore: Data has been saved!")
+                        print("TrackBGViewController: CloudFirestore: Data has been saved!")
                     }
                 }
             }

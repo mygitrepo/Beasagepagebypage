@@ -11,6 +11,9 @@ import UIKit
 
 // For creating reminder
 import EventKit
+import Firebase
+import GoogleSignIn
+import FBSDKLoginKit
 
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
@@ -33,7 +36,11 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
+    
+    //For Google SIgnIn
+    var handle: AuthStateDidChangeListenerHandle?
+    var userSignedIn = false
     
     @IBOutlet weak var perdayLabel: UILabel!
     @IBOutlet weak var pageslokaLabel: UILabel!
@@ -55,7 +62,51 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     //For back button from ReminderVC
     @IBAction func FrmReminderunwindToViewController (_ sender: UIStoryboardSegue){
+        print("ViewController: Unwinded using segue FrmReminderunwindToViewController")
+    }
+    
+    //Mandate SignIn when Track buttion is pressed
+    @IBAction func trackButtonPressed(_ sender: UIButton) {
+        //Code added for Google SignIn
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+        let firebaseAuth = Auth.auth()
         
+        // Just for info
+        print("ViewController: trackButtonPressed: Printing Firebase current user....",firebaseAuth.currentUser ?? "None")
+        if (firebaseAuth.currentUser != nil) {
+            self.userSignedIn = true
+            print("ViewController: Since user is already signed in segue to TrackProgressVC")
+            self.performSegue(withIdentifier: "SegueToTrackProgressVC", sender: self)
+        } else if (GIDSignIn.sharedInstance().hasAuthInKeychain()) {
+            print("ViewController: User is signed in or has previous authentication parameters saved in keychain")
+            // SignIn silently only if user is not already signed in
+            if(GIDSignIn.sharedInstance().currentUser == nil) {
+                print("ViewController: Entered signInSilently block, executing silent signin !!")
+                GIDSignIn.sharedInstance().signInSilently()
+                print("ViewController: Done. Executed signInSilently !!")
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                    self.handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
+                        if user != nil {
+                            print("ViewController: USER SIGNED IN SILENTLY !!")
+                            self.userSignedIn = true
+                            print("ViewController: Since user silently signed in segue to TrackProgressVC")
+                            self.performSegue(withIdentifier: "SegueToTrackProgressVC", sender: self)
+                        } else {
+                            print("ViewController: User NOT SignedIn even after executing signInSilently")
+                        }
+                    }
+                })
+            } else {
+                print("ViewController: User is already signed in, Segue to TrackProgressVC")
+                self.performSegue(withIdentifier: "SegueToTrackProgressVC", sender: self)
+            }
+        } else {
+            print("ViewController: User doesn't have previous authentication parameters saved in keychain")
+            // which means user has to singin manually
+            print("ViewController: Show SignIn View Controller")
+            self.performSegue(withIdentifier: "ToSignUpVC", sender: self)
+        }
     }
     
     //Switching from Pages to Sloka & vice-a-versa
@@ -128,7 +179,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         ["Day", "Week", "Month", "Year"],["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"]
     ]
     
-    var scriptureArray = ["Bhagavad-gita","Caitanya Caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"]
+    var scriptureArray = ["Bhagavad-gita","Caitanya-caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"]
     
     // For clickable scriptureLabel
     var urls = ["bg","cc","kb","nod","noi","sb","iso","tlc"]
@@ -168,6 +219,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let transitionManager = TransitionManager()
     
     override func viewDidLoad() {
+        print("ViewController: Entering viewDidLoad")
         super.viewDidLoad()
         
         // Select picker rows to be displayed when App starts
@@ -226,10 +278,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
         indurtimeLabelcenter()
         slokasperdayLabelcenter()
-        
+        print("ViewController: Done with viewDidLoad")
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("ViewController: Entering viewDidAppear")
         super.viewDidAppear(animated)
         
         if !isAppAlreadyLaunchedOnce() {
@@ -238,6 +291,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             //let AppViewController:ViewController = ViewController()
             self.present(AppViewController, animated: true, completion: nil)
         }
+        print("ViewController: Done with viewDidAppear")
     }
     
     @objc func itemLabelTapFunction(_ sender:UITapGestureRecognizer) {
@@ -258,7 +312,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // Added for right to left transition instead of bottom to top
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("ViewController: Entering prepare for segue func")
         if (segue.identifier == "SegueToReminderVC") || (segue.identifier == "SegueToTrackProgressVC") {
+            print("ViewController: Entering to sub-block for segues SegueToReminderVC & SegueToTrackProgressVC")
             if let destination = segue.destination as? ReminderViewController {
                 destination.itemLabelfromVC = self.itemLabel.text!
                 destination.pagesLabelfromVC = self.PagesLabel.text!
@@ -296,13 +352,16 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 //print("ItemLable: \(self.itemLabel.text)")
             }
             
+            // this gets a reference to the screen that we're about to transition to
+            let toViewController = segue.destination as UIViewController
+            
+            // instead of using the default transition animation, we'll ask
+            // the segue to use our custom TransitionManager object to manage the transition animation
+            toViewController.transitioningDelegate = self.transitionManager
+            
+        } else if (segue.identifier == "ToSignUpVC") {
+            print("ViewController: Entering to sub-block for segue ToSignUpVC to SignUpViewController - No code here")
         }
-        // this gets a reference to the screen that we're about to transition to
-        let toViewController = segue.destination as UIViewController
-        
-        // instead of using the default transition animation, we'll ask
-        // the segue to use our custom TransitionManager object to manage the transition animation
-        toViewController.transitioningDelegate = self.transitionManager
     }
 
 
@@ -527,7 +586,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 selScripturePages = bgPages
             case "Srimad Bhagavatam"?:
                 selScripturePages = sbPages
-            case "Caitanya Caritamrta"?:
+            case "Caitanya-caritamrta"?:
                 selScripturePages = ccPages
             case "Krsna Book"?:
                 selScripturePages = krPages
@@ -547,7 +606,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 selScripturePages = bgSlokas
             case "Srimad Bhagavatam"?:
                 selScripturePages = sbSlokas
-            case "Caitanya Caritamrta"?:
+            case "Caitanya-caritamrta"?:
                 selScripturePages = ccSlokas
             case "Krsna Book"?:
                 selScripturePages = krSlokas
@@ -602,5 +661,25 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             PagesLabel.text = String(Int(ceil(numPagesDay)))
         }
     }
+    
+    deinit {
+        if let handle = handle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
+    }
+    
+    //For Google SignIn & Facebook SignIn protocol conformation
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        print("ViewController: Entering func sign - No code here")
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        print("ViewController: Entering func loginButton - No code here")
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("ViewController: Entering func loginButtonDidLogOut - No code here")
+    }
+
 }
 

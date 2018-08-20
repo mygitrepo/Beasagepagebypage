@@ -19,6 +19,10 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
     //For Google SIgnIn
     var handle: AuthStateDidChangeListenerHandle?
     
+    //To handle async call to Firestore
+    let myGroupSignUp = DispatchGroup()
+    let myGroupSingUpAlert = DispatchGroup()
+    
     @IBOutlet weak var signInButton: GIDSignInButton!
     @IBOutlet weak var signUpPopupView: UIView!
     @IBOutlet weak var signUpPopupKeyView: UIView!
@@ -33,6 +37,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
     }
     
     @IBAction func logintapped(_ sender: UIButton) {
+        print("SignUpViewController: Login tapped. Entering sign in code.")
         if let email = emailText.text, let pass = passwordText.text {
             Auth.auth().signIn(withEmail: email, password: pass, completion: { user, error in
                 if let firebaseError = error {
@@ -82,8 +87,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                         return
                     }
                 } else {
-                    //User authenticated successfully through
-                    //FireBase
+                    print("SignUpViewController: User authenticated successfully through FireBase")
                     
                     //START HERE: How to sync local data with firestore and vice-a-versa
                     let alert = UIAlertController(title: "Success!",
@@ -95,6 +99,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                     let when = DispatchTime.now() + 1
                     DispatchQueue.main.asyncAfter(deadline: when){
                         // your code with delay
+                        print("SignUpViewController: Now dismissing alert & SignUpViewController in main thread")
                         alert.dismiss(animated: true, completion: nil)
                         self.dismiss(animated: true, completion: nil)
                     }
@@ -195,6 +200,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
     }
     
     override func viewDidLoad() {
+        print("SignUpViewController: Entering viewDidLoad")
         super.viewDidLoad()
         signUpPopupView.layer.cornerRadius = 10
         signUpPopupKeyView.layer.cornerRadius = 50
@@ -209,9 +215,9 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
 
         //Do any additional setup after loading the view.
         //Code added for Google SignIn
-        //signInButton.layer.cornerRadius = 5
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
+        print("SignUpViewController: Done with viewDidLoad")
     }
 
     override func didReceiveMemoryWarning() {
@@ -220,35 +226,42 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        print("SignUpViewController: Entering func sign")
         if let error = error {
             print("Failed to log into Google: ")
             print("Error \(error)")
             return
         }
         
-        print("Successfully logged into Google", user)
+        print("SignUpViewController: sign: Got authentication token from Google", user)
+        print("SignUpViewController: sign: Entering dispatch group to wait on execution until Firestore requests are complete")
         
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        //Entering dispatch group to wait on execution until Firestore requests are complete
+        myGroupSignUp.enter()
         Auth.auth().signInAndRetrieveData(with: credential) { (user, error) in
             if let error = error {
                 print("Error \(error)")
                 return
             } else {
-                let alert = UIAlertController(title: "Signed In!",
-                                              message: "You signed in successfully.",
-                    preferredStyle: UIAlertControllerStyle.alert)
-                //Show alert for successful sign in
-                self.present(alert, animated: true, completion:nil)
-                // change to desired number of seconds (in this case 5 seconds)
-                let when = DispatchTime.now() + 1
-                DispatchQueue.main.asyncAfter(deadline: when){
-                    // your code with delay
-                    alert.dismiss(animated: true, completion: nil)
-                    self.dismiss(animated: true, completion: nil)
-                }
+                print("SignUpViewController: sign: Sign In Successful!")
             }
         }
+        print("SignUpViewController: sign: Done with Firestore Async call")
+        self.myGroupSignUp.leave()
+        self.dismiss(animated: true, completion: nil)
+        print("SignUpViewController: sign: Firestore requests are complete. Resume execution.")
+        print("SignUpViewController: Showing alert from func sign")
+        let alert = UIAlertController(title: "Signed In!",
+                                      message: "You signed in successfully.",
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+            action in _ = self.parent
+        }))
+        //Show alert for successful sign in
+        self.present(alert, animated: true, completion:nil)
+        print("SignUpViewController: Done with func sign")
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {

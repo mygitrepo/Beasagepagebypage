@@ -296,7 +296,7 @@
                                     <color key="titleColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="EkT-mJ-31x" kind="show" identifier="SegueToTrackProgressVC" id="Ck9-wH-CBL"/>
+                                    <action selector="trackButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ezW-mf-YyM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -397,6 +397,8 @@
                         <outlet property="scriptureLabel" destination="gsi-SG-hzP" id="xy1-kP-DwL"/>
                         <outlet property="timeUnitLabel" destination="P4N-cz-VgG" id="Vhc-yU-odG"/>
                         <outlet property="viewDemoHeight" destination="WOo-bU-Iah" id="rk7-6E-6IR"/>
+                        <segue destination="EkT-mJ-31x" kind="show" identifier="SegueToTrackProgressVC" id="yHq-vD-JGF"/>
+                        <segue destination="xpC-X0-gyA" kind="presentation" identifier="ToSignUpVC" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="dEe-lM-wBB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -548,12 +550,13 @@
                         <outlet property="tableView" destination="Sa4-xj-Dgm" id="7dd-52-x8X"/>
                         <outlet property="textBox" destination="sm2-MP-C2l" id="dgp-07-Hk1"/>
                         <segue destination="GNw-77-ifA" kind="show" identifier="ScriptureProgress" id="Dqq-Zg-EY9"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="SegueToViewController" id="tam-Gh-j8N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xn6-le-G0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="03O-Rf-60l" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-120" y="1106.4467766116943"/>
+            <point key="canvasLocation" x="-1150" y="1182"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="57E-sa-R4d">
@@ -657,11 +660,12 @@
                         <outlet property="signInButton" destination="xoe-AM-9Xi" id="4Od-zY-i6L"/>
                         <outlet property="signUpPopupKeyView" destination="eEb-6W-Ybn" id="Yn1-S5-vwn"/>
                         <outlet property="signUpPopupView" destination="Tx7-MQ-X7y" id="ezy-cJ-yN6"/>
+                        <segue destination="EkT-mJ-31x" kind="show" identifier="SegueToTrackProgessViewController" id="snV-Kc-B3H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgf-TO-qAi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-76" y="1784.257871064468"/>
+            <point key="canvasLocation" x="457" y="1959"/>
         </scene>
         <!--TrackBG View Controller-->
         <scene sceneID="HrS-o7-6xn">
@@ -944,7 +948,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aK7-wp-htJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="FcG-gC-jOF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="580" y="1105.9970014992505"/>
+            <point key="canvasLocation" x="1326" y="1182"/>
         </scene>
         <!--Reminder View Controller-->
         <scene sceneID="z2h-1p-Vhg">
@@ -1093,7 +1097,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uzp-ss-UAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="PtW-PA-GBk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="580.79999999999995" y="433.58320839580216"/>
+            <point key="canvasLocation" x="1326" y="439"/>
         </scene>
         <!--Walkthrough View Controller-->
         <scene sceneID="iXz-9z-CnP">
@@ -1579,4 +1583,8 @@
         <image name="new-180" width="90" height="90"/>
         <image name="page_circle_kb" width="106" height="106"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="SFP-sq-Lbl"/>
+        <segue reference="snV-Kc-B3H"/>
+    </inferredMetricsTieBreakers>
 </document>
