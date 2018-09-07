@@ -23,6 +23,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     let db = Firestore.firestore()
     var docRef: DocumentReference? = nil
     var user_id : String = ""
+    var user_email_id : String = ""
     //To handle async call to Firestore
     let myGroup = DispatchGroup()
     
@@ -54,10 +55,12 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     var userSignedIn = false
     let CellIdentifier = "Cell Identifier"
     var items = [Item]()
+    var scripturePages = [ScripturePages]()
     var list = ["Bhagavad-Gita","Caitanya-caritamrta","Krsna Book","Nectar of Devotion","Nectar of Instruction","Srimad Bhagavatam","Sri Isopanishad","TLC"]
     // add this right above your viewDidLoad function for right to left transition
     let transitionManager = TransitionManager()
     
+    @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var textBox: UITextField!
     @IBOutlet weak var dropDown: UIPickerView!
     @IBOutlet weak var tableView: UITableView!
@@ -141,9 +144,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                         try firebaseAuth.signOut()
                     }
                 }
-                //try FIRAuth.auth()?.signOut()
-                //FBSDKLoginManager().logOut()
-                //try GIDSignIn.sharedInstance().signOut()
+                
                 if (firebaseAuth.currentUser == nil) {
                     print("TrackProgressViewController: User successfully signed OUT")
                     self.signInButton.setTitle("SignIn", for: .normal)
@@ -161,13 +162,6 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                         alert.dismiss(animated: true, completion: nil)
                         self.dismiss(animated: true, completion: nil)
                     }
-                    
-                    // Now perform segue back to ViewController (Main Screen)
-                    //SegueToViewController
-                    //print("Now performing segue back to ViewController")
-                    
-                    //self.dismiss(animated: true, completion: nil)
-                    //self.performSegue(withIdentifier: "SegueToViewController", sender: self)
                 } else {
                     print("User is STILL signed in. Sign Out Failed.")
                 }
@@ -222,8 +216,36 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     @IBAction func removeScripture(_ sender: UIButton) {
-        tableView.setEditing(!tableView.isEditing, animated: true);
-        //Adjust_Table_Height();
+        if items.count == 0 {
+            let alert = UIAlertController(title: "Not Allowed!",
+                                          message: "You are not tracking any scripture",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                action in _ = self.parent
+            }))
+            self.present(alert, animated: true, completion:nil)
+        } else {
+            // For resetting pages & slokas to 0 in local db when a scripture is removed
+            for book in scripturePages where book.name == textBox.text! {
+                book.pagesread = 0
+                book.slokasread = 0
+            }
+            // Write to local db file for scripturePages
+            if let scripturepagesPath = self.pathForScripturePages() {
+                // Write to File
+                print("Print scripturepagesPath: \(scripturepagesPath)")
+                if NSKeyedArchiver.archiveRootObject(self.scripturePages, toFile: scripturepagesPath) {
+                    print("TrackProgressViewController: scripturePages archived locally to file scripturepagesPath")
+                }
+            }
+            //Now move tableView in editing mode
+            tableView.setEditing(!tableView.isEditing, animated: true);
+            if tableView.isEditing {
+                self.removeButton.setTitle("Done", for: .normal)
+            } else {
+                self.removeButton.setTitle("Remove", for: .normal)
+            }
+        }
     }
     
     // MARK: -
@@ -238,47 +260,6 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     override func viewDidAppear(_ animated: Bool) {
         print("TrackProgressViewController: Entering viewDidAppear")
         super.viewWillAppear(animated)
-        //Code added for Google SignIn
-//        GIDSignIn.sharedInstance().uiDelegate = self
-//        GIDSignIn.sharedInstance().delegate = self
-//
-//        if (GIDSignIn.sharedInstance().hasAuthInKeychain()) {
-//            // user is signed in or has previous authentication parameters saved in keychain
-//            //SignIn silently only if user is not already signed in
-//            if(GIDSignIn.sharedInstance().currentUser == nil) {
-//                GIDSignIn.sharedInstance().signInSilently()
-//                //if(GIDSignIn.sharedInstance().currentUser == nil) {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-//                    self.handle = Auth.auth().addStateDidChangeListener() { (auth, user) in
-//                        if user != nil {
-//                            print("USER SIGNED IN SILENTLY !!")
-//                            self.userSignedIn = true
-//                            self.signInButton.setTitle("SignedIn", for: .normal)
-//                            //MeasurementHelper.sendLoginEvent()
-//                            //self.performSegue(withIdentifier: Constants.Segues.SignInToFp, sender: nil)
-//                        }
-//                    }
-//                })
-//            } else if (GIDSignIn.sharedInstance().currentUser != nil) {
-//                self.signInButton.setTitle("SignedIn", for: .normal)
-//                self.userSignedIn = true
-//            }
-//        } else if(FBSDKAccessToken.current() != nil) {
-//            self.signInButton.setTitle("SignedIn", for: .normal)
-//        }
-//        let firebaseAuth = Auth.auth()
-//        if (firebaseAuth.currentUser != nil) || (GIDSignIn.sharedInstance().currentUser != nil) {
-//            self.signInButton.setTitle("SignedIn", for: .normal)
-//            self.userSignedIn = true
-//        }
-//        
-//        if(FBSDKAccessToken.current() != nil) {
-//           self.signInButton.setTitle("SignedIn", for: .normal)
-//        }
-//        
-//        print("TrackProgressViewController: viewDidAppear: Seeding items post reading from Firestore")
-//        seedItems()
-//        print("TrackProgressViewController: DONE WITH viewDidAppear in TrackProgressVC")
     }
     
     override func viewDidLoad() {
@@ -292,6 +273,12 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         let firebaseAuth = Auth.auth()
         if (firebaseAuth.currentUser != nil) || (GIDSignIn.sharedInstance().currentUser != nil) {
+//            firebaseAuth.currentUser!.link(with: credential) {(user, error) in
+//                if user != nil && error == nil {
+//                    // Linking accounts was a success
+//                    print("Linking of Facebook account with existing email and password successfull")
+//                }
+//            )}
             self.signInButton.setTitle("SignedIn", for: .normal)
             self.userSignedIn = true
         }
@@ -314,9 +301,6 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
             self.tableView.delegate = self
             self.tableView.dataSource = self
             self.dropDown.selectRow(3, inComponent: 0, animated: true)
-            //let item = Item(name: "Bhagavad-Gita")
-            //print(item.uuid)
-            //loadItems()
             self.title = "Items"
             // Register Class
             self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: self.CellIdentifier)
@@ -412,18 +396,24 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Fetch Item name
-            let item_name = items[indexPath.row].name
-            // Delete Item from Items
-            items.remove(at: indexPath.row)
+                // Fetch Item name
+                let item_name = items[indexPath.row].name
+                // Delete Item from Items
+                items.remove(at: indexPath.row)
+                
+                // Update Table View
+                tableView.deleteRows(at: [indexPath], with: .right)
+                //tableView.reloadData();
+                Adjust_Table_Height();
+                
+                // Save Changes
+                saveItems(operation: "remove", name: item_name)
             
-            // Update Table View
-            tableView.deleteRows(at: [indexPath], with: .right)
-            //tableView.reloadData();
-            Adjust_Table_Height();
-            
-            // Save Changes
-            saveItems(operation: "remove", name: item_name)
+                //Change removeButton title to "Remove" if there is no item left
+                if items.count == 0 {
+                    self.removeButton.setTitle("Remove", for: .normal)
+                    tableView.setEditing(!tableView.isEditing, animated: true);
+                }
         }
     }
     
@@ -453,17 +443,19 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
             if (operation == "add") {
                 print("TrackProgressViewController: Adding book name to Firestore: ",name)
                 let dataToSave: [String: Any] = ["totalPagesRead":0, "totalSlokasRead":0]
-                docRef = db.document("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/books/" + name)
+                //docRef = db.document("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/books/" + name)
+                docRef = db.document("userData/scriptureTracking/users/" + user_email_id + "/books/" + name)
                 docRef?.setData(dataToSave) { (error) in
-                    if let error = error {
-                        print("CloudFirestore Got error: \(error.localizedDescription)")
-                    } else {
-                        print("TrackBGViewController: CloudFirestore: New book name has been saved! : ",name)
-                    }
+                        if let error = error {
+                            print("CloudFirestore Got error: \(error.localizedDescription)")
+                        } else {
+                            print("TrackBGViewController: CloudFirestore: New book name has been saved! : ",name)
+                        }
                 }
             } else if (operation == "remove") {
                 print("TrackProgressViewController: Removing book name from Firestore: ",name)
-                db.collection("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/books/").document(name).delete() { err in
+                //db.collection("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/books/").document(name).delete() { err in
+                db.collection("userData/scriptureTracking/users/" + user_email_id + "/books/").document(name).delete() { err in
                     if let err = err {
                         print("CloudFirestore Got Error removing document: \(err)")
                     } else {
@@ -494,12 +486,16 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         //var flag = false
         print("TrackProgressViewController: First remove everything from items object")
         items.removeAll()
+        print("TrackProgressViewController: Load Scripture Pages")
+        loadScripturePages()
         
-        user_id = (Auth.auth().currentUser?.displayName)!
+        //user_id = (Auth.auth().currentUser?.displayName)!
+        user_email_id = (Auth.auth().currentUser?.email)!
         
         print("TrackProgressViewController: Now read book names from Firestore")
         //docRef = Firestore.firestore().collection("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/books/")
-        db.collection("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/books/").getDocuments() { (querySnapshot, err) in
+        //db.collection("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/books/").getDocuments() { (querySnapshot, err) in
+        db.collection("userData/scriptureTracking/users/" + user_email_id + "/books/").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents from Firestore: \(err)")
             } else {
@@ -511,6 +507,30 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                     
                     // Add Item
                     self.items.append(item)
+                    
+                    self.scripturePages = self.scripturePages.map{
+                        var mutableScripture = $0
+                        print("TrackProgressViewController: mutableScripture: ",mutableScripture)
+                        if $0.name == document.documentID {
+                            print("TrackProgressViewController: document.data()['totalPagesRead']: ",document.data()["totalPagesRead"] as Any)
+                            print("TrackProgressViewController: document.data()['totalSlokasRead']: ",document.data()["totalSlokasRead"] as Any)
+                            mutableScripture.pagesread = document.data()["totalPagesRead"] as! Int
+                            mutableScripture.slokasread = document.data()["totalSlokasRead"] as! Int
+                        }
+                        return mutableScripture
+                    }
+                    
+                    if let scripturepagesPath = self.pathForScripturePages() {
+                        // Write to File
+                        print("Print scripturepagesPath: \(scripturepagesPath)")
+                        if NSKeyedArchiver.archiveRootObject(self.scripturePages, toFile: scripturepagesPath) {
+                            print("TrackProgressViewController: scripturePages archived locally to file scripturepagesPath")
+                        }
+                    }
+
+                    //var scripture = scripturePages(name: document.documentID)
+                    //scripturePages.first({$0.name == document.documentID})?.pagesread = document.data().totalPagesread
+                    
                 }
                 print("TrackProgressViewController: Now printing items post reading from Firestore")
                 print(self.items)
@@ -526,68 +546,24 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                 self.myGroup.leave()
             }
         }
-        
-//        print("TrackProgressViewController: Now printing items post reading from Firestore")
-//        print(items)
-//
-//        if let itemsPath = pathForItems() {
-//            print("TrackProgressViewController: Print itemsPath: \(itemsPath)")
-//            // Write to File
-//            if NSKeyedArchiver.archiveRootObject(items, toFile: itemsPath) {
-//                print("TrackProgressViewController: items archived locally to file itemsPath")
-//            }
-//        }
     }
     
-    // For seeding all scripture pages in the list
-    private func seedScripturePages() {
-        let ud = UserDefaults.standard
-        
-        //if !ud.bool(forKey: "UserDefaultsScript7SeedItems") {
-            if let filePath = Bundle.main.path(forResource: "seedpages", ofType: "plist"), let seedScripturePages = NSArray(contentsOfFile: filePath) {
-                // Items
-                var scripturepages = [ScripturePages]()
-                
-                // Create List of Items
-                for seedScripturePage in seedScripturePages as! [[String:Any]] {
-                    if let name = seedScripturePage["name"] as? String {
-                        if let pagesread = seedScripturePage["pagesread"] as? Int {
-                            if let totalpages = seedScripturePage["totalpages"] as? Int {
-                                if let slokasread = seedScripturePage["slokasread"] as? Int {
-                                    if let totalslokas = seedScripturePage["totalslokas"] as? Int {
-                                        print("Printing name, pagesread, totalpages, slokasread and totalslokas before adding to scripturepages array")
-                                        print("\(name) - \(pagesread) - \(totalpages) - \(slokasread) - \(totalslokas)")
-                                        // Create ScripturePages
-                                        let item = ScripturePages(name: name, pagesread: pagesread, totalpages: totalpages, slokasread: slokasread, totalslokas: totalslokas)
-                                        
-                                        // Add Item
-                                        scripturepages.append(item)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                print("Now printing items in ScripturePages")
-                for book in scripturepages {
+    // MARK: -
+    // MARK: Helper Methods
+    private func loadScripturePages() {
+        if let filePath = pathForScripturePages(), FileManager.default.fileExists(atPath: filePath) {
+            print("TrackProgressViewController: Print filePath in loadScripturePages: \(filePath)")
+            if let archivedScripturePages = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [ScripturePages] {
+                scripturePages = archivedScripturePages
+                for book in scripturePages {
                     print(book.name)
                     print(book.pagesread)
                     print(book.slokasread)
                     print(book.totalpages)
                     print(book.totalslokas)
                 }
-                //print(scripturepages)
-                
-                if let scripturepagesPath = pathForScripturePages() {
-                    // Write to File
-                    print("Print scripturepagesPath: \(scripturepagesPath)")
-                    if NSKeyedArchiver.archiveRootObject(scripturepages, toFile: scripturepagesPath) {
-                        ud.set(true, forKey: "UserDefaultsScript7SeedItems")
-                    }
-                }
             }
-        //}
+        }
     }
     
     private func pathForScripturePages() -> String? {
@@ -662,8 +638,8 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
             print("TrackProgressViewController: Transition using SignUp segue - No Code here")
             //performSegue(withIdentifier: "SignUp", sender: nil)
             // this gets a reference to the screen that we're about to transition to
-//            let toViewController = segue.destination as UIViewController
-//            toViewController.transitioningDelegate = self.transitionManager
+            //let toViewController = segue.destination as UIViewController
+            //toViewController.transitioningDelegate = self.transitionManager
         } else if (segue.identifier == "SegueToViewController") {
             print("TrackProgressViewController: Into Prepare for segue sub-block for SegueToViewController")
             print("TrackProgressViewController: segue.destination is ViewController")
@@ -683,19 +659,6 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
             Auth.auth().removeStateDidChangeListener(handle)
         }
     }
-
-    
-//    func Adjust_Table_Height_Remove() {
-//        if((items.count * 44) <= 264) {
-//            if((items.count * 44) == 44) {
-//                //do nothing
-//            } else {
-//                tableHeight.constant = CGFloat(items.count) * 44
-//            }
-//        } else {
-//            tableHeight.constant = 264
-//        }
-//    }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         print("TrackProgressViewController: Entering func sign")

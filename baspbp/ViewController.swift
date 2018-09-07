@@ -74,6 +74,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         // Just for info
         print("ViewController: trackButtonPressed: Printing Firebase current user....",firebaseAuth.currentUser ?? "None")
+        print("ViewController: trackButtonPressed: Printing Firebase user info....",firebaseAuth.currentUser?.email ?? "None")
+        print("ViewController: trackButtonPressed: Printing Firebase user info....",firebaseAuth.currentUser?.displayName ?? "None")
+        print("ViewController: trackButtonPressed: Printing Firebase user info....",firebaseAuth.currentUser?.uid ?? "None")
         if (firebaseAuth.currentUser != nil) {
             self.userSignedIn = true
             print("ViewController: Since user is already signed in segue to TrackProgressVC")
@@ -681,5 +684,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         print("ViewController: Entering func loginButtonDidLogOut - No code here")
     }
 
+//  Auth.auth().signIn(withEmail: email, password: pass) { (user, error) in
+//        if let u = user {
+//            print("my display name is (u.displayName) ")
+//        }
+//    })
 }
 

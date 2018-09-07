@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&apos;Be a Sage Page by Page&apos; would like to know your location</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&apos;Be a Sage Page by Page&apos; would like to know your location</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -19,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>8.0</string>
+	<string>9.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -40,11 +36,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>FacebookAppID</key>
 	<string>133565897188197</string>
 	<key>FacebookDisplayName</key>
 	<string>Be a Sage Page by Page</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -56,6 +54,10 @@
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Some App functionality may access calendar</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>'Be a Sage Page by Page' would like to know your location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>'Be a Sage Page by Page' would like to know your location</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>App uses default Reminders to set reminder</string>
 	<key>UILaunchStoryboardName</key>

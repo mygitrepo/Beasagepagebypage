@@ -87,8 +87,19 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                         return
                     }
                 } else {
+                    
+//                    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+//                    changeRequest?.displayName = displayName
+//                    changeRequest?.commitChanges { (error) in
+//                        print("SignUpViewController: Error while creating displayName")
+//                    }
+                    if let u = user {
+                        print("SignUpViewController: email/passwd: my email is (u.user.email) :", u.user.email ?? "None")
+                    }
                     print("SignUpViewController: User authenticated successfully through FireBase")
                     
+                    //Following code for account linking
+                    //let credential = EmailAuthProvider.credential(withEmail: email, password: pass)
                     //START HERE: How to sync local data with firestore and vice-a-versa
                     let alert = UIAlertController(title: "Success!",
                                                   message: "You signed in successfully.",

@@ -29,6 +29,7 @@ class TrackBGViewController: UIViewController, CLLocationManagerDelegate {
     //Firestore document reference
     var docRef: DocumentReference!
     var user_id : String = ""
+    var user_email_id: String = ""
     var todays_date : String = ""
     var timestamp = FieldValue.serverTimestamp()
     
@@ -265,7 +266,8 @@ class TrackBGViewController: UIViewController, CLLocationManagerDelegate {
         }
         if Auth.auth().currentUser != nil {
             print("TrackBGViewController: CloudFirestore: User is signed in!")
-            user_id = (Auth.auth().currentUser?.displayName)!
+            //user_id = (Auth.auth().currentUser?.displayName)!
+            user_email_id = (Auth.auth().currentUser?.email)!
             //Today's date
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMddyyyy"
@@ -283,7 +285,8 @@ class TrackBGViewController: UIViewController, CLLocationManagerDelegate {
                 //let dataToSave: [String: Any] = ["totalpagesread":book.pagesread, "totalslokasread": book.slokasread, readingtype:delta, "locLatitude": locValue.latitude, "locLongitude": locValue.longitude]
                 let dataToSave: [String: Any] = ["totalPagesRead":book.pagesread, "totalSlokasRead": book.slokasread]
                 //docRef = Firestore.firestore().document("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/dailyEntries/" + todays_date + "/readingScores/" + book.name.replacingOccurrences(of: " ", with: "_"))
-                docRef = Firestore.firestore().document("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/books/" + book.name)
+                //docRef = Firestore.firestore().document("userData/scriptureTracking/users/" + user_id.replacingOccurrences(of: " ", with: "_") + "/books/" + book.name)
+                docRef = Firestore.firestore().document("userData/scriptureTracking/users/" + user_email_id + "/books/" + book.name)
                 docRef.setData(dataToSave) { (error) in
                     if let error = error {
                         print("CloudFirestore Got error: \(error.localizedDescription)")

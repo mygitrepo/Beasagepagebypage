@@ -129,6 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     private func seedScripturePages() {
         let ud = UserDefaults.standard
         
+        // Start here: Temp hack uncomment following line
         if !ud.bool(forKey: "UserDefaultsScript7SeedItems") {
             if let filePath = Bundle.main.path(forResource: "seedpages", ofType: "plist"), let seedScripturePages = NSArray(contentsOfFile: filePath) {
                 // Items

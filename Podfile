@@ -15,8 +15,8 @@ pod 'Charts', :git => 'https://github.com/danielgindi/Charts/', commit: '5417160
 
 # pod for Firebase
 pod 'Firebase/Core'
-#pod 'Firebase/Firestore'
-pod 'Firebase/Firestore', '5.1.0'
+pod 'Firebase/Firestore'
+#pod 'Firebase/Firestore', '5.1.0'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
 pod 'GoogleSignIn'
