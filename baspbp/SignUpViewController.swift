@@ -14,7 +14,16 @@ import FirebaseAuth
 import GoogleSignIn
 import FBSDKLoginKit
 
-class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
+//For hiding keyboard
+extension UIViewController {
+    // Ends editing view when touches to view
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.view.endEditing(true)
+    }
+}
+
+class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
     
     //For Google SIgnIn
     var handle: AuthStateDidChangeListenerHandle?
@@ -49,7 +58,16 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                                 case .userNotFound:
                                     print(firebaseError.localizedDescription)
                                     let alert = UIAlertController(title: "Sign In Failed",
-                                                                  message: "User account not found. Try registering!",
+                                                                  message: "User account not found. Please register!",
+                                                                  preferredStyle: UIAlertControllerStyle.alert)
+                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                        action in _ = self.parent
+                                    }))
+                                    self.present(alert, animated: true, completion:nil)
+                                case .invalidEmail:
+                                    print(firebaseError.localizedDescription)
+                                    let alert = UIAlertController(title: "Sign In Failed",
+                                                                  message: "Incorrect Email Address!",
                                                                   preferredStyle: UIAlertControllerStyle.alert)
                                     alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
                                         action in _ = self.parent
@@ -58,7 +76,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                                 case .wrongPassword:
                                     print(firebaseError.localizedDescription)
                                     let alert = UIAlertController(title: "Sign In Failed",
-                                                                  message: "Incorrect username/password combination!",
+                                                                  message: "Incorrect Password!",
                                                                   preferredStyle: UIAlertControllerStyle.alert)
                                     alert.addAction(UIAlertAction(title: "Reset Passowrd", style: UIAlertActionStyle.default, handler: {
                                         action in
@@ -213,6 +231,11 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
     override func viewDidLoad() {
         print("SignUpViewController: Entering viewDidLoad")
         super.viewDidLoad()
+        
+        //For hiding keyboard on pressing return
+        self.emailText.delegate = self
+        self.passwordText.delegate = self
+        
         signUpPopupView.layer.cornerRadius = 10
         signUpPopupKeyView.layer.cornerRadius = 50
         
@@ -312,6 +335,13 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDele
                 }
             }
         }
+    }
+    
+    //Hide keyboard when user press return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailText.resignFirstResponder()
+        passwordText.resignFirstResponder()
+        return(true)
     }
     
     deinit {
