@@ -69,8 +69,8 @@ class MainViewController: UIViewController, BWWalkthroughViewControllerDelegate 
         // For transition right to left
         let transition = CATransition()
         transition.duration = 0.5
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromRight
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
         view.window!.layer.add(transition, forKey: kCATransition)
                 
         self.present(walkthrough, animated: false) {

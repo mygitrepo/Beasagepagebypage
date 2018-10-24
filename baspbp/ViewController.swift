@@ -401,7 +401,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 pickerLabel = UILabel()
             }
             let titleData = scripture[component][row]
-            let myTitle = NSAttributedString(string: titleData, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: CGFloat(fontSize)),NSAttributedStringKey.foregroundColor:UIColor.black])
+            let myTitle = NSAttributedString(string: titleData, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: CGFloat(fontSize)),NSAttributedString.Key.foregroundColor:UIColor.black])
             pickerLabel!.attributedText = myTitle
             pickerLabel!.textAlignment = .center
             return pickerLabel!
@@ -529,7 +529,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 withVisualFormat: "V:|[timeunitLabel]|", options: [], metrics: nil, views: viewsDict))
         indurtimeView.addConstraints(
             NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-[InLabel]-5-[durationLabel]-5-[timeunitLabel]-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: viewsDict))
+                withVisualFormat: "H:|-[InLabel]-5-[durationLabel]-5-[timeunitLabel]-|", options: NSLayoutConstraint.FormatOptions.alignAllCenterY, metrics: nil, views: viewsDict))
         //costView!.backgroundColor = UIColor.redColor()
         
         // center costView inside self
@@ -562,7 +562,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 withVisualFormat: "V:|[perdayLabel]|", options: [], metrics: nil, views: viewsDict))
         slokasperdayView.addConstraints(
             NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-[pageslokaLabel]-5-[perdayLabel]-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: viewsDict))
+                withVisualFormat: "H:|-[pageslokaLabel]-5-[perdayLabel]-|", options: NSLayoutConstraint.FormatOptions.alignAllCenterY, metrics: nil, views: viewsDict))
         
         // center View inside self
         let centerXCons = NSLayoutConstraint(item: slokasperdayView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);
@@ -571,7 +571,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func underlineText(text: String) {
         //Defined underline attribute first
-        let underlineAttribute = [NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
+        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
         // Add attribute to itemLabel.text
         myMutableString = NSMutableAttributedString(
             string: text,

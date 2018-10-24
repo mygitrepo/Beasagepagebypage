@@ -116,8 +116,8 @@ class ReminderViewController: UIViewController {
             if !granted {
                 let alert = UIAlertController(title: "Failed",
                                               message: "App can't add Remidner as permission to access reminders NOT granted earlier!",
-                                              preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                              preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                     action in _ = self.parent
                 }))
                 self.present(alert, animated: true, completion:nil)
@@ -127,8 +127,8 @@ class ReminderViewController: UIViewController {
                 if (self.pagesLabelfromVC == "N/A") {
                     let alert = UIAlertController(title: "Failed",
                                                   message: "Can't add Reminder because number of Slokas is N/A",
-                                                  preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                                  preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                         action in _ = self.parent
                     }))
                     self.present(alert, animated: true, completion:nil)
@@ -137,8 +137,8 @@ class ReminderViewController: UIViewController {
                     self.createReminder(reminderTitle: self.createReminderTitle, reminderStartDate: self.RemindTimePicker.date as NSDate)
                     let alert = UIAlertController(title: "Success",
                                                   message: "Added reminder to " + self.createReminderTitle + " everyday at " + self.RemindreminderTime,
-                                                  preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                                  preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                         action in _ = self.parent
                     }))
                     self.present(alert, animated: true, completion:nil)
@@ -243,7 +243,7 @@ class ReminderViewController: UIViewController {
                 withVisualFormat: "V:|[rightlabel]|", options: [], metrics: nil, views: viewsDict))
         mainview.addConstraints(
             NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-[leftlabel]-5-[centerlabel]-5-[rightlabel]-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: viewsDict))
+                withVisualFormat: "H:|-[leftlabel]-5-[centerlabel]-5-[rightlabel]-|", options: NSLayoutConstraint.FormatOptions.alignAllCenterY, metrics: nil, views: viewsDict))
         
         // center costView inside self
         let centerXCons = NSLayoutConstraint(item: mainview, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);

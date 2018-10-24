@@ -343,7 +343,7 @@
 					9EA35CE91C233A3C00995F37 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = MV3W95C4GZ;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -739,8 +739,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ceoisv.baspbp;
 				PRODUCT_NAME = "baspbp-final";
 				PROVISIONING_PROFILE = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -760,8 +759,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ceoisv.baspbp;
 				PRODUCT_NAME = "baspbp-final";
 				PROVISIONING_PROFILE = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

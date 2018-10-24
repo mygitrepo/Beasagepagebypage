@@ -55,7 +55,7 @@ class TrackBGViewController: UIViewController, CLLocationManagerDelegate {
         if TotalPagesSlokasLabel.text == "0" {
             let alert = UIAlertController(title: "Slokas Not Applicable!",
                                           message: "There are No Slokas in this book.",
-                                          preferredStyle: UIAlertControllerStyle.alert)
+                                          preferredStyle: UIAlertController.Style.alert)
             //Show alert for successful sign in
             self.present(alert, animated: true, completion:nil)
             // change to desired number of seconds (in this case 5 seconds)
@@ -311,8 +311,8 @@ class TrackBGViewController: UIViewController, CLLocationManagerDelegate {
     private func presentNotNumericAlert() {
         let alert = UIAlertController(title: "Warning!",
                                       message: "Please enter a number",
-                                      preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                      preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
             action in _ = self.parent
         }))
         self.present(alert, animated: true, completion:nil)
@@ -418,7 +418,7 @@ class TrackBGViewController: UIViewController, CLLocationManagerDelegate {
                 withVisualFormat: "V:|[extrightlabel]|", options: [], metrics: nil, views: viewsDict))
         mainview.addConstraints(
             NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-[extleftlabel]-5-[midleftlabel]-5-[midrightlabel]-5-[extrightlabel]-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: viewsDict))
+                withVisualFormat: "H:|-[extleftlabel]-5-[midleftlabel]-5-[midrightlabel]-5-[extrightlabel]-|", options: NSLayoutConstraint.FormatOptions.alignAllCenterY, metrics: nil, views: viewsDict))
         
         // center costView inside self
         let centerXCons = NSLayoutConstraint(item: mainview, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);

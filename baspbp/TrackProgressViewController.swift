@@ -151,7 +151,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
                     userSignedIn = false
                     let alert = UIAlertController(title: "Signed Out!",
                                                   message: "You successfully signed out.",
-                        preferredStyle: UIAlertControllerStyle.alert)
+                        preferredStyle: UIAlertController.Style.alert)
                     //Show alert for successful sign out
                     self.present(alert, animated: true, completion:nil)
                     // change to desired number of seconds (in this case 5 seconds)
@@ -172,7 +172,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
             print("TrackProgressViewController: No User Logged in. Showing alert !!")
             let alert = UIAlertController(title: "No User Signed In!",
                                           message: "User can't be signed out.",
-                                          preferredStyle: UIAlertControllerStyle.alert)
+                                          preferredStyle: UIAlertController.Style.alert)
             //Show alert for successful sign in
             self.present(alert, animated: true, completion:nil)
             // change to desired number of seconds (in this case 5 seconds)
@@ -189,8 +189,8 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
             if(items.contains(where: {x in x.name == textBox.text!})) {
                 let alert = UIAlertController(title: "Duplicate!",
                                               message: "You are already tracking \(textBox.text!). Please select a different scripture to track.",
-                    preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                    preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                     action in _ = self.parent
                 }))
                 self.present(alert, animated: true, completion:nil)
@@ -207,8 +207,8 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         } else {
             let alert = UIAlertController(title: "Not Allowed!",
                                           message: "Please select a scripture from picker list",
-                preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                 action in _ = self.parent
             }))
             self.present(alert, animated: true, completion:nil)
@@ -219,8 +219,8 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         if items.count == 0 {
             let alert = UIAlertController(title: "Not Allowed!",
                                           message: "You are not tracking any scripture",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                          preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                 action in _ = self.parent
             }))
             self.present(alert, animated: true, completion:nil)
@@ -394,7 +394,7 @@ class TrackProgressViewController: UIViewController, UIPickerViewDelegate, UIPic
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
                 // Fetch Item name
                 let item_name = items[indexPath.row].name

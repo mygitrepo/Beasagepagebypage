@@ -59,8 +59,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
                                     print(firebaseError.localizedDescription)
                                     let alert = UIAlertController(title: "Sign In Failed",
                                                                   message: "User account not found. Please register!",
-                                                                  preferredStyle: UIAlertControllerStyle.alert)
-                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                                                  preferredStyle: UIAlertController.Style.alert)
+                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                                         action in _ = self.parent
                                     }))
                                     self.present(alert, animated: true, completion:nil)
@@ -68,8 +68,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
                                     print(firebaseError.localizedDescription)
                                     let alert = UIAlertController(title: "Sign In Failed",
                                                                   message: "Incorrect Email Address!",
-                                                                  preferredStyle: UIAlertControllerStyle.alert)
-                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                                                  preferredStyle: UIAlertController.Style.alert)
+                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                                         action in _ = self.parent
                                     }))
                                     self.present(alert, animated: true, completion:nil)
@@ -77,13 +77,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
                                     print(firebaseError.localizedDescription)
                                     let alert = UIAlertController(title: "Sign In Failed",
                                                                   message: "Incorrect Password!",
-                                                                  preferredStyle: UIAlertControllerStyle.alert)
-                                    alert.addAction(UIAlertAction(title: "Reset Passowrd", style: UIAlertActionStyle.default, handler: {
+                                                                  preferredStyle: UIAlertController.Style.alert)
+                                    alert.addAction(UIAlertAction(title: "Reset Passowrd", style: UIAlertAction.Style.default, handler: {
                                         action in
                                         self.didRequestPasswordReset()
                                         //action in self.parent
                                     }))
-                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                                         action in _ = self.parent
                                     }))
                                     self.present(alert, animated: true, completion:nil)
@@ -91,8 +91,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
                                     print(firebaseError.localizedDescription)
                                     let alert = UIAlertController(title: "Sign In Failed",
                                                                   message: "Not able to sign in to your account!",
-                                                                  preferredStyle: UIAlertControllerStyle.alert)
-                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                                                  preferredStyle: UIAlertController.Style.alert)
+                                    alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                                         action in _ = self.parent
                                     }))
                                     //self.showAlert("Error: \(error.localizedDescription)")
@@ -121,7 +121,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
                     //START HERE: How to sync local data with firestore and vice-a-versa
                     let alert = UIAlertController(title: "Success!",
                                                   message: "You signed in successfully.",
-                                                  preferredStyle: UIAlertControllerStyle.alert)
+                                                  preferredStyle: UIAlertController.Style.alert)
                     //Show alert for successful sign in
                     self.present(alert, animated: true, completion:nil)
                     // change to desired number of seconds (in this case 5 seconds)
@@ -172,8 +172,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
     }
     
     func showAlert(_ message: String) {
-        let alertController = UIAlertController(title: "Be a Sage Page by Page", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        let alertController = UIAlertController(title: "Be a Sage Page by Page", message: message, preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -182,8 +182,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
             if(email == "") || (pass == "") {
                 let alert = UIAlertController(title: "Error",
                                               message: "Please enter E-mail address and Password!",
-                                              preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                              preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                     action in _ = self.parent
                 }))
                 self.present(alert, animated: true, completion:nil)
@@ -193,8 +193,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
                         print(firebaseError.localizedDescription)
                         let alert = UIAlertController(title: "Error",
                                                       message: firebaseError.localizedDescription+"!",
-                                                      preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                                      preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                             action in _ = self.parent
                         }))
                         self.present(alert, animated: true, completion:nil)
@@ -204,7 +204,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
                         //FireBase
                         let alert = UIAlertController(title: "Account Created!",
                                                       message: "You created new account successfully.",
-                                                      preferredStyle: UIAlertControllerStyle.alert)
+                                                      preferredStyle: UIAlertController.Style.alert)
                         //Show alert for successful sign in
                         self.present(alert, animated: true, completion:nil)
                         // change to desired number of seconds (in this case 5 seconds)
@@ -220,8 +220,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
         } else {
             let alert = UIAlertController(title: "Error",
                                           message: "Please enter e-mail address and password!",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                          preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
                 action in _ = self.parent
             }))
             self.present(alert, animated: true, completion:nil)
@@ -289,8 +289,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
         print("SignUpViewController: Showing alert from func sign")
         let alert = UIAlertController(title: "Signed In!",
                                       message: "You signed in successfully.",
-                                      preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: {
+                                      preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: {
             action in _ = self.parent
         }))
         //Show alert for successful sign in
@@ -323,7 +323,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDe
             } else {
                 let alert = UIAlertController(title: "Signed In!",
                                               message: "You signed in successfully.",
-                                              preferredStyle: UIAlertControllerStyle.alert)
+                                              preferredStyle: UIAlertController.Style.alert)
                 //Show alert for successful sign in
                 self.present(alert, animated: true, completion:nil)
                 // change to desired number of seconds (in this case 5 seconds)
