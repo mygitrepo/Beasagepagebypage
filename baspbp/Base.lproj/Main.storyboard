@@ -108,8 +108,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="please read" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsj-Zp-Xrh">
-                                <rect key="frame" x="105.5" y="324" width="109.5" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="please read/hear" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsj-Zp-Xrh">
+                                <rect key="frame" x="80.5" y="324" width="159.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="RHU-o5-0cO"/>
                                     <constraint firstAttribute="height" constant="30" id="tH9-M3-jf8"/>
@@ -145,13 +145,13 @@
                                     <segue destination="lnB-Eb-t7t" kind="show" id="KAy-JY-4wM"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To complete reading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqL-AG-Jed">
-                                <rect key="frame" x="40" y="332" width="240" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To complete reading/hearing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqL-AG-Jed">
+                                <rect key="frame" x="0.0" y="332" width="320" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="5wZ-TQ-seU"/>
                                     <constraint firstAttribute="height" constant="33" id="ZdU-EA-lcc"/>
                                     <constraint firstAttribute="width" constant="180" id="lD7-2f-wqf"/>
-                                    <constraint firstAttribute="width" constant="240" id="mwc-hH-6lu"/>
+                                    <constraint firstAttribute="width" constant="320" id="mwc-hH-6lu"/>
                                     <constraint firstAttribute="width" constant="200" id="o2w-Rz-lJT"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="rZl-TT-k1N"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="185" id="tLh-b8-r4R"/>
@@ -398,7 +398,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-120" y="416"/>
+            <point key="canvasLocation" x="-120" y="415.59220389805103"/>
         </scene>
         <!--Track Progress View Controller-->
         <scene sceneID="8Ke-fn-SKz">
@@ -690,26 +690,20 @@
                                     <segue destination="FcG-gC-jOF" kind="unwind" unwindAction="FrmProgressVCunwindToTrackProgressViewController:" id="Oc7-Ue-20E"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="You have read" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mf7-Sq-TdL">
-                                <rect key="frame" x="16" y="78" width="121" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="You have read/heard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mf7-Sq-TdL">
+                                <rect key="frame" x="0.0" y="78" width="171" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="PSR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQQ-LG-3ch">
-                                <rect key="frame" x="139" y="78" width="38" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="PS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdG-UU-yRf">
-                                <rect key="frame" x="178" y="78" width="66" height="24"/>
+                                <rect key="frame" x="210" y="78" width="66" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="out of" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFD-oA-XuQ">
-                                <rect key="frame" x="244" y="78" width="49" height="24"/>
+                                <rect key="frame" x="271" y="78" width="49" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -880,6 +874,12 @@
                                     <action selector="add_40_button:" destination="GNw-77-ifA" eventType="touchUpInside" id="aTL-fq-yWA"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="PSR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQQ-LG-3ch">
+                                <rect key="frame" x="170" y="78" width="38" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.5568627451" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -944,7 +944,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aK7-wp-htJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="FcG-gC-jOF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1326" y="1182"/>
+            <point key="canvasLocation" x="1325.5999999999999" y="1181.5592203898052"/>
         </scene>
         <!--Reminder View Controller-->
         <scene sceneID="z2h-1p-Vhg">
@@ -1580,7 +1580,7 @@
         <image name="page_circle_kb" width="106" height="106"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SFP-sq-Lbl"/>
-        <segue reference="snV-Kc-B3H"/>
+        <segue reference="dEe-lM-wBB"/>
+        <segue reference="yHq-vD-JGF"/>
     </inferredMetricsTieBreakers>
 </document>
